@@ -23,16 +23,16 @@ class EventController extends Controller
     {
         $events = Event::orderBy('created_at', 'asc')->paginate(3);
 
-//
-//        if($month = request('month'))
-//        {
-//            $events->whereMonth('from_date' , Carbon::parse($month)->month);
-//        }
-//
-//        if($year = request('year'))
-//        {
-//            $events->whereYear('from_date' , $year);
-//        }
+
+        if($month = request('month'))
+        {
+            $events->whereMonth('from_date' , Carbon::parse($month)->month);
+        }
+
+        if($year = request('year'))
+        {
+            $events->whereYear('from_date' , $year);
+        }
 
 
 
