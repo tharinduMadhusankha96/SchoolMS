@@ -20,8 +20,8 @@ class CreateEventsTable extends Migration
             $table->longText('detailed_description');
             $table->string('venue');
 //            $table->date('on');
-            $table->dateTime('from');
-            $table->dateTime('to');
+            $table->dateTime('from_date');
+            $table->dateTime('to_date');
             $table->string('from_grade');
             $table->string('to_grade');
             $table->integer('society_id')->unsigned();

@@ -30,15 +30,14 @@
 
     <div class="container text-center ">
         <h3 class="text-capitalize text-light" style="font-family: 'Adobe Gothic Std B'; padding-top: 10px">Archives</h3><br>
-        <p class=""><a href="#"> January 2018</a> </p><hr>
-        <p><a href="#"> January 2018</a> </p><hr>
-        <p><a href="#"> February 2018</a> </p><hr>
-        <p><a href="#"> March 2018</a> </p><hr>
-        <p><a href="#"> Apil 2018</a> </p><hr>
-        <p><a href="#"> May 2018</a> </p><hr>
-        <p><a href="#"> June 2018</a> </p><hr> <p><a href="#"> July 2018</a> </p><hr>
-        <p><a href="#"> August 2018</a> </p><hr>
-        <p><a href="#"> September 2018</a> </p><hr>
+        @foreach( $archs as $row)
+            <div class="" style="margin-bottom: 5% ">
+                <h4><a href="/Event?month={{$row['month']}}&year={{$row['year']}}">
+                        {{$row['month'].' '.$row['year']}}
+                    </a>
+                </h4>
+            </div>
+        @endforeach
     </div>
 
 </div>

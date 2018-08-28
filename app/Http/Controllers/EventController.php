@@ -22,7 +22,29 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::orderBy('created_at', 'asc')->paginate(3);
-        return view('event.index')->with('events', $events);
+
+//
+//        if($month = request('month'))
+//        {
+//            $events->whereMonth('from_date' , Carbon::parse($month)->month);
+//        }
+//
+//        if($year = request('year'))
+//        {
+//            $events->whereYear('from_date' , $year);
+//        }
+
+
+
+//        $events = $events->get();
+
+        $archs = Event::selectRaw(' year(from_date) year , monthname(from_date) month, count(*)')
+            ->groupBy('year','month')
+            ->orderByRaw('min(from_date)')
+            ->get()
+            ->toArray();
+
+        return view('event.index',compact('events' , 'archs'));
     }
 
     /**
@@ -67,8 +89,8 @@ class EventController extends Controller
         $event->detailed_Description = request('detailed_Description');
         $event->venue = request('venue');
 //        $event->on = "2011-09-16";
-        $event->from = request('from');
-        $event->to = request('to');
+        $event->from_date = request('from_date');
+        $event->to_date = request('to_date');
         $event->from_grade = request('from_grade');
         $event->to_grade = request('to_grade');
         $event->society_id = 1;
@@ -129,16 +151,34 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->hasFile('image'))
+        {
+
+            $imageName = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($imageName , PATHINFO_FILENAME);
+            $imageExt = $request->file('image')->getClientOriginalExtension();
+
+            $filenameToStore = $filename.'_'.time() . '.' . $imageExt;
+
+            $path = $request->file('image')->storeAs('public/img', $filenameToStore);
+
+
+        }
+        else{
+            $filenameToStore = 'default.png';
+        }
+
         $event = Event::find($id);
 
         $event->title = request('title');
         $event->description = request('description');
         $event->detailed_Description = request('detailed_Description');
         $event->venue = request('venue');
-        $event->from = request('from');
-        $event->to = request('to');
+        $event->from_date = request('from_date');
+        $event->to_date = request('to_date');
         $event->from_grade = request('from_grade');
         $event->to_grade = request('to_grade');
+        $event->image =$filenameToStore;
         $event->act_income = request('act_income');
         $event->act_expense = request('act_expense');
 
@@ -247,8 +287,8 @@ class EventController extends Controller
             $e_list[] = Calendar::event(
                 $event->title,
                 true,
-                new \DateTime($event->from),
-                new \DateTime($event->to)
+                new \DateTime($event->from_date),
+                new \DateTime($event->to_date)
 
             );
 

@@ -53,13 +53,13 @@
                         <div class="col-md-6 float-left">
                             <label for="example-time-input" class="col-2 col-form-label">From</label>
                             <div>
-                                <input class="form-control" name="from" type="datetime-local" value="2017-06-01T08:30" id="example-time-input" required>
+                                <input class="form-control" name="from_date" type="datetime-local" value="2017-06-01T08:30" id="example-time-input" required>
                             </div>
                         </div>
                         <div class="col-md-6 float-right">
                             <label for="example-time-input" class="col-2 col-form-label">To</label>
                             <div>
-                                <input class="form-control" name="to" type="datetime-local" value="2017-06-01T08:30:00" id="example-time-input" required>
+                                <input class="form-control" name="to_date" type="datetime-local" value="2017-06-01T08:30:00" id="example-time-input" required>
                             </div>
                         </div>
 

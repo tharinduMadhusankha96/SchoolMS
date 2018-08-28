@@ -54,20 +54,16 @@
                                 <div>
                                     <table>
                                         <tr>
-                                            <td>Date</td>
-                                            <td>{{$event->on}}</td>
-                                        </tr>
-                                        <tr>
                                             <td>Venue:</td>
                                             <td>School Grounds</td>
                                         </tr>
                                         <tr>
-                                            <td>From</td>
-                                            <td>{{$event->from}}</td>
+                                            <td>From </td>
+                                            <td>{{$event->from_date}}</td>
                                         </tr>
                                         <tr>
                                             <td>To</td>
-                                            <td>{{$event->to}}</td>
+                                            <td>{{$event->to_date}}</td>
                                         </tr>
                                         <tr>
                                             <td>From(Grade)&nbsp;</td>
@@ -112,7 +108,7 @@
                                 <div>
                                     @foreach($event->comments as $comments)
                                         <div class="media mb-4 col-md-10 cmt">
-                                            {{--<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">--}}
+
                                             <div class="media-body">
 
                                                 <h5 class="mt-0 card-header">{{$comments->user->name}}

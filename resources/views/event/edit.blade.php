@@ -67,7 +67,7 @@
 
                         <?php
 
-                            $to = new \DateTime($event->to);
+                            $to = new \DateTime($event->to_date);
                             $resulto = $to->format('Y-m-d H:i:s');
 
                             $tostr1 = mb_substr($resulto, 0, 10);
@@ -77,7 +77,7 @@
 
                             $finalto = substr_replace($newto, 'T', 10, 0);
 
-                            $from = new \DateTime($event->from);
+                            $from = new \DateTime($event->from_date);
                             $resultfrom = $from->format('Y-m-d H:i:s');
 
                             $fromstr1 = mb_substr($resultfrom, 0, 10);
@@ -94,14 +94,14 @@
                                 <label for="example-time-input" class="col-2 col-form-label">From</label>
                                 <div>
 
-                                    <input class="form-control" value="{{$finalfrom}}" name="from"
+                                    <input class="form-control" value="{{$finalfrom}}" name="from_date"
                                            type="datetime-local" id="example-time-input" required>
                                 </div>
                             </div>
                             <div class="col-md-6 float-right">
                                 <label for="example-time-input" class="col-2 col-form-label">To</label>
                                 <div>
-                                    <input class="form-control" value="{{$finalto}}" name="to" type="datetime-local"
+                                    <input class="form-control" value="{{$finalto}}" name="to_date" type="datetime-local"
                                            id="example-time-input" required>
                                 </div>
                             </div>
