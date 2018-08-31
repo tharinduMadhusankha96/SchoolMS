@@ -2,7 +2,6 @@
     <form action="/Event/search" method="get">
 
         <input type="text" class="form-control" name="search" placeholder="Search Events" style="width: 100%;margin: 10px; margin-top: 20px">
-        {{--<input type="submit" class="btn btn-primary" value="Search"  style="width: 100%;margin-top: 10px;">--}}
 
     </form>
 </div>
@@ -32,7 +31,7 @@
         <h3 class="text-capitalize text-light" style="font-family: 'Adobe Gothic Std B'; padding-top: 10px">Archives</h3><br>
         @foreach( $archs as $row)
             <div class="" style="margin-bottom: 5% ">
-                <h4><a href="/Event?month={{$row['month']}}&year={{$row['year']}}">
+                <h4><a href="/Event/monthlyEvent?month={{$row['month']}}&year={{$row['year']}}">
                         {{$row['month'].' '.$row['year']}}
                     </a>
                 </h4>
@@ -41,6 +40,6 @@
     </div>
 
 </div>
-<div>
-    @include('include.cal')
-</div>
+{{--<div>--}}
+    {{--@include('include.cal')--}}
+{{--</div>--}}

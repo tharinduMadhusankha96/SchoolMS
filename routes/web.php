@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('Event/search','EventController@search');
+Route::get('Event/monthlyEvent', 'EventController@monthlyEvent');
 Route::get('Event/myevents','EventController@myevents');
 Route::get('/Event/showEvent/{event}', 'EventController@showEvent');
 Route::post('/Event/showEvent/{event}', 'EventController@updateImage');

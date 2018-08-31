@@ -21,30 +21,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::orderBy('created_at', 'asc')->paginate(3);
+        $events = Event::orderBy('created_at', 'desc')->paginate(3);
 
-
-        if($month = request('month'))
-        {
-            $events->whereMonth('from_date' , Carbon::parse($month)->month);
-        }
-
-        if($year = request('year'))
-        {
-            $events->whereYear('from_date' , $year);
-        }
-
-
-
-//        $events = $events->get();
-
-        $archs = Event::selectRaw(' year(from_date) year , monthname(from_date) month, count(*)')
-            ->groupBy('year','month')
-            ->orderByRaw('min(from_date)')
-            ->get()
-            ->toArray();
-
-        return view('event.index',compact('events' , 'archs'));
+        return view('event.index',compact('events' ));
     }
 
     /**
@@ -286,10 +265,9 @@ class EventController extends Controller
 
             $e_list[] = Calendar::event(
                 $event->title,
-                true,
+                false,
                 new \DateTime($event->from_date),
                 new \DateTime($event->to_date)
-
             );
 
             $cal_events = Calendar::addEvents($e_list);
@@ -298,6 +276,21 @@ class EventController extends Controller
 
         }
     }
+
+    public function monthlyEvent()
+    {
+        $events = Event::latest()
+            ->filter(request(['month' , 'year']));
+
+        $events = $events->get();
+
+
+//        $archs = Event::archives();
+
+        return view('event.monthlyEvent',compact('events'));
+
+    }
+
 
 
 }

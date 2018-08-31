@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('include.sidebar' , function($view){
+            $view->with('archs' , \App\Event::archives());
+        });
     }
 
     /**

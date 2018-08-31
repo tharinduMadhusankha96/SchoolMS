@@ -63,10 +63,10 @@
         <div>
             @include('include.navbar')
         </div>
-        <div>
+        <div style="margin: 15px">
             @yield('content')
         </div>
-        <div >
+        <div>
             @include('include.footer')
         </div>
 
