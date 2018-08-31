@@ -21,9 +21,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::orderBy('created_at', 'desc')->paginate(3);
+        $events = Event::orderBy('from_date', 'desc')->paginate(3);
 
-        return view('event.index',compact('events' ));
+        return view('event.index',compact('events'));
     }
 
     /**
@@ -85,7 +85,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect('/Event/myevents');
+        return redirect('/Event/myevents')->with('success' , "New event '"."{$event->title}". "' has been created ");
 
     }
 
@@ -163,7 +163,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect('/Event');
+        return redirect('/Event')->with('success' , "Event '"."{$event->title}"."' has been updated ");
     }
 
     /**
@@ -179,10 +179,10 @@ class EventController extends Controller
         if($event)
         {
             $event->delete();
-            return redirect('Event/myevents');
+            return redirect('Event/myevents')->with('success' , "Event '"."{$event->title}"."' has been deleted ");
         }
 
-        return redirect('Event/myevents');
+        return redirect('Event/myevents')->with('error' , "Event '"."{$event->title}"."' was not deleted ");
     }
 
 //    public function nir()
@@ -195,7 +195,7 @@ class EventController extends Controller
         $search = request('search');
         $events = Event::search($search)->paginate(3);
 
-        return view('event.index')->with('events', $events);
+        return view('event.index')->with('events', $events)->with('success' , "Search Result for '"."{$search}"." '");
     }
 
     public function myevents()
@@ -208,7 +208,7 @@ class EventController extends Controller
 
             $events = Event::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(3);
 
-            return view('event.myevents')->with('events', $events);
+            return view('event.myevents')->with('events', $events)->with('success' , "Showing events of '"."{{Auth()->user()->name();}}". "' .");
         }
 
         return redirect('/Event');
@@ -258,23 +258,23 @@ class EventController extends Controller
     {
         $events = Event::all();
 
-        $e_list = [];
-
         foreach ($events as $key=>$event) {
 
+            $e_list = [];
 
             $e_list[] = Calendar::event(
                 $event->title,
                 false,
                 new \DateTime($event->from_date),
                 new \DateTime($event->to_date)
+//                (action('EventController@show',[$event->id]))
             );
 
             $cal_events = Calendar::addEvents($e_list);
-
-            return view('event.calendar')->with('cal_events', $cal_events);
-
         }
+
+        return view('event.calendar')->with('cal_events', $cal_events);
+
     }
 
     public function monthlyEvent()
@@ -283,9 +283,6 @@ class EventController extends Controller
             ->filter(request(['month' , 'year']));
 
         $events = $events->get();
-
-
-//        $archs = Event::archives();
 
         return view('event.monthlyEvent',compact('events'));
 

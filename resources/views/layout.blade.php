@@ -63,6 +63,10 @@
         <div>
             @include('include.navbar')
         </div>
+        <div class="container alert">
+             @include('include.error')
+            @include('include.success')
+        </div>
         <div style="margin: 15px">
             @yield('content')
         </div>
