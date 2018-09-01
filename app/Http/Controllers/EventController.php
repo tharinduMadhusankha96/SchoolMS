@@ -44,17 +44,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate(request(), [
             'title' => 'required',
             'description' => 'required|max:250',
             'detailed_Description' => 'required',
             'venue' => 'required',
-            'from_date' => 'required',
-            'to_date' => 'required',
-            'from_grade' => 'required',
-            'to_grade' => 'required',
-            'act_income' => 'required',
-            'act_expense' => 'required',
+            'from_date' => 'required|after:yesterday',
+            'to_date' => 'required|after_or_equal:from_date',
+            'from_grade' => 'required|integer|min:0|max:13',
+            'to_grade' => 'required|integer|min:0|max:13',
+            'act_income' => 'required|min:0|between:0,999999999.99',
+            'act_expense' => 'required|min:0|between:0,99999999.99',
             'image' => 'required',
         ]);
 

@@ -94,14 +94,14 @@
                     <div class="form-group " style="padding-top:3%">
                         <label for="act_income" class="col-2 col-form-label">Actual Income</label>
                         <div>
-                            <input class="form-control" name="act_income" type="number" value="{{old('act_income')}}"
+                            <input class="form-control" name="act_income" type="double" value="{{old('act_income')}}"
                                    id="example-time-input" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="act_expense" class="col-2 col-form-label">Actual Expense</label>
                         <div>
-                            <input class="form-control" name="act_expense" type="number" value="{{old('act_expense')}}"
+                            <input class="form-control" name="act_expense" type="double" value="{{old('act_expense')}}"
                                    id="example-time-input" required>
                         </div>
                     </div>

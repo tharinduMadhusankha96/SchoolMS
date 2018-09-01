@@ -127,7 +127,7 @@
                             <label for="act_income" class="col-2 col-form-label">Actual Income</label>
                             <div>
                                 <input class="form-control" value="{{$event->act_income}}" name="act_income"
-                                       type="number" id="example-time-input"
+                                       type="double" id="example-time-input"
                                        required>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             <label for="act_expense" class="col-2 col-form-label">Actual Expense</label>
                             <div>
                                 <input class="form-control" value="{{$event->act_expense}}" name="act_expense"
-                                       type="number" id="example-time-input"
+                                       type="double" id="example-time-input"
                                        required>
                             </div>
                         </div>
