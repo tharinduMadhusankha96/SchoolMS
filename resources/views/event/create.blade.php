@@ -57,7 +57,6 @@
                     </div>
 
                     <div class="form-group col-md-7" style="padding-bottom:3%;padding-top:3%">
-                        {{--<h4 class="col-md-12">Age group of the students allowed to participate: </h4>--}}
                         <div class="col-md-6 float-left">
                             <label for="fromGrade">From (Grade)</label>
                             <input type="Number" class="form-control" name="from_grade" value="{{old('from_grade')}}"

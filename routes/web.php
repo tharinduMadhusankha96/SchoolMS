@@ -28,6 +28,7 @@ Route::get('/Event/showEvent/{event}', 'EventController@showEvent');
 Route::post('/Event/showEvent/{event}', 'EventController@updateImage');
 Route::get('/Event/calendar', 'EventController@calendar');
 Route::resource('Event' , 'EventController');
+Route::post('Event/{event}/comment','CommentsController@store');
 
 //Route::get('/Event','EventController@index');
 //Route::post('/Event/create','EventController@create');
@@ -40,5 +41,5 @@ Route::get('/Sports', 'PagesController@sports');
 Route::get('/Sports/Enroll', 'PagesController@cricket');
 
 
-Route::post('Event/{event}/comment','CommentsController@store');
+
 

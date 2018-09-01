@@ -25,4 +25,9 @@ class CommentsController extends Controller
 
         return back();
     }
+
+    public function destroy($user_id , $event_id)
+    {
+
+    }
 }
