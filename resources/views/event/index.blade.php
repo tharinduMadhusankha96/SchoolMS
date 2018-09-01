@@ -18,20 +18,29 @@
                                             <h2>
                                                 {{$event->title}}
                                             </h2>
+                                            <span style="color: #2e6fca">{{$event->from_date}}</span>
+                                            <hr>
                                             <p>
                                                 {{--Over 60 schools across the country are holding a ‘Day of English’ on 14 September 2018. Students will take part in a Shakespeare-inspired English lessons, exploring their knowledge of Shakespeare as well as putting on short performances, playing their parts in English.--}}
                                                 {{$event->description}}
                                             </p>
                                             <p>
-                                                <a class="btn btn-primary btn-large" href="{{ action('EventController@show',[$event->id]) }}">View Event in Detail</a>
+                                                <a class="btn btn-primary btn-large"
+                                                   href="{{ action('EventController@show',[$event->id]) }}">View Event
+                                                    in Detail</a>
                                             </p>
                                             @if(auth()->user())
                                                 @if(auth()->user()->id == $event->user_id)
-                                                    <div class="btn-group-lg">
-                                                        <button class="btn btn-outline-dark " style="width: 40%" type="submit"><a href="{{ action('EventController@edit',[$event->id]) }}">Edit Event</a> </button>
-                                                        <button class="btn btn-outline-danger" style="width: 40%" type="submit"><a href="#"
-                                                                                                                                   onclick="
-                                                         var result = confirm('Are you sure youo want to delete this Event? ');
+                                                    <div class="btn-group-lg col-12">
+                                                        <button class="btn btn-outline-dark "
+                                                                style="width: 40%; border-radius: 50%" type="submit"><a
+                                                                    href="{{ action('EventController@edit',[$event->id]) }}">Edit
+                                                                Event</a></button>
+                                                        <button class="btn btn-outline-danger"
+                                                                style="width: 40%;  border-radius: 50%" type="submit"><a
+                                                                    href="#"
+                                                                    onclick="
+                                                         var result = confirm('Are you sure you want to delete this Event? ');
 
                                                          if(result){
                                                              event.preventDefault();
@@ -42,7 +51,9 @@
                                                             >
                                                                 Delete Event</a>
 
-                                                            <form id="delete-form" action="{{action('EventController@destroy' , [$event->id])}}" method="post" style="display:none" >
+                                                            <form id="delete-form"
+                                                                  action="{{action('EventController@destroy' , [$event->id])}}"
+                                                                  method="post" style="display:none">
                                                                 <input type="hidden" name="_method" value="delete">
                                                                 {{csrf_field()}}
                                                             </form>

@@ -23,7 +23,7 @@ class EventController extends Controller
     {
         $events = Event::orderBy('from_date', 'desc')->paginate(3);
 
-        return view('event.index',compact('events'));
+        return view('event.index', compact('events'));
     }
 
     /**
@@ -44,20 +44,32 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('image'))
-        {
+        $this->validate(request(), [
+            'title' => 'required',
+            'description' => 'required|max:250',
+            'detailed_Description' => 'required',
+            'venue' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            'from_grade' => 'required',
+            'to_grade' => 'required',
+            'act_income' => 'required',
+            'act_expense' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
 
             $imageName = $request->file('image')->getClientOriginalName();
-            $filename = pathinfo($imageName , PATHINFO_FILENAME);
+            $filename = pathinfo($imageName, PATHINFO_FILENAME);
             $imageExt = $request->file('image')->getClientOriginalExtension();
 
-            $filenameToStore = $filename.'_'.time() . '.' . $imageExt;
+            $filenameToStore = $filename . '_' . time() . '.' . $imageExt;
 
             $path = $request->file('image')->storeAs('public/img', $filenameToStore);
 
 
-        }
-        else{
+        } else {
             $filenameToStore = 'default.png';
         }
 
@@ -67,13 +79,12 @@ class EventController extends Controller
         $event->description = request('description');
         $event->detailed_Description = request('detailed_Description');
         $event->venue = request('venue');
-//        $event->on = "2011-09-16";
         $event->from_date = request('from_date');
         $event->to_date = request('to_date');
         $event->from_grade = request('from_grade');
         $event->to_grade = request('to_grade');
         $event->society_id = 1;
-        $event->image =$filenameToStore;
+        $event->image = $filenameToStore;
         $event->user_id = auth()->user()->id;
         $event->act_income = request('act_income');
         $event->act_expense = request('act_expense');
@@ -81,11 +92,9 @@ class EventController extends Controller
         $id = $event->id;
 
 
-
-
         $event->save();
 
-        return redirect('/Event/myevents')->with('success' , "New event '"."{$event->title}". "' has been created ");
+        return redirect('/Event/myevents')->with('success', "New event '" . "{$event->title}" . "' has been created ");
 
     }
 
@@ -116,9 +125,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-       $event = Event::find($id);
+        $event = Event::find($id);
 
-        return view('event.edit')->with('event',$event);
+        return view('event.edit')->with('event', $event);
     }
 
     /**
@@ -130,20 +139,18 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
 
             $imageName = $request->file('image')->getClientOriginalName();
-            $filename = pathinfo($imageName , PATHINFO_FILENAME);
+            $filename = pathinfo($imageName, PATHINFO_FILENAME);
             $imageExt = $request->file('image')->getClientOriginalExtension();
 
-            $filenameToStore = $filename.'_'.time() . '.' . $imageExt;
+            $filenameToStore = $filename . '_' . time() . '.' . $imageExt;
 
             $path = $request->file('image')->storeAs('public/img', $filenameToStore);
 
 
-        }
-        else{
+        } else {
             $filenameToStore = 'default.png';
         }
 
@@ -157,13 +164,13 @@ class EventController extends Controller
         $event->to_date = request('to_date');
         $event->from_grade = request('from_grade');
         $event->to_grade = request('to_grade');
-        $event->image =$filenameToStore;
+        $event->image = $filenameToStore;
         $event->act_income = request('act_income');
         $event->act_expense = request('act_expense');
 
         $event->save();
 
-        return redirect('/Event')->with('success' , "Event '"."{$event->title}"."' has been updated ");
+        return redirect('/Event')->with('success', "Event '" . "{$event->title}" . "' has been updated ");
     }
 
     /**
@@ -176,13 +183,12 @@ class EventController extends Controller
     {
         $event = Event::find($id);
 
-        if($event)
-        {
+        if ($event) {
             $event->delete();
-            return redirect('Event/myevents')->with('success' , "Event '"."{$event->title}"."' has been deleted ");
+            return redirect('Event/myevents')->with('success', "Event '" . "{$event->title}" . "' has been deleted ");
         }
 
-        return redirect('Event/myevents')->with('error' , "Event '"."{$event->title}"."' was not deleted ");
+        return redirect('Event/myevents')->with('error', "Event '" . "{$event->title}" . "' was not deleted ");
     }
 
 //    public function nir()
@@ -195,20 +201,19 @@ class EventController extends Controller
         $search = request('search');
         $events = Event::search($search)->paginate(3);
 
-        return view('event.index')->with('events', $events)->with('success' , "Search Result for '"."{$search}"." '");
+        return view('event.index')->with('events', $events)->with('success', "Search Result for '" . "{$search}" . " '");
     }
 
     public function myevents()
     {
-        if(auth()->user())
-        {
+        if (auth()->user()) {
             $user = Auth::user();
 
             $id = $user->id;
 
             $events = Event::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(3);
 
-            return view('event.myevents')->with('events', $events)->with('success' , "Showing events of '"."{{Auth()->user()->name();}}". "' .");
+            return view('event.myevents')->with('events', $events)->with('success', "Showing events of '" . "{{Auth()->user()->name();}}" . "' .");
         }
 
         return redirect('/Event');
@@ -230,7 +235,7 @@ class EventController extends Controller
 
     public function updateImage(Request $request, $id)
     {
-        if ($request->hasFile('image'));
+        if ($request->hasFile('image')) ;
         {
 
             $image = $request->file('image');
@@ -258,7 +263,7 @@ class EventController extends Controller
     {
         $events = Event::all();
 
-        foreach ($events as $key=>$event) {
+        foreach ($events as $key => $event) {
 
             $e_list = [];
 
@@ -280,14 +285,13 @@ class EventController extends Controller
     public function monthlyEvent()
     {
         $events = Event::latest()
-            ->filter(request(['month' , 'year']));
+            ->filter(request(['month', 'year']));
 
         $events = $events->get();
 
-        return view('event.monthlyEvent',compact('events'));
+        return view('event.monthlyEvent', compact('events'));
 
     }
-
 
 
 }

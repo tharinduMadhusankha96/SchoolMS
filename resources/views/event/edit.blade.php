@@ -11,7 +11,8 @@
                 @if($event)
                     <h1 class="text-light text-center card-header">Edit Event</h1>
 
-                    <form action="{{ action('EventController@update',[$event->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ action('EventController@update',[$event->id]) }}" method="post"
+                          enctype="multipart/form-data">
                         <label type="hidden">{{csrf_field()}}</label>
                         {{method_field('put')}}
                         <div class="form-group">
@@ -31,16 +32,29 @@
                             <textarea rows="3" type="TextArea" name="description"
                                       class="form-control"
                                       aria-describedby="emailHelp" placeholder="Enter a Brief Description  (250)"
-                                      maxlength="250" required>{{$event->description}}</textarea>
+                                      maxlength="250" required>{{$event->description}}</textarea><span
+                                    class="text-warning" id='remainingC'></span>
                         </div>
+                        {{-- Script to get the number of characters remaining--}}
+                        <script>
+                            $('textarea').keypress(function () {
+
+                                if (this.value.length > 250) {
+                                    return false;
+                                }
+                                $("#remainingC").html("Remaining characters : " + (250 - this.value.length));
+                            });
+                        </script>
+                        {{----}}
+
                         <div class="form-group">
                             <label for="detailedDescription">Detailed Description</label>
                             <textarea rows="10" type="Text" class="form-control"
-                                       name="detailed_Description"
+                                      name="detailed_Description"
                                       aria-describedby="emailHelp" placeholder="Enter a Detailed Description"
                                       required>{{$event->detailed_description}}</textarea>
-                            {{--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--}}
                         </div>
+
 
                         <div class="form-group">
                             <label for="exampleInputPassword1">Venue</label>
@@ -67,25 +81,25 @@
 
                         <?php
 
-                            $to = new \DateTime($event->to_date);
-                            $resulto = $to->format('Y-m-d H:i:s');
+                        $to = new \DateTime($event->to_date);
+                        $resulto = $to->format('Y-m-d H:i:s');
 
-                            $tostr1 = mb_substr($resulto, 0, 10);
-                            $tostr2 = mb_substr($resulto, 11);
+                        $tostr1 = mb_substr($resulto, 0, 10);
+                        $tostr2 = mb_substr($resulto, 11);
 
-                            $newto=$tostr1.$tostr2;
+                        $newto = $tostr1 . $tostr2;
 
-                            $finalto = substr_replace($newto, 'T', 10, 0);
+                        $finalto = substr_replace($newto, 'T', 10, 0);
 
-                            $from = new \DateTime($event->from_date);
-                            $resultfrom = $from->format('Y-m-d H:i:s');
+                        $from = new \DateTime($event->from_date);
+                        $resultfrom = $from->format('Y-m-d H:i:s');
 
-                            $fromstr1 = mb_substr($resultfrom, 0, 10);
-                            $fromstr2 = mb_substr($resultfrom, 11);
+                        $fromstr1 = mb_substr($resultfrom, 0, 10);
+                        $fromstr2 = mb_substr($resultfrom, 11);
 
-                            $newfrom=$fromstr1.$fromstr2;
+                        $newfrom = $fromstr1 . $fromstr2;
 
-                            $finalfrom = substr_replace($newfrom, 'T', 10, 0);
+                        $finalfrom = substr_replace($newfrom, 'T', 10, 0);
                         ?>
 
                         <div class="form-group col-md-7" style="padding-bottom:3%;padding-top:3%">
@@ -101,7 +115,8 @@
                             <div class="col-md-6 float-right">
                                 <label for="example-time-input" class="col-2 col-form-label">To</label>
                                 <div>
-                                    <input class="form-control" value="{{$finalto}}" name="to_date" type="datetime-local"
+                                    <input class="form-control" value="{{$finalto}}" name="to_date"
+                                           type="datetime-local"
                                            id="example-time-input" required>
                                 </div>
                             </div>

@@ -11,20 +11,20 @@ class Event extends Model
 
     use SearchableTrait;
 
-    public $events=null;
+    public $events = null;
 
     protected $searchable = [
 
         'columns' => [
 
-            'events.title'=> 6,
+            'events.title' => 6,
             'events.venue' => 8,
             'events.description' => 10,
         ],
 
         'joins' => [
 
-             'users' => ['user_id' , 'events.user_id'],
+            'users' => ['user_id', 'events.user_id'],
 
         ]
 
@@ -35,30 +35,27 @@ class Event extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function scopeFilter($query , $filters )
+    public function scopeFilter($query, $filters)
     {
 
 
-        if(isset($filters['month']))
-        {
+        if (isset($filters['month'])) {
 
-            $query->whereMonth('from_date' , Carbon::parse($filters['month'])->month);
+            $query->whereMonth('from_date', Carbon::parse($filters['month'])->month);
         }
 
-        if(isset($filters['year']))
-        {
-            $query->whereYear('from_date' , $filters['year']);
+        if (isset($filters['year'])) {
+            $query->whereYear('from_date', $filters['year']);
         }
     }
 
     public static function archives()
     {
-       return static::selectRaw(' year(from_date) year , monthname(from_date) month')
-            ->groupBy('year','month')
+        return static::selectRaw(' year(from_date) year , monthname(from_date) month')
+            ->groupBy('year', 'month')
             ->orderByRaw('min(from_date)')
             ->get();
     }
-
 
 
 }

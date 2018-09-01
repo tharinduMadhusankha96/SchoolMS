@@ -14,6 +14,7 @@
 
                     <!-- Post Content Column -->
                         <div class="col-lg-12" style="background-color: #0ab24b; margin: 25px; border-radius: 2%">
+
                             <div class="container">
                                 <!-- Title -->
                                 <h1 class="mt-4">{{$event->title}}</h1>
@@ -55,7 +56,7 @@
                                     <table>
                                         <tr>
                                             <td>Venue:</td>
-                                            <td>School Grounds</td>
+                                            <td>{{$event->venue}}</td>
                                         </tr>
                                         <tr>
                                             <td>From </td>
@@ -79,8 +80,9 @@
 
                                 </div>
 
-                                <!-- Post Content -->
-                                <p>{{$event->detailed_description}}</p>
+                                <div class="container">
+                                    <p>{{$event->detailed_description}}</p>
+                                </div>
 
                                 <hr>
 
