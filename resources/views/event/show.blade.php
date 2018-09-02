@@ -118,8 +118,18 @@
                                                 </h5>
 
                                                 <p class="card-body">{{$comments->body}}</p>
+
+                                                {{--<div class="float-right ">--}}
+                                                    {{--<form method="post" action="{{action('CommentsController@destroy' , [$event->id , $comments->id ])}}">--}}
+                                                        {{--{{csrf_field()}}--}}
+                                                        {{--<input type="hidden" name="_method" value="delete">--}}
+                                                        {{--<button type="Submit" class="btn btn-primary">Delete</button>--}}
+                                                    {{--</form>--}}
+                                                {{--</div>--}}
+
                                             </div>
                                         </div>
+
 
                                         <hr>
                                     @endforeach

@@ -26,8 +26,15 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function destroy($user_id , $event_id)
-    {
-
-    }
+//    public function destroy($id)
+//    {
+//        $user = Auth()->user()->id;
+//
+//        $coms = Comment::find($id);
+//
+//        $coms->delete();
+//
+//
+//        return back();
+//    }
 }
