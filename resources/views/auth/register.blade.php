@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role_id" class="col-md-4 col-form-label text-md-right">Role ID</label>
+                            <label for="role_id" name ="role_id" class="col-md-4 col-form-label text-md-right">Role ID</label>
 
                             <div class="col-md-6">
                                 <input id="role_id" class="form-control" name="role_id" required>

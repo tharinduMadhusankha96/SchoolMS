@@ -23,7 +23,7 @@ class CommentsController extends Controller
 
         ]);
 
-        return back();
+        return back()->with('success', "Your comment has been added ");
     }
 
 //    public function destroy($id)

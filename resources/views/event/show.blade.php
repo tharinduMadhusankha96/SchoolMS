@@ -13,7 +13,7 @@
                 @if($event)
 
                     <!-- Post Content Column -->
-                        <div class="col-lg-12" style="background-color: #0ab24b; margin: 25px; border-radius: 2%">
+                        <div class="col-lg-12" style="background-color: #a6b2a4; margin: 25px; border-radius: 2%">
 
                             <div class="container">
                                 <!-- Title -->
@@ -21,8 +21,8 @@
 
                                 <!-- Author -->
                                 <p class="lead">
-                                    by
-                                    <a href="#" style="color: #060606;">The Literary Society </a>
+                                    {{--by--}}
+                                    {{--<a href="#" style="color: #060606;">The Literary Society </a>--}}
                                 </p>
 
                                 <hr>
@@ -30,7 +30,7 @@
                                 <!-- Date/Time -->
                                 <div>
                                     <h4 class="btn-block disabled" style="color: #9cffd2">Posted
-                                        on {{$event->created_on}} </h4>
+                                        on {{$event->created_at}} </h4>
                                 </div>
                                 <hr>
 
@@ -59,7 +59,7 @@
                                             <td>{{$event->venue}}</td>
                                         </tr>
                                         <tr>
-                                            <td>From </td>
+                                            <td>From</td>
                                             <td>{{$event->from_date}}</td>
                                         </tr>
                                         <tr>
@@ -82,66 +82,73 @@
 
                                 <div class="container">
                                     <p>{{$event->detailed_description}}</p>
+                                    {{--nl2br()--}}
                                 </div>
 
                                 <hr>
 
                             </div>
 
-                            <div class="container-fluid" style="background-color: #35813b; padding-top: 15px">
-                                <!-- Comments Form -->
-                                <div class="card my-4" style="background: #4db949;border-radius: 10px">
+                            <div class="container-fluid"
+                                 style="background-color: #35813b; padding: 15px;border-radius: 10px"
+                            ">
+                            <!-- Comments Form -->
+                            <div class="card my-4" style="background: #4db949;border-radius: 10px">
 
-                                    <div class="card-body">
-                                        <form method="post" action='/Event/{{$event->id}}/comment'>
-                                            <h5 class="card-header">Leave a Comment:</h5>
+                                <div class="card-body">
+                                    <form method="post" action='/Event/{{$event->id}}/comment'>
+                                        <h5 class="card-header">Leave a Comment:</h5>
 
-                                            <label type="hidden">{{csrf_field()}}</label>
+                                        <label type="hidden">{{csrf_field()}}</label>
 
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="body" rows="3"></textarea>
-                                            </div>
-                                            <button type="Submit" class="btn btn-primary">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <!-- Single Comment -->
-                                <div>
-                                    @foreach($event->comments as $comments)
-                                        <div class="media mb-4 col-md-10 cmt">
-
-                                            <div class="media-body">
-
-                                                <h5 class="mt-0 card-header">{{$comments->user->name}}
-                                                    <small> said</small>
-                                                </h5>
-
-                                                <p class="card-body">{{$comments->body}}</p>
-
-                                                {{--<div class="float-right ">--}}
-                                                    {{--<form method="post" action="{{action('CommentsController@destroy' , [$event->id , $comments->id ])}}">--}}
-                                                        {{--{{csrf_field()}}--}}
-                                                        {{--<input type="hidden" name="_method" value="delete">--}}
-                                                        {{--<button type="Submit" class="btn btn-primary">Delete</button>--}}
-                                                    {{--</form>--}}
-                                                {{--</div>--}}
-
-                                            </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="body" rows="3"></textarea>
                                         </div>
-                                    
-                                        <hr>
-                                    @endforeach
+                                        <button type="Submit" class="btn btn-primary">Submit</button>
+                                    </form>
                                 </div>
-
                             </div>
 
-                            @if(auth()->user())
-                                @if(auth()->user()->id == $event->user_id)
-                                <div class="btn-group-lg">
-                                    <button class="btn bg-info " style="width: 45%; border-radius: 50%" type="submit"><a class="text-white" href="{{ action('EventController@edit',[$event->id]) }}">Edit Event</a> </button>
-                                    <button class="btn btn-danger" style="width: 45%; border-radius: 50%" type="submit"><a class="text-white" href="#"
-                                                                                                               onclick="
+                            <!-- Single Comment -->
+                            <div>
+                                @foreach($event->comments as $comments)
+                                    <div class="media mb-4 col-md-10 cmt">
+
+                                        <div class="media-body">
+
+                                            <h5 class="mt-0 card-header">{{$comments->user->name}}
+                                                <small> said</small>
+                                            </h5>
+
+                                            <p class="card-body">{{$comments->body}}</p>
+
+                                            {{--<div class="float-right ">--}}
+                                            {{--<form method="post" action="{{action('CommentsController@destroy' , [$event->id , $comments->id ])}}">--}}
+                                            {{--{{csrf_field()}}--}}
+                                            {{--<input type="hidden" name="_method" value="delete">--}}
+                                            {{--<button type="Submit" class="btn btn-primary">Delete</button>--}}
+                                            {{--</form>--}}
+                                            {{--</div>--}}
+
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                @endforeach
+                            </div>
+
+                        </div>
+
+                        @if(auth()->user())
+                            @if(auth()->user()->id == $event->user_id)
+                                <div class="btn-group-lg" style="margin: 1%;">
+                                    <button class="btn bg-info " style="width: 45%; border-radius: 50%;" type="submit"><a
+                                                class="text-white"
+                                                href="{{ action('EventController@edit',[$event->id]) }}">Edit Event</a>
+                                    </button>
+                                    <button class="btn btn-danger" style="width: 45%; border-radius: 50%" type="submit">
+                                        <a class="text-white" href="#"
+                                           onclick="
                                                          var result = confirm('Are you sure youo want to delete this Event? ');
 
                                                          if(result){
@@ -153,33 +160,33 @@
                                         >
                                             Delete Event</a>
 
-                                        <form id="delete-form" action="{{action('EventController@destroy' , [$event->id])}}" method="post" style="display:none" >
+                                        <form id="delete-form"
+                                              action="{{action('EventController@destroy' , [$event->id])}}"
+                                              method="post" style="display:none">
                                             <input type="hidden" name="_method" value="delete">
                                             {{csrf_field()}}
                                         </form>
 
                                     </button>
                                 </div>
-                                @endif
                             @endif
+                        @endif
 
-                            <hr>
-
-
-
-                        </div>
+                        <hr>
 
                     @endif
                 </div>
 
             </div>
 
-            <div class="col-md-3 sideb">
-
-                @include('include.sidebar')
-            </div>
-
         </div>
+
+        <div class="col-md-3 sideb">
+
+            @include('include.sidebar')
+        </div>
+
+    </div>
 
     </div>
 
