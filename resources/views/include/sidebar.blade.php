@@ -13,23 +13,24 @@
 </div>
 
 <hr>
+@if(auth()->user())
+    @if(auth()->user()->role_id == 2)
 
-@if(auth()->user()->role_id == 2)
+        <div class="btn-block" style="padding-top: 15px">
+            <button class="btn btn-default " style="width: 100%; min-height: 60px ; background-color: #8affa3; "><a
+                        href="/Event/create">Create Event</a></button>
+        </div>
 
-    <div class="btn-block" style="padding-top: 15px">
-        <button class="btn btn-default " style="width: 100%; min-height: 60px ; background-color: #8affa3; "><a
-                    href="/Event/create">Create Event</a></button>
-    </div>
+        <div class="btn-block" style="padding-top: 15px;padding-bottom: 15px">
+            <button class="btn btn-outline-info" style="width: 100%; min-height: 60px ; "><a href="/Event/myevents"
+                                                                                             style="color: whitesmoke">My
+                    Events</a></button>
+        </div>
 
-    <div class="btn-block" style="padding-top: 15px">
-        <button class="btn btn-outline-info" style="width: 100%; min-height: 60px ; "><a href="/Event/myevents"
-                                                                                         style="color: whitesmoke">My
-                Events</a></button>
-    </div>
+    @endif
 @endif
-
 <hr>
-
+<hr>
 <div>
 
     <div class="container text-center ">

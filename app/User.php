@@ -32,4 +32,10 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function sports()
+    {
+        return $this->belongsToMany(Sport::class);
+    }
+
+
 }
