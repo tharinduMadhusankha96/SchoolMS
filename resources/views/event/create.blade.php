@@ -10,7 +10,7 @@
 
                 <h1 class="text-light text-center card-header">Create Event</h1>
 
-                <form action="{{ action('EventController@index') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('EventController@store')}}" method="post" enctype="multipart/form-data">
                     <label type="hidden">{{csrf_field()}}</label>
 
                     <div class="form-group">

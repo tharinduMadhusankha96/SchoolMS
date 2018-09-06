@@ -22,6 +22,13 @@
 
             <div class="col-md-3" style="background-color: dimgrey">
                 <div style="padding-top: 20px">
+                    @if(auth()->user())
+                        @if(auth()->user()->role_id == 1)
+                            @include('sports.adminsidebar');
+                        @endif
+                    @endif
+
+                    @include('sports.adminsidebar');
                     @include('sports.sidebar');
                 </div>
 
@@ -78,9 +85,7 @@
                     </div>
 
 
-                </div>
 
-                <div class="row " >
 
                     <div class="col-md-6" style="padding: 20px">
                         <div class="col-sm-6">
@@ -121,10 +126,7 @@
                     </div>
 
 
-                </div>
 
-
-                <div class="row ">
 
                     <div class="col-md-6" style="padding: 20px">
                         <div class="col-sm-6">
@@ -163,6 +165,8 @@
 
                         </div>
                     </div>
+
+
 
 
                 </div>

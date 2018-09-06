@@ -26,7 +26,7 @@
                                             </p>
                                             <p>
                                                 <a class="btn btn-primary btn-large"
-                                                   href="{{ action('EventController@show',[$event->id]) }}">View Event
+                                                   href="{{action('EventController@show',[$event->id])}}">View Event
                                                     in Detail</a>
                                             </p>
                                             @if(auth()->user())
