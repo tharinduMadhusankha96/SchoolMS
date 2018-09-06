@@ -19,6 +19,7 @@ class SportController extends Controller
     {
         $sports = Sport::all();
 
+
         return view('sports.index')->with('sports', $sports);
     }
 
