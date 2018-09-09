@@ -234,9 +234,10 @@ class EventController extends Controller
                 ->where('to_date', '>=' , $tod)
                 ->first();
 
-            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
-            {
-            }
+//            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
+//            {
+//
+//            }
 
             if($eventCheck1)
             {
