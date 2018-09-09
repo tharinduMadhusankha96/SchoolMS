@@ -250,15 +250,17 @@ class SportController extends Controller
             ->where('sport_id', $sport->id)
             ->first();
 
-
-
-
         if ($sportUser)
         {
 
             DB::table('sport_user')->where('user_id', $user->id )
+
                 ->where('sport_id',$sport->id )
                 ->delete();
+
+                                    ->where('sport_id',$sport->id )
+                                    ->delete();
+
 
             return view('sports.show')->with('sport' , $sport)->with('success', "User Un-Enrolled");
 
@@ -277,12 +279,21 @@ class SportController extends Controller
 
         $user=null;
 
+
         if($students){
 
             foreach ($students as $student) {
 
                 $user[] = User::find($student->user_id);
             }
+
+        if($students){
+
+            foreach ($students as $student) {
+
+                $user[] = User::find($student->user_id);
+            }
+
 
             if($user)
             {

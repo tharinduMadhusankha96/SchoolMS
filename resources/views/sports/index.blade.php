@@ -12,7 +12,7 @@
     <div>
         <div class="row">
             <div class="col-md-12">
-                <img src="{{asset('images/sports1.jpg')}}" style="width: 100%; max-height:350px ">
+{{--                <img src="{{asset('images/sports1.jpg')}}" style="width: 100%; max-height:350px ">--}}
 
                 <hr>
 
@@ -37,8 +37,7 @@
 
             <div class="col-md-9">
 
-                <h1 class="text-center text-uppercase card-header" style="color: #00ad8f">Popular Among WCC
-                    Students</h1>
+                <h1 class="text-center text-uppercase card-header" style="color: #2600ad; font-family:Verdana">Sports at WCC</h1>
 
                 <div class="row ">
 
@@ -77,15 +76,6 @@
                                             <a class="mc-btn-action">
                                                 <i class="fa fa-bars"></i>
                                             </a>
-                                            {{--<div class="mc-footer">--}}
-                                                {{--<h4>--}}
-                                                    {{--Social--}}
-                                                {{--</h4>--}}
-
-                                               {{--<div><a style="color: white; height:50px; width: 70px" href="{{ action('SportController@show',[$sport->id]) }}"><small>Read More</small> </a></div>--}}
-
-                                                {{--<a style="color: white; height:50px; width: 70px" href="{{ action('SportController@show',[$sport->id]) }}"> Enroll Mysel</a>--}}
-                                            {{--</div>--}}
                                         </div>
                                     </div>
 

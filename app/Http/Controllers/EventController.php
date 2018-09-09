@@ -232,11 +232,7 @@ class EventController extends Controller
             $eventCheck4 = Event::where('venue',$venue)
                 ->where('from_date','<=',$tod)
                 ->where('to_date', '>=' , $tod)
-                ->first();
-
-//            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
-//            {
-//            }
+                ->first(); 
 
             if($eventCheck1)
             {

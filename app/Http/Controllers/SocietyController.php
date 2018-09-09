@@ -206,11 +206,6 @@ class SocietyController extends Controller
                 ->where('to', '>=' , $tod)
                 ->first();
 
-            if($societyCheck1 || $societyCheck2 || $societyCheck3 || $societyCheck4)
-            {
-                dd($request);
-            }
-
             if($societyCheck1)
             {
                 return redirect()->back()->with('error' ,"{$societyCheck1->location}&nbsp ".' is reserved FROM '."&nbsp{$societyCheck1->from}&nbsp". ' TO &nbsp'. "{$societyCheck1->to}". ' ');

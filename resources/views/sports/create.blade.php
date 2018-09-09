@@ -18,13 +18,13 @@
             <div class="col-md-9">
                 <h1 class="text-light text-center card-header">Create Sport</h1>
 
-                <form action="{{ action('SportController@store') }}" method="post" enctype="multipart/form-data">
+                <form name="createSport" action="{{ action('SportController@store') }}" method="post" onsubmit="return sportValidation()" enctype="multipart/form-data">
                     <label type="hidden">{{csrf_field()}}</label>
 
                     <div class="form-group">
                         <label for="exampleInputPassword1"><h6>Sport Name</h6></label>
                         <input type="Text" name="title" class="form-control" value="{{old('title')}}"
-                               id="exampleInputPassword1" placeholder="Enter Title" required>
+                               id="exampleInputPassword1" placeholder="Enter Title" >
                     </div>
                     <div class="form-group">
                         <label for="teacherInCharge"><h6>Teacher In Charge (ID)</h6> </label>
@@ -40,8 +40,19 @@
 
                     <div class="form-group">
                         <label for="venue"><h6>Practice Location</h6></label>
-                        <input type="Text" class="form-control" name="venue" value="{{old('venue')}}"
-                               id="exampleInputPassword1" placeholder="Enter Practicing Location" required>
+                        {{--<input type="Text" class="form-control" name="venue" value="{{old('venue')}}"--}}
+                               {{--id="exampleInputPassword1" placeholder="Enter Practicing Location" required>--}}
+                        <input class="form-control" name="venue" type="Text" list="locations" placeholder="Select or Type Your Location"  required/>
+                        <datalist id="locations">
+                            <option value="School Main Hall">School Main Hall</option>
+                            <option value="School Grounds">School Grounds</option>
+                            <option value="Auditorium">Auditorium</option>
+                            {{--@if($locations)--}}
+                            {{--@foreach($locations as $Location)--}}
+                            {{--<option value="{{$Location}}">{{$Location}}</option>--}}
+                            {{--@endforeach--}}
+                            {{--@endif--}}
+                        </datalist>
                     </div>
 
                     <div class="form-group col-md-7" style="padding-bottom:3%;padding-top:3%">

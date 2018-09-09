@@ -37,5 +37,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Sport::class);
     }
 
+    public function societies()
+    {
+        return $this->belongsToMany(Society::class);
+    }
+
 
 }

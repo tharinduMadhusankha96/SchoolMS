@@ -36,9 +36,11 @@ Route::post('Sport/addStudent' , 'SportController@addStudent');
 Route::delete('Sport/removeStudent' , 'SportController@removeStudent');
 Route::resource('Sport' ,'SportController');
 
-
 Route::get('Society/enrolledStudents' , 'SocietyController@enrolledStudents');
 Route::get('Society/mysocieties','SocietyController@mysocieties');
 Route::post('Society/addStudent' , 'SocietyController@addStudent');
 Route::delete('Society/removeStudent' , 'SocietyController@removeStudent');
 Route::resource('Society' , 'SocietyController');
+
+
+
