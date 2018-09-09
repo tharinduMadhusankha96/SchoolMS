@@ -69,7 +69,7 @@
                             <div class="dropdown-content">
                                 <a href="/Event">Events</a>
                                 <a href="/Sport" >Sports</a>
-                                <a href="#">Societies</a>
+                                <a href="/Society">Societies</a>
                             </div>
                         </div>
                     </li>

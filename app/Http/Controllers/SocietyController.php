@@ -157,13 +157,13 @@ class SocietyController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request);
+//        dd($request);
 
         $this->validate(request(), [
             'title' => 'required',
             'description' => 'required',
             'mission' => 'required',
-            'venue ' => 'required',
+            'venue' => 'required',
             'from' => 'required',
             'meetingsOn' => 'required',
             'to' => 'required',
@@ -171,8 +171,10 @@ class SocietyController extends Controller
             'secretary' => 'required',
             'treasurer' => 'required',
             'image' => 'required',
-            'user_id' => 'required'
+            'teacherInCharge' => 'required',
         ]);
+
+
 
         if($request->has('venue'))
         {
@@ -206,6 +208,7 @@ class SocietyController extends Controller
 
             if($societyCheck1 || $societyCheck2 || $societyCheck3 || $societyCheck4)
             {
+                dd($request);
             }
 
             if($societyCheck1)
@@ -222,6 +225,8 @@ class SocietyController extends Controller
                 return redirect()->back()->with('error' , "{$societyCheck4->location} &nbsp".'is reserved FROM '."&nbsp{$societyCheck4->from}&nbsp". ' TO &nbsp'. "{$societyCheck4->to}". ' ');
             }
         }
+
+
 
         $weekdays = $request->meetingsOn;
         $newVal = implode( ',' , $weekdays);
