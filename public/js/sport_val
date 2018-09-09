@@ -1,0 +1,15 @@
+function sportValidation()
+{
+    var f_title = document.forms['createSport']['title'].value;
+    var f_description = document.forms['createSport']['description'].value;
+    var f_from_grade = document.forms['createSport']['from_grade'].value;
+    var f_to_grade = document.forms['createSport']['to_grade'].value;
+    var f_image = document.forms['createSport']['image'].value;
+    var f_user_id = document.forms['createSport']['teacherInCharge'].value;
+    var f_gender = document.forms['createSport']['gender'].value;
+
+    var weekdays = document.forms['createSport']['practicesOn'];
+    var newVal = implode( ',' , weekdays);
+
+    var f_practice_on = document.forms['createSport']['newVal'].value;
+}
