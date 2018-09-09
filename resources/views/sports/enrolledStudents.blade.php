@@ -11,7 +11,6 @@
         <div class="row container-fluid">
 
             <div class="col-md-3" style="background-color: dimgrey">
-                {{--                    <button class="btn btn-secondary" href="{{ action('SportController@index'}}">Back</button>--}}
                 <div style="padding-top: 20px">
                     @include('sports.sidebar');
                 </div>

@@ -5,9 +5,8 @@
     @endif
     @if(Auth()->user()->role_id == 2)
         <div class="btn-block" style="padding-top: 15px">
-            <button class="btn btn-outline-success" style="width: 100%; min-height: 60px ; "><a href="/Sport/mysports"
-                                                                                                style="color: whitesmoke">My
-                    Sports</a></button>
+            <button class="btn btn-outline-success" style="width: 100%; min-height: 60px ; "><a href="/Sport/mysports" style="color: whitesmoke">
+                    My Sports</a></button>
         </div>
         <br>
     @endif

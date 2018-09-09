@@ -14,9 +14,9 @@
                               action="{{action('SocietyController@enrolledStudents')}}">
                             <div class="input-group">
                                 {{csrf_field()}}
-                                <input type="submit" class="btn btn-successe"
+                                <input type="submit" class="btn btn-primary"
                                        value="Students enrolled for {{$society->title}}"
-                                       name="user_id" placeholder="Enter Student ID">
+                                       name="user_id" >
                                 <input value="{{$society->id}}" type="hidden" name="society_id">
                                 <input value="{{Auth()->user()->id}}" type="hidden" name="user_id">
                             </div>

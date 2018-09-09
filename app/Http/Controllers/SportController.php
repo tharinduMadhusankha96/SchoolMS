@@ -256,10 +256,9 @@ class SportController extends Controller
             DB::table('sport_user')->where('user_id', $user->id )
 
                 ->where('sport_id',$sport->id )
+                ->delete()
+                ->where('sport_id',$sport->id )
                 ->delete();
-
-                                    ->where('sport_id',$sport->id )
-                                    ->delete();
 
 
             return view('sports.show')->with('sport' , $sport)->with('success', "User Un-Enrolled");
@@ -275,35 +274,25 @@ class SportController extends Controller
     public function enrolledStudents(request $request)
     {
         $students = DB::table('sport_user')
-            ->where('sport_id',$request->input('sport_id'))->get();
+            ->where('sport_id', $request->input('sport_id'))->get();
 
-        $user=null;
+        $user = null;
 
-
-        if($students){
-
-            foreach ($students as $student) {
-
-                $user[] = User::find($student->user_id);
-            }
-
-        if($students){
+        if ($students) {
 
             foreach ($students as $student) {
 
                 $user[] = User::find($student->user_id);
             }
 
-
-            if($user)
-            {
-                return view('sports.enrolledStudents')->with('students', $students)->with('user' , $user);
-            }else{
-                return redirect()->back()->with('error' , "There are no students that has enrolled under this Sports");
+            if ($user) {
+                return view('sports.enrolledStudents')->with('students', $students)->with('user', $user);
+            } else {
+                return redirect()->back()->with('error', "There are no students that has enrolled under this Sports");
             }
 
-        }else{
-            return redirect()->back()->with('error' , "There are no students that has enrolled under this Sports");
+        } else {
+            return redirect()->back()->with('error', "There are no students that has enrolled under this Sports");
 
         }
 
