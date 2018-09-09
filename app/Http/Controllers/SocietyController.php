@@ -71,9 +71,9 @@ class SocietyController extends Controller
                 ->where('to', '>=' , $tod)
                 ->first();
 
-            if($societyCheck1 || $societyCheck2 || $societyCheck3 || $societyCheck4)
-            {
-            }
+//            if($societyCheck1 || $societyCheck2 || $societyCheck3 || $societyCheck4)
+//            {
+//            }
 
             if($societyCheck1)
             {
