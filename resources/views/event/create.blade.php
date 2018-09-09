@@ -50,10 +50,31 @@
                                   placeholder="Enter a Detailed Description" required></textarea></textarea>
                     </div>
 
+                    <?php
+                        $events = \App\Event::whereNotNull('venue')->get();
+                        $locations=null;
+
+                        foreach ($events as $event)
+                            {
+                                $locations = $event->venue;
+                            }
+                    ?>
+
                     <div class="form-group">
                         <label for="venue">Venue</label>
-                        <input type="Text" class="form-control" name="venue" value="{{old('venue')}}"
-                               id="exampleInputPassword1" placeholder="Enter Venue" required>
+                        {{--<input type="Text" class="form-control" name="venue" value="{{old('venue')}}"--}}
+                               {{--id="exampleInputPassword1" placeholder="Enter Venue" required>--}}
+                        <input class="form-control" name="venue" type="Text" list="locations" placeholder="Select or Type Your Location"  required/>
+                        <datalist id="locations">
+                            <option value="School Main Hall">School Main Hall</option>
+                            <option value="School Grounds">School Grounds</option>
+                            <option value="Auditorium">Auditorium</option>
+                            {{--@if($locations)--}}
+                                {{--@foreach($locations as $Location)--}}
+                                    {{--<option value="{{$Location}}">{{$Location}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--@endif--}}
+                        </datalist>
                     </div>
 
                     <div class="form-group col-md-7" style="padding-bottom:3%;padding-top:3%">
@@ -77,14 +98,14 @@
                             <label for="example-time-input" class="col-2 col-form-label">From</label>
                             <div>
                                 <input class="form-control" name="from_date" type="datetime-local"
-                                       value="2017-06-01T08:30" id="example-time-input" required>
+                                       value="2018-10-04T09:30:00" id="example-time-input" required>
                             </div>
                         </div>
                         <div class="col-md-6 float-right">
                             <label for="example-time-input" class="col-2 col-form-label">To</label>
                             <div>
                                 <input class="form-control" name="to_date" type="datetime-local"
-                                       value="2017-06-01T08:30:00" id="example-time-input" required>
+                                       value="2018-10-04T10:30:00" id="example-time-input" required>
                             </div>
                         </div>
 

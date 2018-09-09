@@ -58,9 +58,20 @@
 
                         <div class="form-group">
                             <label for="exampleInputPassword1">Venue</label>
-                            <input type="Text" class="form-control" value="{{$event->venue}}" name="venue"
-                                   id="exampleInputPassword1"
-                                   placeholder="Enter Venue" required>
+                            {{--<input type="Text" class="form-control" value="{{$event->venue}}" name="venue"--}}
+                                   {{--id="exampleInputPassword1"--}}
+                                   {{--placeholder="Enter Venue" required>--}}
+                            <input class="form-control" name="venue" type="Text" value="{{$event->venue}}" list="locations" placeholder="Select or Type Your Location" required />
+                            <datalist id="locations">
+                                <option value="School Main Hall">School Main Hall</option>
+                                <option value="School Grounds">School Grounds</option>
+                                <option value="Auditorium">Auditorium</option>
+                                {{--@if($locations)--}}
+                                {{--@foreach($locations as $Location)--}}
+                                {{--<option value="{{$Location}}">{{$Location}}</option>--}}
+                                {{--@endforeach--}}
+                                {{--@endif--}}
+                            </datalist>
                         </div>
 
                         <div class="form-group col-md-7" style="padding-bottom:3%;padding-top:3%">

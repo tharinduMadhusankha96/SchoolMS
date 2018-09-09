@@ -1,19 +1,5 @@
 <div id="app">
 
-    {{--<div class="order-md-12 container">--}}
-
-        {{--<nav>--}}
-            {{--<div class="row text-center logogif">--}}
-
-                    {{--<img src="{{asset('images/logogif.gif')}}" class="img-responsive img-circle logogif">--}}
-
-                {{--<H1 class="text-light col-md-10 text-lg-center text-md-center text-sm-center pull-right"> NWP/ Wickaramashila Central College <br> Giriulla </H1>--}}
-
-            {{--</div>--}}
-        {{--</nav>--}}
-
-    {{--</div>--}}
-
     <nav class="navbar navbar-expand-md ">
 
         <div class="row text-center container">
@@ -29,9 +15,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light navbar-inverse bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                 {{--<img src="{{asset('images/wccgif.gif')}}" height="50px" width="100px">--}}
-            </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +53,7 @@
                             <div class="dropdown-content">
                                 <a href="/Event">Events</a>
                                 <a href="/Sport" >Sports</a>
-                                <a href="#">Societies</a>
+                                <a href="/Society">Societies</a>
                             </div>
                         </div>
                     </li>

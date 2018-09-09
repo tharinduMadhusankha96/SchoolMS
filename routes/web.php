@@ -33,6 +33,12 @@ Route::post('Event/{event}/comment','CommentsController@store');
 Route::get('Sport/enrolledStudents' , 'SportController@enrolledStudents');
 Route::get('Sport/mysports','SportController@mysports');
 Route::post('Sport/addStudent' , 'SportController@addStudent');
-Route::get('/Sports/Enroll', 'PagesController@cricket');
+Route::delete('Sport/removeStudent' , 'SportController@removeStudent');
 Route::resource('Sport' ,'SportController');
+
+Route::get('Society/enrolledStudents' , 'SocietyController@enrolledStudents');
+Route::get('Society/mysocieties','SocietyController@mysocieties');
+Route::post('Society/addStudent' , 'SocietyController@addStudent');
+Route::delete('Society/removeStudent' , 'SocietyController@removeStudent');
+Route::resource('Society' , 'SocietyController');
 

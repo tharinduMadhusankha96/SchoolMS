@@ -11,6 +11,7 @@ Use Image;
 Use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 Use MaddHatter\LaravelFullcalendar;
 Use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -58,6 +59,55 @@ class EventController extends Controller
             'act_expense' => 'required|numeric|min:0|between:0,99999999.99',
             'image' => 'required',
         ]);
+
+        if($request->has('venue'))
+        {
+            $venue = request('venue');
+            $tod = request('to_date');
+            $fromd =request('from_date');
+
+            //There is an event within the timeslot that is provided
+            $eventCheck1 = Event::where('venue',$venue)
+                ->where('from_date','>=', $fromd)
+                ->where('to_date','<=',$tod)
+                ->first();
+
+            //The event created is within the timeslot of an events that has been created previously
+            $eventCheck2 = Event::where('venue',$venue)
+                ->Where('from_date','<=',$fromd )
+                ->Where('to_date','>=',$tod )
+                ->first();
+
+            //To check whether the From Date Value is entered within a timeslot of an event
+            $eventCheck3 = Event::where('venue',$venue)
+                ->where('from_date','<=',$fromd)
+                ->where('to_date', '>=' , $fromd)
+                ->first();
+
+            //To check whether the to_Date Value is entered within a timeslot of an event
+            $eventCheck4 = Event::where('venue',$venue)
+                ->where('from_date','<=',$tod)
+                ->where('to_date', '>=' , $tod)
+                ->first();
+
+            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
+            {
+            }
+
+            if($eventCheck1)
+            {
+                return redirect()->back()->with('error' ,"{$eventCheck1->venue}&nbsp ".' is reserved FROM '."&nbsp{$eventCheck1->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck1->to_date}". ' ');
+
+            }elseif($eventCheck2){
+                return redirect()->back()->with('error' , "{$eventCheck2->venue} &nbsp".'is reserved FROM '."&nbsp{$eventCheck2->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck2->to_date}". ' ');
+            }
+            elseif ($eventCheck3){
+                return redirect()->back()->with('error' , "{$eventCheck3->venue}&nbsp ".'is reserved FROM '."&nbsp{$eventCheck3->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck3->to_date}". ' ');
+            }
+            elseif($eventCheck4){
+                return redirect()->back()->with('error' , "{$eventCheck4->venue} &nbsp".'is reserved FROM '."&nbsp{$eventCheck4->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck4->to_date}". ' ');
+            }
+        }
 
         if ($request->hasFile('image')) {
 
@@ -154,6 +204,55 @@ class EventController extends Controller
 
         ]);
 
+        if($request->has('venue'))
+        {
+            $venue = request('venue');
+            $tod = request('to_date');
+            $fromd =request('from_date');
+
+            //There is an event within the timeslot that is provided
+            $eventCheck1 = Event::where('venue',$venue)
+                ->where('from_date','>=', $fromd)
+                ->where('to_date','<=',$tod)
+                ->first();
+
+            //The event created is within the timeslot of an events that has been created previously
+            $eventCheck2 = Event::where('venue',$venue)
+                ->Where('from_date','<=',$fromd )
+                ->Where('to_date','>=',$tod )
+                ->first();
+
+            //To check whether the From Date Value is entered within a timeslot of an event
+            $eventCheck3 = Event::where('venue',$venue)
+                ->where('from_date','<=',$fromd)
+                ->where('to_date', '>=' , $fromd)
+                ->first();
+
+            //To check whether the to_Date Value is entered within a timeslot of an event
+            $eventCheck4 = Event::where('venue',$venue)
+                ->where('from_date','<=',$tod)
+                ->where('to_date', '>=' , $tod)
+                ->first();
+
+            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
+            {
+            }
+
+            if($eventCheck1)
+            {
+                return redirect()->back()->with('error' ,"{$eventCheck1->venue}&nbsp ".' is reserved FROM '."&nbsp{$eventCheck1->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck1->to_date}". ' ');
+
+            }elseif($eventCheck2){
+                return redirect()->back()->with('error' , "{$eventCheck2->venue} &nbsp".'is reserved FROM '."&nbsp{$eventCheck2->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck2->to_date}". ' ');
+            }
+            elseif ($eventCheck3){
+                return redirect()->back()->with('error' , "{$eventCheck3->venue}&nbsp ".'is reserved FROM '."&nbsp{$eventCheck3->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck3->to_date}". ' ');
+            }
+            elseif($eventCheck4){
+                return redirect()->back()->with('error' , "{$eventCheck4->venue} &nbsp".'is reserved FROM '."&nbsp{$eventCheck4->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck4->to_date}". ' ');
+            }
+        }
+
         if ($request->hasFile('image')) {
 
             $imageName = $request->file('image')->getClientOriginalName();
@@ -203,7 +302,7 @@ class EventController extends Controller
             return redirect('Event/myevents')->with('success', "Event '" . "{$event->title}" . "' has been deleted ");
         }
 
-        return redirect('Event/myevents')->with('error', "Event '" . "{$event->title}" . "' was not deleted ");
+        return redirect('Event/myevents')->with('error', "Event '" . "{$event->title}" . "' has not been deleted ");
     }
 
 //    public function nir()
@@ -225,10 +324,11 @@ class EventController extends Controller
             $user = Auth::user();
 
             $id = $user->id;
+            $name = $user->name;
 
             $events = Event::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(3);
 
-            return view('event.myevents')->with('events', $events)->with('success', "Showing events of '" . "{{Auth()->user()->name();}}" . "' .");
+            return view('event.myevents')->with('events', $events)->with('success', "Showing events of '" . "{$name}" . "' .");
         }
 
         return redirect('/Event');

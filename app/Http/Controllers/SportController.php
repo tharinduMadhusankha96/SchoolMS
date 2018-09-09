@@ -43,6 +43,7 @@ class SportController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
+            'teacherInCharge' => 'required',
 //            'description' => 'required',
             'detailed_Description' => 'required',
             'venue' => 'required',
@@ -204,7 +205,7 @@ class SportController extends Controller
             return redirect('Sport')->with('success', "Sport '" . "{$sport->title}" . "' has been deleted ");
         }
 
-        return redirect('Sport')->with('error', "Sport '" . "{$sport->title}" . "' was not deleted ");
+        return redirect('Sport')->with('error', "Sport was not deleted ");
 
     }
 
@@ -222,7 +223,7 @@ class SportController extends Controller
 
         if ($sportUser) {
 
-            return view('sports.show')->with('sport', $sport)->with('success', "User already enrolled");
+            return view('sports.show')->with('sport', $sport)->with('error', "User already enrolled");
 
         }else{
             if ($user && $sport) {
@@ -237,33 +238,82 @@ class SportController extends Controller
 
     }
 
+    public function removeStudent(request $request)
+    {
+
+        $sport = Sport::find($request->input('sport_id'));
+
+        $user = User::where('id', $request->input('user_id'))->first();
+
+        $sportUser = DB::table('sport_user')
+            ->where('user_id', $user->id)
+            ->where('sport_id', $sport->id)
+            ->first();
+
+
+
+
+        if ($sportUser)
+        {
+
+            DB::table('sport_user')->where('user_id', $user->id )
+                                    ->where('sport_id',$sport->id )
+                                    ->delete();
+
+            return view('sports.show')->with('sport' , $sport)->with('success', "User Un-Enrolled");
+
+        }else{
+
+            return view('sports.show')->with('sport', $sport)->with('error', "User was not Un-Enrolled");
+
+        }
+
+    }
+
     public function enrolledStudents(request $request)
     {
         $students = DB::table('sport_user')
             ->where('sport_id',$request->input('sport_id'))->get();
 
-//        $students = SportUser::where('sport_id' , $request->input('sport_id'));
+        $user=null;
 
-        foreach ($students as $student) {
+        if($students){
 
-            $user[] = User::find($student->user_id);
+            foreach ($students as $student) {
+
+                $user[] = User::find($student->user_id);
+            }
+
+            if($user)
+            {
+                return view('sports.enrolledStudents')->with('students', $students)->with('user' , $user);
+            }else{
+                return redirect()->back()->with('error' , "There are no students that has enrolled under this Sports");
+            }
+
+        }else{
+            return redirect()->back()->with('error' , "There are no students that has enrolled under this Sports");
 
         }
 
-        return view('sports.enrolledStudents')->with('students', $students)->with('user' , $user);
+
+
     }
+
+
 
     public function mysports()
     {
         if (Auth()->user())
         {
             $user = Auth()->user();
+            $name = $user->name;
 
             $id = $user->id;
 
             $sports = Sport::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(3);
 
-            return view('sports/mysports')->with('sports', $sports)->with('success', "Showing sports of '" . "{{Auth()->user()->name();}}" . "' .");
+            return view('sports/mysports')->with('sports', $sports)->with('success', "Showing sports of '" . "{$name}" . "' .");
         }
 
     }
