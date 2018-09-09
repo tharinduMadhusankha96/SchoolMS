@@ -91,7 +91,7 @@
                                       action="{{action('SportController@enrolledStudents')}}">
                                     <div class="input-group">
                                         {{csrf_field()}}
-                                        <input type="submit" class="btn btn-successe"
+                                        <input type="submit" class="btn btn-success col-10"
                                                value="Students enrolled for {{$sport->title}}"
                                                name="user_id" placeholder="Enter Student ID">
                                         <input value="{{$sport->id}}" type="hidden" name="sport_id">

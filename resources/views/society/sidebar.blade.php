@@ -35,7 +35,7 @@
 <div class="col-md-12 rounded" style="background-color: #a8a8a8;padding:3%;margin:1%">
 
     <div>
-        <h1 class="text-center card-header" style="font-family: 'Apple Color Emoji' ">List of Societies</h1>
+        <h1 class="text-center card-header" style="font-family: 'Apple Color Emoji' ">Societies at WCC</h1>
         <?php
         $socs = \App\Society::all();
         ?>
