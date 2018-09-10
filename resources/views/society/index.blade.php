@@ -34,6 +34,7 @@
                                     <button class="btn btn-primary" type="submit" value="Learn More"><a style="color: whitesmoke" href="{{route('Society.show', $society->id )}}">Learn More
                                         </a>
                                     </button>
+                                    @if(AUth()->user())
                                     @if(Auth()->user()->id == $society->user_id)
                                         <button class="btn bg-info"  type="Submit" style="margin: 2%"><a
                                                     class="text-white"
@@ -59,6 +60,7 @@
                                             </form>
 
                                         </button>
+                                    @endif
                                     @endif
                                 </div>
                             </div>
