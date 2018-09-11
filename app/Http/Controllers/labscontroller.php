@@ -26,7 +26,7 @@ class labscontroller extends Controller
     public function index()
     {
         $labs = labs::all();
-        $orders = Orders::where('type','=','Sports Items')->count();
+        $orders = Orders::where('type','=','Laboratory Equipments')->count();
         $stitems = DB::table('sports')->where('amount','=',labs::min('amount'))->pluck('name');
 
         return view('inventory.labs.labs')->with('labs', $labs)->with('orders',$orders)->with('st',$stitems);
