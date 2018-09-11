@@ -35,7 +35,7 @@ class Sportscontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'SP')->get();
             return view('inventory.sports.addsports')->with('suppliers', $supplier);
@@ -94,7 +94,7 @@ class Sportscontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $sport = sports::find($id);
         $supplier = suppliers::where('type', '=', 'SP')->get();
         if($user == 1){
@@ -145,7 +145,7 @@ class Sportscontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $sport = sports::find($id);
         if($user == 1){
             $sport->delete();

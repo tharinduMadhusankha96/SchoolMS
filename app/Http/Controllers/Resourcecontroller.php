@@ -37,7 +37,7 @@ class Resourcecontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'R')->get();
             return view('inventory.resources.addresource')->with('suppliers', $supplier);
@@ -102,7 +102,7 @@ class Resourcecontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $resources = Resources::find($id);
             $supplier = suppliers::where('type', '=', 'R')->get();
@@ -161,7 +161,7 @@ class Resourcecontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $resources = Resources::find($id);
         if ($user == 1) {
             $resources->delete();

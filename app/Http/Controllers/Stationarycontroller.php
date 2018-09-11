@@ -39,7 +39,7 @@ class Stationarycontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'S')->get();
             return view('inventory.stationary.addstationary')->with('suppliers', $supplier);
@@ -57,7 +57,7 @@ class Stationarycontroller extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $st = new stationary();
         $st->name = $request->input('name');
         $st->productID = $request->input('productID');
@@ -105,7 +105,7 @@ class Stationarycontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $stationary = stationary::find($id);
             $st = $stationary::all();
@@ -154,7 +154,7 @@ class Stationarycontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $labs = stationary::find($id);
         if($user == 1){
             $labs->delete();

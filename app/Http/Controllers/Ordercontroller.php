@@ -107,7 +107,7 @@ class Ordercontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $order = Orders::find($id);
         if ($user == $id) {
             return view('inventory.orders.edit')->with('orders', $order, 'id', $user);
