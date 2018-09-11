@@ -19,13 +19,10 @@ class Expensescontroller extends Controller
         $this->middleware('auth')->except('logout');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
+
         $user = Auth::user()->id;
         if ($user == 1) {
             $expenses = Expenses::all();
