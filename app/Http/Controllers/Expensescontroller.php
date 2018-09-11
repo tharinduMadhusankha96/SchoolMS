@@ -27,9 +27,6 @@ class Expensescontroller extends Controller
     public function index()
     {
 
-
-
-        
         $user = Auth::user()->id;
         if ($user == 1) {
             $expenses = Expenses::all();
