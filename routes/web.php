@@ -50,3 +50,4 @@ Route::resource('/labs','labscontroller');
 Route::resource('/sports','Sportscontroller');
 Route::resource('/resource','Resourcecontroller');
 Route::resource('/expenses','Expensescontroller');
+Route::get('/index','homeview@index');
