@@ -44,7 +44,7 @@ class Stationarycontroller extends Controller
             $supplier = suppliers::where('type', '=', 'S')->get();
             return view('inventory.stationary.addstationary')->with('suppliers', $supplier);
         } else {
-            return redirect()->back()->with('error', 'You do not have rights to perform this action');
+            return redirect()->back()->with('error', 'You can not perform the action');
         }
 
     }

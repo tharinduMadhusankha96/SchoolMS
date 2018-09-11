@@ -24,7 +24,7 @@ class Resourcecontroller extends Controller
     public function index()
     {
         $resources = Resources::all();
-        $orders = Orders::where('type','=','Sports Items')->count();
+        $orders = Orders::where('type','=','Resources')->count();
         $stitems = DB::table('resources')->where('amount','=',Resources::min('amount'))->pluck('name');
 
         return view('inventory.resources.resources')->with('resources', $resources)->with('orders',$orders)->with('st',$stitems);
