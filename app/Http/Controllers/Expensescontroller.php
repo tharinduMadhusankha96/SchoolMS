@@ -23,7 +23,7 @@ class Expensescontroller extends Controller
     public function index()
     {
 
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $expenses = Expenses::all();
             return view('inventory.expenses.expenses')->with('expenses', $expenses);
@@ -40,7 +40,7 @@ class Expensescontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $suppliers = suppliers::all();
             $data = array(
@@ -269,7 +269,7 @@ class Expensescontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $expenses = Expenses::find($id);
         if ($user == '1') {
             $expenses->delete();

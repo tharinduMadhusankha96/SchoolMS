@@ -39,7 +39,7 @@ class labscontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'L')->get();
             return view('inventory.labs.addlabs')->with('suppliers', $supplier);
@@ -113,7 +113,7 @@ class labscontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $labs = labs::find($id);
         if ($user == 1) {
             return view('inventory.labs.editlabs')->with('labs', $labs);
@@ -169,7 +169,7 @@ class labscontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $labs = labs::find($id);
         if ($user == 1) {
             $labs->delete();
