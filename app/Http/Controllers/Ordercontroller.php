@@ -135,15 +135,14 @@ class Ordercontroller extends Controller
      */
     public function destroy($id)
     {
-//        $user = Auth::user()->id;
+        $user = Auth::user()->id;
         $empid = Orders::find($id);
-//        if ($user == $id) {
-        $empid->delete();
-        return redirect('/orders')->with('error', 'Record was deleted successfully');
-//        } else {
-//            return redirect()->back()->with('error', 'The order was not placed by you');
-//        }
-
+        if ($user == $empid->empid) {
+            $empid->delete();
+            return redirect('/orders')->with('error', 'Record was deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'The order was not placed by you');
+        }
     }
 
     public function truncate()
