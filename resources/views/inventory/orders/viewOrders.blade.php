@@ -56,22 +56,22 @@
             <div>
                 <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
                 <a href="/orders/create" class="btn btn-primary text1">Orders</a>
-                @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                    <button class="btn btn-danger text1" type="submit" onclick="
-                        var result = confirm('Are you sure you want to reset the table data? ');
-                                            if(result){
-                                                event.preventDefault();
-                                                document.getElementById('delete').submit();
-                                    }
+                {{--@if(\Illuminate\Support\Facades\Auth::user()->id == 1)--}}
+                    {{--<button class="btn btn-danger text1" type="submit" onclick="--}}
+                        {{--var result = confirm('Are you sure you want to reset the table data? ');--}}
+                                            {{--if(result){--}}
+                                                {{--event.preventDefault();--}}
+                                                {{--document.getElementById('delete').submit();--}}
+                                    {{--}--}}
 
-                    "> Reset Table Data
-                        <form id="delete"
-                              action="{{action('Ordercontroller@truncate')}}"
-                              method="get" style="display:none">
-                            {{csrf_field()}}
-                        </form>
-                    </button>
-                @endif
+                    {{--"> Reset Table Data--}}
+                        {{--<form id="delete"--}}
+                              {{--action="{{action('Ordercontroller@truncate')}}"--}}
+                              {{--method="get" style="display:none">--}}
+                            {{--{{csrf_field()}}--}}
+                        {{--</form>--}}
+                    {{--</button>--}}
+                {{--@endif--}}
             </div>
         </div>
     </div>
