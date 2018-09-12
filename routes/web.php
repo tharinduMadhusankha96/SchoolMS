@@ -51,3 +51,11 @@ Route::resource('/sports','Sportscontroller');
 Route::resource('/resource','Resourcecontroller');
 Route::resource('/expenses','Expensescontroller');
 Route::get('/index','homeview@index');
+
+//staff
+Route::resource('academics','AcademicController');
+Route::resource('nonacademics','NonAcademicController');
+Route::resource('leaverequests','LeaveRequestController');
+Route::resource('leaverequestsnon','LeaveRequestNonController');
+
+
