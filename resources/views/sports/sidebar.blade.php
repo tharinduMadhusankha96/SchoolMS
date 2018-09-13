@@ -1,16 +1,18 @@
+<div>
+    @if(auth()->user())
+        @if(auth()->user()->role_id == 1)
+            @include('sports.adminsidebar');
+        @endif
+        @if(Auth()->user()->role_id == 2)
+            <div class="btn-block" style="padding-top: 15px">
+                <button class="btn btn-success" style="width: 100%; min-height: 60px ; "><a href="/Sport/mysports" style="color: whitesmoke">
+                        My Sports</a></button>
+            </div>
+            <br>
+        @endif
+    @endif
+</div>
 
-@if(auth()->user())
-    @if(auth()->user()->role_id == 1)
-        @include('sports.adminsidebar');
-    @endif
-    @if(Auth()->user()->role_id == 2)
-        <div class="btn-block" style="padding-top: 15px">
-            <button class="btn btn-outline-success" style="width: 100%; min-height: 60px ; "><a href="/Sport/mysports" style="color: whitesmoke">
-                    My Sports</a></button>
-        </div>
-        <br>
-    @endif
-@endif
 
 <div class="sidebar left container-fluid " style="width: 100%">
 

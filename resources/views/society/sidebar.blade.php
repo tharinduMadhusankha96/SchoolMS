@@ -1,33 +1,34 @@
-@if(auth()->user())
-    @if(Auth()->user()->role_id == 1 )
+<div class="col-md-12 rounded" style="background-color: #a8a8a8;padding:3%;margin:1%">
+    @if(auth()->user())
+        @if(Auth()->user()->role_id == 1 )
 
-        <div class=" col-md-12 rounded" style="background-color: #a8a8a8;padding:3%;margin:1%">
-            <div class="card-header text-center">
-                <b> Admin Panel</b>
+            <div class=" col-md-12 rounded" style="background-color: #a8a8a8;padding:3%;margin:1%">
+                <div class="card-header text-center">
+                    <b> Admin Panel</b>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-outline-primary col-md-12"><a style="color:whitesmoke"
+                                                                         href="{{action('SocietyController@create')}}">
+                            Create a Society </a></button>
+                </div>
+
             </div>
-            <div class="card-body">
-                <button class="btn btn-outline-primary col-md-12"><a style="color:whitesmoke"
-                                                                     href="{{action('SocietyController@create')}}">
-                        Create a Society </a></button>
+        @endif
+
+        @if(Auth()->user()->role_id == 2)
+            <div class="btn-block" style="padding-top: 15px">
+                <button class="btn btn-outline-success" style="width: 100%; min-height: 60px ; "><a
+                            href="/Society/mysocieties"
+                            style="color: whitesmoke">My
+                        Societies</a></button>
             </div>
+            <br>
+        @endif
 
-        </div>
+
+
     @endif
-
-    @if(Auth()->user()->role_id == 2)
-        <div class="btn-block" style="padding-top: 15px">
-            <button class="btn btn-outline-success" style="width: 100%; min-height: 60px ; "><a
-                        href="/Society/mysocieties"
-                        style="color: whitesmoke">My
-                    Societies</a></button>
-        </div>
-        <br>
-    @endif
-
-
-
-@endif
-
+</div>
 
 
 
