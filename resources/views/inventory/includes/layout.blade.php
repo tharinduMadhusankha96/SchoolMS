@@ -122,6 +122,7 @@
 <body style="width: auto;height: auto">
 <div>
     @include('include.navbar')
+    @include('inventory.messages.message')
 </div>
 @yield('content')
 <footer style="margin-top: 170px;z-index: 10;height: 3em;">
