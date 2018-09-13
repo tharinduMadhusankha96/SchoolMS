@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row container-fluid">
 
-            <div class="col-md-3" style="background-color: dimgrey">
+            <div class="col-md-3" style="background-color: #a8a8a8">
                 <div style="padding-top: 20px">
                     @if(auth()->user())
                         @if(auth()->user()->role_id == 1)

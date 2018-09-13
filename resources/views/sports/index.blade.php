@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="row container-fluid">
 
-            <div class="col-md-3" style="background-color: dimgrey">
+            <div class="col-md-3 rounded" style="background-color: #a8a8a8">
                 <div style="padding-top: 20px">
                     @if(auth()->user())
                         @if(auth()->user()->role_id == 1)
@@ -53,7 +53,8 @@
                                                 <span>{{$sport->title}}</span>
                                                 <strong>
                                                 <i class="fa fa-fw fa-star"></i>
-                                                The Deer Hunter
+                                                {{--The Deer Hunter--}}
+                                                    Eligible for students from Grade {{$sport->from_grade}} to {{$sport->to_grade}}
                                                 </strong>
                                             </h2>
                                             <div class="mc-content">
