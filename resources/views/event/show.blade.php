@@ -13,7 +13,7 @@
                 @if($event)
 
                     <!-- Post Content Column -->
-                        <div class="col-lg-12" style="background-color: #a6b2a4; margin: 25px; border-radius: 2%">
+                        <div class="col-lg-12" style="background-color: #a6b2a4; margin: 0px; border-radius: 2%">
 
                             <div class="container">
                                 <!-- Title -->
@@ -181,7 +181,7 @@
 
         </div>
 
-        <div class="col-md-3 sideb">
+        <div class="col-md-3 sports_sidebar">
 
             @include('include.sidebar')
         </div>

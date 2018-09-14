@@ -9,12 +9,11 @@
             <div class="col-md-9">
 
                 @if($event)
-                    <h1 class="text-light text-center card-header">Edit Event</h1>
+                    <h1 class="text-light text-center card-header">Create Demo Event</h1>
 
-                    <form action="{{ action('EventController@update',[$event->id]) }}" method="post"
-                          enctype="multipart/form-data">
+                    <form action="{{ action('EventController@store')}}" method="post" enctype="multipart/form-data">
                         <label type="hidden">{{csrf_field()}}</label>
-                        {{method_field('put')}}
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Title</label>
                             <input type="Text" name="title" value="{{$event->title}}" class="form-control"
@@ -31,7 +30,7 @@
                             <label for="description">Description</label>
                             <textarea rows="3" type="TextArea" name="description"
                                       class="form-control"
-                                      aria-describedby="emailHelp" placeholder="Enter a Brief Description  (250)"
+                                      aria-describedby="emailHelp" value="{{$event->description}}" placeholder="Enter a Brief Description  (250)"
                                       maxlength="250" required>{{$event->description}}</textarea><span
                                     class="text-warning" id='remainingC'></span>
                         </div>
@@ -59,8 +58,8 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Venue</label>
                             {{--<input type="Text" class="form-control" value="{{$event->venue}}" name="venue"--}}
-                                   {{--id="exampleInputPassword1"--}}
-                                   {{--placeholder="Enter Venue" required>--}}
+                            {{--id="exampleInputPassword1"--}}
+                            {{--placeholder="Enter Venue" required>--}}
                             <input class="form-control" name="venue" type="Text" value="{{$event->venue}}" list="locations" placeholder="Select or Type Your Location" required />
                             <datalist id="locations">
                                 <option value="School Main Hall">School Main Hall</option>
@@ -156,7 +155,7 @@
                         </div>
                         {{--<div class="badge-warning card-header " style="margin: 15px">*Image can be changed after submitting the form</div>--}}
                         <div class="btn-block" style="padding-bottom:3%;padding-top:3%">
-                            <button type="Submit" class="btn btn-primary btn-block" style="padding: 1%"><h3></h3>Update
+                            <button type="Submit" class="btn btn-primary btn-block" style="padding: 1%"><h3></h3>Create
                                 Event
                             </button>
                             <br>

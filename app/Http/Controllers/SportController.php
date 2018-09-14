@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sport;
 use App\SportUser;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -136,7 +137,6 @@ class SportController extends Controller
      */
     public function update(Request $request,$id)
     {
-//        dd($request);
 
         $this->validate(request(), [
             'title' => 'required',
@@ -295,12 +295,15 @@ class SportController extends Controller
             return redirect()->back()->with('error', "There are no students that has enrolled under this Sports");
 
         }
-
-
-
     }
 
+    public function search()
+    {
+        $sport = request('search');
+        $sports = Sport::search($sport)->paginate(3);
 
+        return view('sports.index')->with('sports', $sports)->with('success', "Search Result for '" . "{$sport}" . " '");
+    }
 
     public function mysports()
     {
@@ -315,6 +318,29 @@ class SportController extends Controller
 
             return view('sports/mysports')->with('sports', $sports)->with('success', "Showing sports of '" . "{$name}" . "' .");
         }
+
+    }
+
+    public function createDemo()
+    {
+        $sport = new Sport;
+
+        $sport->title = "Kabaddi";
+        $sport->description = "Kabaddi is a contact team sport. Played between two teams of seven players, the object of the game is for a single player on offence, referred to as a \"raider\", to run into the opposing team's half of a court, tag out as many of their defenders as possible, and return to their own half of the court, all without being tackled by the defenders, and in a single breath. Points are scored for each player tagged by the raider, while the opposing team earns a point for stopping the raider. Players are taken out of the game if they are tagged or tackled, but can be \"revived\" for each point scored by their team from a tag or tackle.";
+        $sport->gender = "Male";
+//        $sport->from_date = "2018-11-06 11:29:04";
+//        $sport->to_date = "2018-11-06 11:29:04";
+        $sport->from_grade = 1;
+        $sport->to_grade = 12;
+        $sport->practice_on = "Monday,Wednesday,Friday";
+        $sport->user_id = Auth()->user()->id;
+        $sport->image = 0;
+
+        $result = $sport->practice_on;
+        $checkbox = explode(",", $result);
+
+//                dd($sport);
+        return view('sports.demo')->with('sport' , $sport)->with('checkbox' , $checkbox);
 
     }
 }

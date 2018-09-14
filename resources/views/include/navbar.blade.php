@@ -6,7 +6,7 @@
 
         <img src="{{asset('images/logogif.gif')}}" class="img-responsive img-circle logogif">
 
-        <H1 class="text-light col-md-10 text-lg-center text-md-center text-sm-center pull-right"> NWP/ Wickaramashila Central College <br> Giriulla </H1>
+        <H1 class="text col-md-10 text-lg-center text-md-center text-sm-center pull-right" style="margin-left: 15%"> NWP/ Wickaramashila Central College <br> Giriulla </H1>
 
         </div>
 
