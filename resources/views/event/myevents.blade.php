@@ -9,7 +9,7 @@
 
                     <div class="col-md-9  pull-left">
                         <div class="card-header">
-                            <h1 class="text-center text-white text-warning">My Events</h1>
+                            <h1 class="text-center text-white">My Events</h1>
                         </div>
                         @if(count($events)>0)
                             @foreach( $events as $event )
@@ -68,7 +68,7 @@
 
                     </div>
 
-                    <div class="col-md-3 sidebar pull-right">
+                    <div class="col-md-3 sports_sidebar pull-right">
 
                         <div>
 

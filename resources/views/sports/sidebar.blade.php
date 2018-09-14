@@ -1,3 +1,17 @@
+<div class="btn-block" style="padding-top: 15px">
+    <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
+                href="/Sport/createDemo" style="color: red">Demo to Add a Sport</a></button>
+
+</div>
+
+<div class="row" style="margin: 1%; margin-bottom: 3%">
+    <form action="/Sport/search" method="get">
+
+        <input type="search" class="form-control pull-left searchHov" name="search" placeholder="Search Sports" style="margin-top: 10px">
+
+    </form>
+</div>
+
 <div>
     @if(auth()->user())
         @if(auth()->user()->role_id == 1)

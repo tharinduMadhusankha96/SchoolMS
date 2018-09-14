@@ -9,27 +9,12 @@
     <script src="{{asset('/js/card.js')}}"></script>
 
 
-    <div>
-        <div class="row">
-            <div class="col-md-12">
-{{--                <img src="{{asset('images/sports1.jpg')}}" style="width: 100%; max-height:350px ">--}}
-
-                <hr>
-
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
         <div class="row container-fluid">
 
-            <div class="col-md-3 rounded" style="background-color: #a8a8a8">
-                <div style="padding-top: 20px">
-                    @if(auth()->user())
-                        @if(auth()->user()->role_id == 1)
-                            @include('sports.adminsidebar');
-                        @endif
-                    @endif
+            <div class="col-md-3 rounded sports_sidebar" >
 
+                <div style="padding-top: 20px">
                     @include('sports.sidebar');
                 </div>
 

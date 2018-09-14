@@ -17,7 +17,7 @@
 
                 </div>
             </div>
-            <div class="col-md-3 sideb">
+            <div class="col-md-3 sports_sidebar">
 
                 @include('include.sidebar')
             </div>
