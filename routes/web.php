@@ -52,5 +52,20 @@ Route::post('Society/addStudent' , 'SocietyController@addStudent');
 Route::delete('Society/removeStudent' , 'SocietyController@removeStudent');
 Route::resource('Society' , 'SocietyController');
 
+//inventory
+Route::resource('/orders','Ordercontroller');
+Route::resource('/supplier','Suppliercontroller');
+Route::resource('/stationary','Stationarycontroller');
+Route::resource('/labs','labscontroller');
+Route::resource('/sports','Sportscontroller');
+Route::resource('/resource','Resourcecontroller');
+Route::resource('/expenses','Expensescontroller');
+Route::get('/index','homeview@index');
+
+//staff
+Route::resource('academics','AcademicController');
+Route::resource('nonacademics','NonAcademicController');
+Route::resource('leaverequests','LeaveRequestController');
+Route::resource('leaverequestsnon','LeaveRequestNonController');
 
 
