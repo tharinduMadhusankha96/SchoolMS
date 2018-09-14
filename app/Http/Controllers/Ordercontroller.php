@@ -141,7 +141,7 @@ class Ordercontroller extends Controller
             $empid->delete();
             return redirect('/orders')->with('error', 'Record was deleted successfully');
         } else {
-            return redirect()->back()->with('error', 'The order was not placed by you');
+            return redirect()->back()->with('error', 'This order was not placed by you');
         }
     }
 
