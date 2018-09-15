@@ -41,22 +41,12 @@
                                 <a href="/supplier/{{$supplier->supplierID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <button class="btn btn-danger" type="submit"
-                                        onclick="
-                                     var result = confirm('Are you sure you want to delete this record? ');
-                                            if(result){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form').submit();
-                                            }
-                                     "
-                                > Delete
-                                    <form id="delete-form"
-                                          action="{{action('Suppliercontroller@destroy' , [$supplier->supplierID])}}"
-                                          method="post" style="display:none">
-                                        <input type="hidden" name="_method" value="delete">
-                                        {{csrf_field()}}
-                                    </form>
-                                </button>
+                                <form id="delete-form" action="{{action('Suppliercontroller@destroy' ,[$supplier->supplierID] )}}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class=" btn btn-default btn-danger text1">Delete</button>
+                                </form>
 
                             </td>
                         </strong>
@@ -66,7 +56,8 @@
             </table>
             <div style="margin-top: 30px">
                 <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/supplier/create" class="btn btn-primary text1">Update Details</a>
+                <a href="/supplier/create" class="btn btn-primary text1">+Add</a>
+                <a href="/live_search" class="btn btn-primary text1">Search</a>
             </div>
         </div>
 

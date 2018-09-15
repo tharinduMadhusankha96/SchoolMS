@@ -61,6 +61,11 @@ Route::resource('/sports','Sportscontroller');
 Route::resource('/resource','Resourcecontroller');
 Route::resource('/expenses','Expensescontroller');
 Route::get('/index','homeview@index');
+Route::get('/live_search', 'LiveSearch@index');
+Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
+
+
+
 
 //staff
 Route::resource('academics','AcademicController');

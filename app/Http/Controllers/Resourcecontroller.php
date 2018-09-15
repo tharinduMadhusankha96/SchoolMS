@@ -27,7 +27,7 @@ class Resourcecontroller extends Controller
         $orders = Orders::where('type','=','Resources')->count();
         $stitems = DB::table('resources')->where('amount','=',Resources::min('amount'))->pluck('name');
 
-        return view('inventory.resources.resources')->with('resources', $resources)->with('orders',$orders)->with('st',$stitems);
+        return view('resources.resources')->with('resources', $resources)->with('orders',$orders)->with('st',$stitems);
     }
 
     /**
@@ -37,10 +37,10 @@ class Resourcecontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'R')->get();
-            return view('inventory.resources.addresource')->with('suppliers', $supplier);
+            return view('resources.addresource')->with('suppliers', $supplier);
         } else {
             return redirect()->back()->with('error', 'You do not have permission to perform this action');
         }
@@ -102,11 +102,11 @@ class Resourcecontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         if ($user == 1) {
             $resources = Resources::find($id);
             $supplier = suppliers::where('type', '=', 'R')->get();
-            return view('inventory.resources.editresources')->with('resources', $resources)->with('suppliers',$supplier);
+            return view('resources.editresources')->with('resources', $resources)->with('suppliers',$supplier);
         } else {
             return redirect()->back()->with('error', 'You do not have permission to perform this action');
         }
@@ -161,7 +161,7 @@ class Resourcecontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         $resources = Resources::find($id);
         if ($user == 1) {
             $resources->delete();
