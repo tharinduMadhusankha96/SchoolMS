@@ -39,7 +39,7 @@
 
             <div class="row container-fluid">
 
-                <div class="col-md-3" style="background-color: dimgrey">
+                <div class="col-md-3 sports_sidebar" >
                     @if(Auth()->user())
                         @if(Auth()->user()->role_id == 3){{-- If the user is a student only they can enroll so role_id=3 --}}
                         @if($userExist) {{--If user is already Enrolled --}}

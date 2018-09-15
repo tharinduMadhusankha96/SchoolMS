@@ -7,9 +7,7 @@
 
 
         <div class="col-md-3">
-
-
-
+            @include('society.sidebar')
         </div>
 
         <div class="col-md-9">
@@ -99,21 +97,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="exampleInputPassword1"><h6>President</h6></label>
-                    <input type="Text" name="president" class="form-control" value="{{old('president')}}"
-                           id="exampleInputPassword1" placeholder="Enter Title" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1"><h6>Secretary</h6></label>
-                    <input type="Text" name="secretary" class="form-control" value="{{old('secretary')}}"
-                           id="exampleInputPassword1" placeholder="Enter Title" required >
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1"><h6>Treasurer</h6></label>
-                    <input type="Text" name="treasurer" class="form-control" value="{{old('treasurer')}}"
-                           id="exampleInputPassword1" placeholder="Enter Title" required >
-                </div>
                 <br>
                 <div class="col-md-12 float-left"  style="padding-bottom:3%;padding-top:1%">
                     <input type="file" name="image" value="{{old('image')}}" class="btn btn-outline-dark" required>

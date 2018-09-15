@@ -68,7 +68,7 @@
 
                     </div>
 
-                    <div class="col-md-3 sidebar pull-right">
+                    <div class="col-md-3 sports_sidebar pull-right">
 
                         <div>
 
