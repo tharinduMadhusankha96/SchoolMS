@@ -81,12 +81,12 @@
             <strong>Laboratory items details</strong>
         </h2>
     </div>
-    <div class="container">
+    <div class="container-box" style="width: auto;">
         <div class="row" style="margin-top: 20px">
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
             <div class="col-md-3 text-center text1">
-                <div class="card">
-                    <div class="card-header" style="background-color: black;color: white;height: 60px">
+                <div class="card" style="width: 300px;height: 150px">
+                    <div class="card-header" style="background-color: black;color: white;height: 70px">
                         Items with the lowest stock
                     </div>
                     <div class="card-body">
@@ -95,13 +95,14 @@
 
                 </div>
             </div>
+            <div class="col-md-2"></div>
             <div class="col-md-3 text-center text1">
-                <div class="card">
-                    <div class="card-header" style="background-color: black;color: white">
-                        Ordered SportsItems
+                <div class="card" style="width: 300px;height: 150px">
+                    <div class="card-header" style="background-color: black;color: white;height: 70px">
+                        Ordered Laboratory Items
                     </div>
                     <div class="card-body">
-                        <a class="btn btn-primary" href="/orders">
+                        <a class="btn btn-primary" href="/orders" style="width: auto;background-color: limegreen">
                             Number of Orders :- {{$orders}}
                         </a>
                     </div>
@@ -109,6 +110,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container pull-right">
+        <a href="/labs/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add items</a>
     </div>
     <div class="container" style="margin-top: 30px">
         <table class="table table-striped table-hover">
@@ -157,8 +161,7 @@
             </tbody>
         </table>
         <div style="margin-top: 30px">
-            <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-            <a href="/labs/create" class="btn btn-primary text1">Update Details</a>
+            <a href="/index" class="btn btn-outline-info text1">Admin Dashboard</a>
         </div>
     </div>
 </div>

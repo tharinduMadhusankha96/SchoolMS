@@ -20,9 +20,14 @@ class Suppliercontroller extends Controller
      */
     public function index()
     {
-
+        $user = Auth::user()->id;
         $suppliers = suppliers::all();
-        return view('inventory.supplier.supplier')->with('suppliers', $suppliers);
+        if($user == 1){
+            return view('supplier.supplier')->with('suppliers', $suppliers);
+        }
+        else{
+            return redirect('/index');
+        }
 
     }
 
@@ -39,7 +44,7 @@ class Suppliercontroller extends Controller
 //            ->get();
         $user = Auth::user()->id;
         if ($user == 1) {
-            return view('inventory.supplier.addsupplier');
+            return view('supplier.addsupplier');
         }
         else{
             return back()->with('error','You do not have rights to perform this action');
@@ -55,6 +60,8 @@ class Suppliercontroller extends Controller
      */
     public function store(Request $request)
     {
+
+
         $user = Auth::user()->id;
         $supplier = new suppliers();
         $supplier->supplierID = $request->input('supplierid');
@@ -76,7 +83,7 @@ class Suppliercontroller extends Controller
             $supplier->save();
             return redirect('/supplier')->with('success', 'Record was added successfully');
         } else {
-            return back()->with('error', 'Record was not added successfully');
+            return back()->with('error', 'Enter the correct supplierID to match the supplier type');
         }
 
 
@@ -104,7 +111,7 @@ class Suppliercontroller extends Controller
         $user = Auth::user()->id;
         if ($user == 1) {
             $supplier = suppliers::find($id);
-            return view('inventory.supplier.supplieredit')->with('supplier', $supplier);
+            return view('supplier.supplieredit')->with('supplier', $supplier);
         } else {
             return redirect('/supplier')->with('error', 'You do not have admin rigts to perform the action');
         }
@@ -155,7 +162,7 @@ class Suppliercontroller extends Controller
         $user = Auth::user()->id;
         $suppliers = suppliers::find($id);
         if ($user == '1') {
-            $suppliers->delete();
+            DB::table('suppliers')->where('supplierID','=',$id)->delete();
             return redirect()->back()->with('success', 'Record was deleted successfully');
         } else {
             return redirect()->back()->with('error', 'You have no admin rights to perform the action');

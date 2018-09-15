@@ -30,23 +30,12 @@
                             <td> {{$order->quantity}}</td>
                             <td> {{$order->created_at}}</td>
                             <td>
-                                <button class="btn btn-danger" type="submit"
-                                        onclick="
-                                     var result = confirm('Are you sure you want to delete this record? ');
-                                            if(result){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form').submit();
-                                    }
-                                    "> Delete
-                                    @if(\Illuminate\Support\Facades\Auth::user()->id == $order->empid || \Illuminate\Support\Facades\Auth::user()->id ==1 )
-                                        <form id="delete-form"
-                                              action="{{action('Ordercontroller@destroy' , [$order->id])}}"
-                                              method="post" style="display:none">
-                                            <input type="hidden" name="_method" value="delete">
-                                            {{csrf_field()}}
-                                        </form>
-                                    @endif
-                                </button>
+                                <form id="delete-form" action="{{action('Ordercontroller@destroy' ,[$order->id] )}}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class=" btn btn-default btn-danger text1">Delete</button>
+                                </form>
                             </td>
                         </strong>
                     </tr>
@@ -57,20 +46,20 @@
                 <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
                 <a href="/orders/create" class="btn btn-primary text1">Orders</a>
                 {{--@if(\Illuminate\Support\Facades\Auth::user()->id == 1)--}}
-                    {{--<button class="btn btn-danger text1" type="submit" onclick="--}}
-                        {{--var result = confirm('Are you sure you want to reset the table data? ');--}}
-                                            {{--if(result){--}}
-                                                {{--event.preventDefault();--}}
-                                                {{--document.getElementById('delete').submit();--}}
-                                    {{--}--}}
+                {{--<button class="btn btn-danger text1" type="submit" onclick="--}}
+                {{--var result = confirm('Are you sure you want to reset the table data? ');--}}
+                {{--if(result){--}}
+                {{--event.preventDefault();--}}
+                {{--document.getElementById('delete').submit();--}}
+                {{--}--}}
 
-                    {{--"> Reset Table Data--}}
-                        {{--<form id="delete"--}}
-                              {{--action="{{action('Ordercontroller@truncate')}}"--}}
-                              {{--method="get" style="display:none">--}}
-                            {{--{{csrf_field()}}--}}
-                        {{--</form>--}}
-                    {{--</button>--}}
+                {{--"> Reset Table Data--}}
+                {{--<form id="delete"--}}
+                {{--action="{{action('Ordercontroller@truncate')}}"--}}
+                {{--method="get" style="display:none">--}}
+                {{--{{csrf_field()}}--}}
+                {{--</form>--}}
+                {{--</button>--}}
                 {{--@endif--}}
             </div>
         </div>

@@ -25,7 +25,7 @@
             </div>
             <div class="form-group form-row">
                 {!! Form::Label('item', 'Contact Details :-',['class'=>'text1']) !!}
-                {{Form::number('contact',$supplier->contact_details,['class'=>'form-control text1','placeholder'=>'Contact Details'])}}
+                {{Form::number('contact',$supplier->contact_details,['class'=>'form-control text1','max'=>'0799999999','placeholder'=>'Contact Details'])}}
             </div>
             <div class="form-group form-row">
                 <div>

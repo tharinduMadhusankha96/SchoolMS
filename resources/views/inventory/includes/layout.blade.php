@@ -121,10 +121,10 @@
 </head>
 <body style="width: auto;height: auto">
 <div>
-    @include('include.navbar')
+    @include('navbar.navbar')
 </div>
 @yield('content')
 <footer style="margin-top: 170px;z-index: 10;height: 3em;">
-    @include('include.footer')
+    @include('footer.footer')
 </footer>
 </body>

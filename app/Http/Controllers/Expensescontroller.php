@@ -19,14 +19,17 @@ class Expensescontroller extends Controller
         $this->middleware('auth')->except('logout');
     }
 
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         if ($user == 1) {
             $expenses = Expenses::all();
-            return view('inventory.expenses.expenses')->with('expenses', $expenses);
+            return view('expenses.expenses')->with('expenses', $expenses);
         } else {
             return back()->with('error', 'you have to login as the administritor');
         }
@@ -40,7 +43,7 @@ class Expensescontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         if ($user == 1) {
             $suppliers = suppliers::all();
             $data = array(
@@ -50,7 +53,7 @@ class Expensescontroller extends Controller
                 'lab' => DB::table('labs')->pluck('productID')
             );
 
-            return view('inventory.expenses.addexpenses')->with('suppliers', $suppliers)
+            return view('expenses.addexpenses')->with('suppliers', $suppliers)
                 ->with($data);
 
         }
@@ -161,17 +164,17 @@ class Expensescontroller extends Controller
     public function edit($id)
     {
 
-        $expenses = Expenses::find($id);
-        $suppliers = suppliers::all();
-        $data = array(
-            'st' => DB::table('stationaries')->pluck('productID'),
-            'sp' => DB::table('sports')->pluck('productID'),
-            'res' => DB::table('resources')->pluck('productID'),
-            'lab' => DB::table('labs')->pluck('productID')
-        );
+            $expenses = Expenses::find($id);
+            $suppliers = suppliers::all();
+            $data = array(
+                'st' => DB::table('stationaries')->pluck('productID'),
+                'sp' => DB::table('sports')->pluck('productID'),
+                'res' => DB::table('resources')->pluck('productID'),
+                'lab' => DB::table('labs')->pluck('productID')
+            );
 
-        return view('inventory.expenses.editexpenses')->with('suppliers', $suppliers)
-            ->with($data)->with('expenses',$expenses);
+            return view('expenses.editexpenses')->with('suppliers', $suppliers)
+                ->with($data)->with('expenses',$expenses);
 
 
 
@@ -269,7 +272,7 @@ class Expensescontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         $expenses = Expenses::find($id);
         if ($user == '1') {
             $expenses->delete();
