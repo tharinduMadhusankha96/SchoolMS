@@ -9,7 +9,7 @@ class LiveSearch extends Controller
 {
     function index()
     {
-        return view('supplier.live_search');
+        return view('inventory.supplier.live_search');
     }
 
     function action(Request $request)
