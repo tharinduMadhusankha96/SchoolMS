@@ -52,7 +52,7 @@ class EventController extends Controller
             'detailed_Description' => 'required',
             'venue' => 'required',
             'from_date' => 'required|after:yesterday',
-            'to_date' => 'required|after_or_equal:from_date',
+//            'to_date' => 'required|after_or_equal:from_date',
             'from_grade' => 'required|integer|min:0|max:13',
             'to_grade' => 'required|integer|min:0|max:13',
             'act_income' => 'required|numeric|min:0|between:0,999999999.99',
@@ -89,22 +89,25 @@ class EventController extends Controller
                 ->where('from_date','<=',$tod)
                 ->where('to_date', '>=' , $tod)
                 ->first();
-
-            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
-            {
-            }
+//
+//            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
+//            {
+//            }
 
             if($eventCheck1)
             {
                 return redirect()->back()->with('error' ,"{$eventCheck1->venue}&nbsp ".' is reserved FROM '."&nbsp{$eventCheck1->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck1->to_date}". ' ');
 
             }elseif($eventCheck2){
+
                 return redirect()->back()->with('error' , "{$eventCheck2->venue} &nbsp".'is reserved FROM '."&nbsp{$eventCheck2->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck2->to_date}". ' ');
             }
             elseif ($eventCheck3){
+
                 return redirect()->back()->with('error' , "{$eventCheck3->venue}&nbsp ".'is reserved FROM '."&nbsp{$eventCheck3->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck3->to_date}". ' ');
             }
             elseif($eventCheck4){
+
                 return redirect()->back()->with('error' , "{$eventCheck4->venue} &nbsp".'is reserved FROM '."&nbsp{$eventCheck4->from_date}&nbsp". ' TO &nbsp'. "{$eventCheck4->to_date}". ' ');
             }
         }
@@ -146,6 +149,32 @@ class EventController extends Controller
         $event->save();
 
         return redirect('/Event/myevents')->with('success', "New event '" . "{$event->title}" . "' has been created ");
+
+    }
+
+    public function createDemo()
+    {
+        $event = new Event;
+
+        $event->title = "Sports Meet";
+        $event->description = "This years sports meet will be held on the 18th of February at the School Main Grounds. With the addition of new exiting events the sports meet is expected to be much more competative and enjoyable than prevois times";
+        $event->detailed_description = "This years sports meet will be held on the 18th of February at the School Main Grounds. With the addition of new exiting events the sports meet is expected to be much more competative and enjoyable than prevois times\n 
+                                        As always, this year the Athletic Meet (commonly known as the “Sports Meet” by the students) will showcase a multitude of talent on the field by our young contestants. The event begins with the traditional opening ceremony. The Principal and other dignitaries, led by the College Western Band on their arrival raised the National Flag followed shortly by the National Anthem. After the official opening of the Meet contingent of school cadets will march in the College Flag which was formally received by the Principal and is handed over to the Scout Troop. The College flag is then raised by the Athletic Captain along with the house flags by the respective House Captains and the Masters – in Charge. This is followed by the singing of the School Song led by the College Choir.The lighting of the Olympic lamp and the reading of the Oath will take place soon after.";
+        $event->venue = "School Grounds";
+        $event->from_date = "2019-02-18 08:30:00";
+        $event->to_date = "2019-02-18 04:30:00";
+        $event->from_grade = 1;
+        $event->to_grade = 12;
+        $event->act_income = 0;
+        $event->act_expense = 0;
+        $event->society_id = 0;
+        $event->user_id = 1;
+        $event->image = 0;
+
+//        $event->save();
+//        dd($event);
+        return view('event.demo')->with('event', $event);
+
 
     }
 
@@ -195,7 +224,7 @@ class EventController extends Controller
             'description' => 'required|max:250',
             'detailed_Description' => 'required',
             'venue' => 'required',
-            'from_date' => 'required|after:yesterday',
+//            'from_date' => 'required|after:yesterday',
             'to_date' => 'required|after_or_equal:from_date',
             'from_grade' => 'required|integer|min:0|max:13',
             'to_grade' => 'required|integer|min:0|max:13',
@@ -204,7 +233,21 @@ class EventController extends Controller
 
         ]);
 
-        if($request->has('venue'))
+        $old_loc = $request->originalLocation;
+        $newLoc = $request->venue;
+        $updated_From = $request->from_date;
+        $updated_To = $request->to_date;
+        $oldFrom = $request->originalFrom;
+        $oldTo = $request->originalTo;
+
+
+        $updatedFrom = mb_substr($updated_From, 11, 14);
+        $updatedTo = mb_substr($updated_To, 11, 14);
+        $from_old = mb_substr($oldFrom, 11, 14);
+        $to_old = mb_substr($oldTo, 11, 14);
+
+
+        if(! ($old_loc == $newLoc) and ($updatedFrom==$from_old) and ($updatedTo and $to_old))
         {
             $venue = request('venue');
             $tod = request('to_date');
@@ -301,17 +344,70 @@ class EventController extends Controller
         return redirect('Event/myevents')->with('error', "Event '" . "{$event->title}" . "' has not been deleted ");
     }
 
-//    public function nir()
-//    {
-//        return view('Event.staff');
-//    }
-
     public function search()
     {
         $search = request('search');
         $events = Event::search($search)->paginate(3);
 
-        return view('event.index')->with('events', $events)->with('success', "Search Result for '" . "{$search}" . " '");
+        return view('event.index')->with('events', $events)->with("success", "Search Result for '" . "{$search}" . " '");
+    }
+
+    public function liveSearch(Request $request)
+    {
+        dd($request);
+
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = DB::table('events')
+                    ->where('title', 'like', '%' . $query . '%')
+//                    ->orWhere('description', 'like', '%' . $query . '%')
+//                    ->orWhere('detailed_description', 'like', '%' . $query . '%')
+//                    ->orWhere('venue', 'like', '%' . $query . '%')
+                    ->orderBy('from_date', 'desc')
+                    ->get();
+
+            } else {
+                $data = DB::table('events')
+                    ->orderBy('date_from', 'desc')
+                    ->get();
+            }
+
+            $total_row = $data->count();
+
+            if ($total_row > 0) {
+
+                foreach ($data as $row) {
+                    $output .= '
+                                <tr>
+                                 <td>' . $row->title . '</td>
+                                 <td>' . $row->description . '</td>
+                                 <td>' . $row->detailed_description . '</td>
+                                 <td>' . $row->venue . '</td>
+                                </tr>
+                                ';
+                }
+
+            } else {
+
+                $output = '
+                           <tr>
+                            <td align="center" colspan="5">No Data Found</td>
+                           </tr>
+                           ';
+            }
+
+            $data = array(
+
+                'table_data' => $output,
+                'total_data' => $total_row
+            );
+
+            dd($data);
+
+            echo json_encode($data);
+        }
     }
 
     public function myevents()

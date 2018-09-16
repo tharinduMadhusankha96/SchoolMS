@@ -12,7 +12,7 @@
                     <div class="col-md-9">
                         @if(count($events)>0)
                             @foreach( $events as $event )
-                                <div class="col-md-12 row jumbotron" style="background-color: lightgray">
+                                <div class="col-md-12 row jumbotron" style="background-color: lightgray; ">
                                     <div class="col-md-8">
                                         <div>
                                             <h2>
@@ -79,7 +79,7 @@
 
                     </div>
 
-                    <div class="col-md-3 sidebar pull-right">
+                    <div class="col-md-3 sports_sidebar pull-right">
 
                         <div>
 
