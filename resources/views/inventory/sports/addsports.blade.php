@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="container" style="width: 50%">
-            {!! Form::open(['action' => 'Sportscontroller@store','method' => 'POST', 'class'=> 'form-signin']) !!}
+            {!! Form::open(['action' => 'Sportstocks@store','method' => 'POST', 'class'=> 'form-signin']) !!}
             {{csrf_field()}}
 
             <div class="form-group form-row">

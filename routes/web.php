@@ -59,7 +59,7 @@ Route::resource('/stationary','Stationarycontroller');
 Route::resource('/labs','labscontroller');
 Route::resource('/sports','Sportscontroller');
 Route::resource('/resource','Resourcecontroller');
-Route::resource('/expenses','Expensescontroller');
+Route::resource('/expenses','InventoryExpenses');
 Route::get('/inventory','homeview@index');
 Route::get('/live_search', 'LiveSearch@index');
 Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
