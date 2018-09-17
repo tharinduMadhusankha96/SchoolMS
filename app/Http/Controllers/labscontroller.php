@@ -170,11 +170,10 @@ class labscontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $user = Auth::user()->role_id;
+    { $user = Auth::user()->role_id;
         $labs = labs::find($id);
         if ($user == 1) {
-            $labs->delete();
+            DB::table('labs')->where('productID','=',$id)->delete();
             return redirect()->back()->with('success', 'Record was deleted successfully');
         } else {
             return redirect()->back()->with('error', 'You can not perform this action');

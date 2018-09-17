@@ -36,8 +36,8 @@
             {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
             <div style="margin-top: 30px" class="text-center">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/resource" class="btn btn-primary text1">Resources</a>
+                <a href="/index" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/resource" class="btn btn-outline-info text1">Resources</a>
             </div>
         </div>
 

@@ -54,8 +54,8 @@
             </form>
             {{--{!! Form::close() !!}--}}
 
-            <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-            <a href="/orders" class="btn btn-primary text1">Orders</a>
+            <a href="/index" class="btn btn-outline-info text1">Admin Dashboard</a>
+            <a href="/orders" class="btn btn-outline-info text1">Orders</a>
         </div>
 
 
