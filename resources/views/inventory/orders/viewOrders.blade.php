@@ -6,7 +6,10 @@
                 <strong>Orders </strong>
             </h2>
         </div>
-        <div class="container">
+        <div class="container pull-right">
+            <a href="/orders/create" class="btn btn-outline-info text1" style="background-color: limegreen">Orders</a>
+        </div>
+        <div class="container" style="margin-top: 30px">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
@@ -42,8 +45,7 @@
                 </tbody>
             </table>
             <div>
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/orders/create" class="btn btn-primary text1">Orders</a>
+                <a href="/index" class="btn btn-outline-info text1">Admin Dashboard</a>
                 {{--@if(\Illuminate\Support\Facades\Auth::user()->id == 1)--}}
                 {{--<button class="btn btn-danger text1" type="submit" onclick="--}}
                 {{--var result = confirm('Are you sure you want to reset the table data? ');--}}

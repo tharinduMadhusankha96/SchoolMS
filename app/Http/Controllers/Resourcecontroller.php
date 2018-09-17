@@ -165,7 +165,7 @@ class Resourcecontroller extends Controller
         $user = Auth::user()->role_id;
         $resources = Resources::find($id);
         if ($user == 1) {
-            $resources->delete();
+            DB::table('resources')->where('productID','=',$id)->delete();
             return back()->with('success', 'Record was deleted');
         } else {
             return redirect()->back()->with('error', 'You do not have permision to perform this action');
