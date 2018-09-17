@@ -67,7 +67,7 @@
                                      "
                                 > Delete
                                     <form id="delete-form"
-                                          action="{{action('Sportscontroller@destroy' , [$stock->productID])}}"
+                                          action="{{action('Sportstocks@destroy' , [$stock->productID])}}"
                                           method="post" style="display:none">
                                         <input type="hidden" name="_method" value="delete">
                                         {{csrf_field()}}

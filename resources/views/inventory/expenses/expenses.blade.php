@@ -44,7 +44,7 @@
                                      "
                                 > Delete
                                     <form id="delete-form"
-                                          action="{{action('Expensescontroller@destroy' , [$e->invoiceID])}}"
+                                          action="{{action('InventoryExpenses@destroy' , [$e->invoiceID])}}"
                                           method="post" style="display:none">
                                         <input type="hidden" name="_method" value="delete">
                                         {{csrf_field()}}
