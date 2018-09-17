@@ -28,7 +28,7 @@ class Ordercontroller extends Controller
         $order = Orders::all();
         $st = DB::table('stationaries')->where('name', '=', 'pencils')->pluck('name');
 
-        return view('orders.viewOrders')->with('orders', $order);
+        return view('inventory.orders.viewOrders')->with('orders', $order);
 
     }
 
@@ -39,7 +39,7 @@ class Ordercontroller extends Controller
      */
     public function create()
     {
-        $id = Auth::user()->id;
+        $id = Auth::user()->role_id;
 
         $data = array(
             'labs' => DB::table('labs')->where('amount', '>', 10)->pluck('name'),
@@ -47,7 +47,7 @@ class Ordercontroller extends Controller
             'sports' => DB::table('sports')->where('amount', '>', 10)->pluck('name'),
             'res' => DB::table('resources')->where('amount', '>', 10)->pluck('name')
         );
-        return view('orders.addorder')->with('id', $id)
+        return view('inventory.orders.addorder')->with('id', $id)
             ->with($data);
     }
 
@@ -108,10 +108,10 @@ class Ordercontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $order = Orders::find($id);
         if ($user == $id) {
-            return view('orders.edit')->with('orders', $order, 'id', $user);
+            return view('inventory.orders.edit')->with('orders', $order, 'id', $user);
         } else {
             return redirect()->back();
         }

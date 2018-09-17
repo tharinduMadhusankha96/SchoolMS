@@ -123,8 +123,9 @@
 <div>
     @include('include.navbar')
 </div>
+@include('inventory.messages.message')
 @yield('content')
 <footer style="margin-top: 170px;z-index: 10;height: 3em;">
-    @include('include.footer')
+    @include('inventory.footer.footer')
 </footer>
 </body>

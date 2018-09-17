@@ -25,7 +25,7 @@ class Sportscontroller extends Controller
         $orders = Orders::where('type','=','Sports Items')->count();
         $stitems = DB::table('sports')->where('amount','=',sports::min('amount'))->pluck('name');
 
-        return view('sports.sports')->with('stocks', $stock)->with('orders',$orders)->with('st',$stitems);
+        return view('inventory.sports.sports')->with('stocks', $stock)->with('orders',$orders)->with('st',$stitems);
     }
 
     /**
@@ -35,10 +35,10 @@ class Sportscontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'SP')->get();
-            return view('sports.addsports')->with('suppliers', $supplier);
+            return view('inventory.sports.addsports')->with('suppliers', $supplier);
         } else {
             return redirect()->back()->with('error', 'You do not have rights to perform this action');
         }
@@ -94,11 +94,11 @@ class Sportscontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $sport = sports::find($id);
         $supplier = suppliers::where('type', '=', 'SP')->get();
         if($user == 1){
-            return view('sports.sportsedit')->with('sport',$sport)->with('suppliers',$supplier);
+            return view('inventory.sports.sportsedit')->with('sport',$sport)->with('suppliers',$supplier);
         }
     }
 
@@ -145,7 +145,7 @@ class Sportscontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $sport = sports::find($id);
         if($user == 1){
             $sport->delete();

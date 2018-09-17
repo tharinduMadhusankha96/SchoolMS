@@ -28,7 +28,7 @@ class Stationarycontroller extends Controller
         $stitems = DB::table('stationaries')->where('amount','=',stationary::min('amount'))->pluck('name');
 
 
-        return view('stationary.stationary')->with('stocks', $stock)->with('orders',$orders)->with('st',$stitems);
+        return view('inventory.stationary.stationary')->with('stocks', $stock)->with('orders',$orders)->with('st',$stitems);
 
     }
 
@@ -39,10 +39,10 @@ class Stationarycontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::where('type', '=', 'S')->get();
-            return view('stationary.addstationary')->with('suppliers', $supplier);
+            return view('inventory.stationary.addstationary')->with('suppliers', $supplier);
         } else {
             return redirect()->back()->with('error', 'You do not have rights to perform this action');
         }
@@ -57,7 +57,7 @@ class Stationarycontroller extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $st = new stationary();
         $st->name = $request->input('name');
         $st->productID = $request->input('productID');
@@ -105,11 +105,11 @@ class Stationarycontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $stationary = stationary::find($id);
             $st = $stationary::all();
-            return view('stationary.editstationary')->with('stationary', $stationary)->with('st', $st);
+            return view('inventory.stationary.editstationary')->with('stationary', $stationary)->with('st', $st);
         } else {
             return redirect()->back()->with('error', 'You do not have rights to perform the action');
         }
@@ -154,7 +154,7 @@ class Stationarycontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $labs = stationary::find($id);
         if($user == 1){
             DB::table('stationaries')->where('productID','=',$id)->delete();

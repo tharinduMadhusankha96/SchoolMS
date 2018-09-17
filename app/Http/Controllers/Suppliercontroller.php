@@ -23,7 +23,7 @@ class Suppliercontroller extends Controller
         $user = Auth::user()->id;
         $suppliers = suppliers::all();
         if($user == 1){
-            return view('supplier.supplier')->with('suppliers', $suppliers);
+            return view('.inventory.supplier.supplier')->with('suppliers', $suppliers);
         }
         else{
             return redirect('/index');
@@ -42,9 +42,9 @@ class Suppliercontroller extends Controller
 //            ->select(DB::raw('select type'))
 //            ->where('supplierID', '<', 2000)
 //            ->get();
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
-            return view('supplier.addsupplier');
+            return view('inventory.supplier.addsupplier');
         }
         else{
             return back()->with('error','You do not have rights to perform this action');
@@ -62,7 +62,7 @@ class Suppliercontroller extends Controller
     {
 
 
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $supplier = new suppliers();
         $supplier->supplierID = $request->input('supplierid');
         $supplier->name = $request->input('name');
@@ -108,10 +108,10 @@ class Suppliercontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = suppliers::find($id);
-            return view('supplier.supplieredit')->with('supplier', $supplier);
+            return view('inventory.supplier.supplieredit')->with('supplier', $supplier);
         } else {
             return redirect('/supplier')->with('error', 'You do not have admin rigts to perform the action');
         }
@@ -159,7 +159,7 @@ class Suppliercontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $suppliers = suppliers::find($id);
         if ($user == '1') {
             DB::table('suppliers')->where('supplierID','=',$id)->delete();
