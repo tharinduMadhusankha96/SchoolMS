@@ -13,10 +13,10 @@ use DB;
 
 class homeview extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('auth')->except('logout');
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth')->except('logout');
+    }
     public function index()
     {
         $items = stationary::all()->count();
@@ -24,8 +24,6 @@ class homeview extends Controller
         $labs = labs::all()->count();
         $sports = sports::all()->count();
         $resources = Resources::all()->count();
-
-
 
         return view('inventory.home.inventory')->with('data', ['pending' => $pending, 'items' => $items, 'labs' => $labs,
                                                 'sports' => $sports, 'resources' => $resources]);

@@ -1,7 +1,6 @@
-@extends('includes.layout')
+@extends('inventory.includes.layout')
 @section('content')
     <div class="container" style="margin-top:20px">
-        @include('messages.message')
         <div class="text-center">
             <h2 class="display-5 text-center" style="font-size:4vw;">
                 <strong>Supplier Details</strong>

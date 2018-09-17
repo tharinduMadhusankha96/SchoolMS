@@ -30,7 +30,7 @@ class labscontroller extends Controller
         $stitems = DB::table('labs')->where('amount','=',labs::min('amount'))->pluck('name');
 
 
-        return view('labs.labs')->with('labs', $labs)->with('orders',$orders)->with('st',$stitems);
+        return view('inventory.labs.labs')->with('labs', $labs)->with('orders',$orders)->with('st',$stitems);
     }
 
     /**
@@ -40,10 +40,10 @@ class labscontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         if ($user == 1) {
             $supplier = DB::table('suppliers')->where('type','=','L')->pluck('supplierID');
-            return view('labs.addlabs')->with('suppliers', $supplier);
+            return view('inventory.labs.addlabs')->with('suppliers', $supplier);
         } else {
             return redirect()->back()->with('error', 'You do not have rights to perform this action');
         }
@@ -114,11 +114,11 @@ class labscontroller extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $labs = labs::find($id);
         $supplier = DB::table('suppliers')->where('type','=','L')->pluck('supplierID');
         if ($user == 1) {
-            return view('labs.editlabs')->with('labs', $labs)->with('suppliers',$supplier);
+            return view('inventory.labs.editlabs')->with('labs', $labs)->with('suppliers',$supplier);
         } else {
             return redirect()->back()->with('error', 'You do not have rights to perform this action');
         }
@@ -171,7 +171,7 @@ class labscontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user()->role_id;
         $labs = labs::find($id);
         if ($user == 1) {
             $labs->delete();
