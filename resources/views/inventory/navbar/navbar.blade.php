@@ -4,7 +4,7 @@
         <nav>
             <div class="row  logogif">
 
-                <img src="{{asset('images/scbd.gif')}}" width="160" height="140"
+                <img src="{{asset('images/logogif.gif')}}" width="160" height="140"
                      class="img-responsive img-circle logogif">
 
                 <H1 style=" width:100%;text-align: center; color: black;font-weight: 900;margin-top: 10px"
