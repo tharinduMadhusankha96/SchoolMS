@@ -38,8 +38,8 @@
             </div>
             {!! Form::close() !!}
             <div style="margin-top: 30px" class="text-center">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/sports" class="btn btn-primary text1">Sports Items</a>
+                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/sports" class="btn btn-outline-info text1">Sports Items</a>
             </div>
         </div>
 

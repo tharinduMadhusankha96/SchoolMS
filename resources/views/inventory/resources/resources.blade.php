@@ -60,7 +60,7 @@
                                 <a href="/resource/{{$r->productID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <form id="delete-form" action="{{action('Resourcecontroller@destroy' ,[$lab->productID] )}}"
+                                <form id="delete-form" action="{{action('Resourcecontroller@destroy' ,[$r->productID] )}}"
                                       method="post">
                                     <input type="hidden" name="_method" value="delete">
                                     {{ csrf_field() }}
@@ -74,7 +74,7 @@
                 </tbody>
             </table>
             <div style="margin-top: 30px">
-                <a href="/index" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
             </div>
         </div>
     </div>
