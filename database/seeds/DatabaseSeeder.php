@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
-//         $this->call(UsersTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
     }
 }

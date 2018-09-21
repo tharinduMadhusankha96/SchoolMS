@@ -33,11 +33,11 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title"><b>Add New Student Fee</b></h4>
+                                <h4 class="modal-title"><b>Add New Student</b></h4>
                             </div>
 
                             <div class="modal-body">
-                                <form action="{{action('HomeController@store')}}" method="POST" class="form-horizontal">
+                                <form action="{{action('studentController@store')}}" method="POST" class="form-horizontal">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="form-group">
                                         <label class="control-label col-md-6">Full Name</label>
@@ -49,45 +49,78 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Index number</label>
+                                        <label class="control-label col-md-6" for="email">Guardian Name</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Index number" class="form-control" placeholder="Index number"> 
+                                            <input type="text" name="GuardianName" class="form-control" placeholder="Guardian Name"> 
                                         </div>
                                     </div>
                                     
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Permanet Address</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="PermanetAddress" class="form-control" placeholder="Permanet Address"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Current Address</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="CurrentAddress" class="form-control" placeholder="Current Address"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Gender</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Gender" class="form-control" placeholder="Gender">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Province</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Province" class="form-control" placeholder="Province">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="email">Grade</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Grade" class="form-control" placeholder="Grade"> 
+                                            <input type="text" name="Grade" class="form-control" placeholder="Grade">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Class</label>
+                                        <label class="control-label col-md-6" for="email">Birth Day</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Class" class="form-control" placeholder="Class"> 
+                                             <input type="text" name="BirthDay" class="form-control" placeholder="Birth Day"> 
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Year</label>
+                                        <label class="control-label col-md-6" for="email">Mobile Number</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Year" class="form-control" placeholder="Year">
+                                             <input type="text" name="MobileNumber" class="form-control" placeholder="Mobile Number"> 
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Payment</label>
+                                        <label class="control-label col-md-6" for="email">E-mail</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Payment" class="form-control" placeholder="Payment">
+                                             <input type="email" name="email" class="form-control" placeholder="E-mail Address"> 
                                         </div>
                                     </div>
-                                    
-                                   
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Password</label>
+                                        <div class="col-md-10">
+                                             <input type="password" name="password" class="form-control" placeholder="Password"> 
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <div class="col-md-8">
-                                            <button type="submit" class="btn btn-success">Add Student Fee</button>
+                                            <button type="submit" class="btn btn-success">Add Student</button>
                                             &nbsp;
                                             <button type="reset" class="btn btn-warning">Reset</button>
                                         </div>
@@ -110,7 +143,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title"><b>update Student Fee</b></h4>
+                                <h4 class="modal-title"><b>update Student</b></h4>
                             </div>
 
                             <div class="modal-body">
@@ -124,45 +157,78 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Index Number</label>
+                                        <label class="control-label col-md-6" for="email">Guardian Name</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Index Number" class="form-control" placeholder="Index Number"> 
+                                            <input type="text" name="GuardianName" class="form-control" placeholder="Guardian Name"> 
                                         </div>
                                     </div>
                                     
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Permanet Address</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="PermanetAddress" class="form-control" placeholder="Permanet Address"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Current Address</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="CurrentAddress" class="form-control" placeholder="Current Address"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Gender</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Gender" class="form-control" placeholder="Gender">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Province</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Province" class="form-control" placeholder="Province">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="email">Grade</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Grade" class="form-control" placeholder="Grade"> 
+                                            <input type="text" name="Grade" class="form-control" placeholder="Grade">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Class</label>
+                                        <label class="control-label col-md-6" for="email">Birth Day</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Class" class="form-control" placeholder="Class"> 
+                                             <input type="text" name="BirthDay" class="form-control" placeholder="Birth Day"> 
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Year</label>
+                                        <label class="control-label col-md-6" for="email">Mobile Number</label>
                                         <div class="col-md-10">
-                                            <input type="text" name="Year" class="form-control" placeholder="Year">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="control-label col-md-6" for="email">Payment</label>
-                                        <div class="col-md-10">
-                                            <input type="text" name="Payment" class="form-control" placeholder="Payment">
+                                             <input type="text" name="MobileNumber" class="form-control" placeholder="Mobile Number"> 
                                         </div>
                                     </div>
 
-                                   
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">E-mail</label>
+                                        <div class="col-md-10">
+                                             <input type="email" name="email" class="form-control" placeholder="E-mail Address"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="email">Password</label>
+                                        <div class="col-md-10">
+                                             <input type="password" name="password" class="form-control" placeholder="Password"> 
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <div class="col-md-8">
-                                            <button type="submit" class="btn btn-success">Update Student Fee</button>
+                                            <button type="submit" class="btn btn-success">Update Student</button>
                                         </div>
                                     </div>
                                 </form> 
@@ -215,25 +281,25 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Class</th>
-                                    <th>Year</th>
+                                    <th>E-mail</th>
+                                    <th>Phone Number</th>
                                     <th>Grade</th>
-                                    <th>Payment</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
                             
                             <tbody>
-                            @foreach ($home as $home)
+                            @foreach ($student as $student)
                                 <tr>
-                                    <td>{{$home->id}}</td>
-                                    <td>{{$home->studentName}}</td>
-                                    <td>{{$home->class}}</td>
-                                    <td>{{$home->Payment}}</td>
-                                    <td>{{$home->Grade}}</td>
+                                    <td>{{$student->id}}</td>
+                                    <td>{{$student->studentName}}</td>
+                                    <td>{{$student->email}}</td>
+                                    <td>{{$student->mobileNumber}}</td>
+                                    <td>{{$student->Grade}}</td>
                                     <td>
-                                        <a href="{{url('/homeTable/edit/'.$home->id)}}" data-toggle="modal" data-target="#modal-update" class="btn btn-primary">Edit</a>&nbsp;
-                                        <button class="btn btn-danger"  data-catid="{{$home->id}}" data-toggle="modal" data-target="#delete">Delete</button>
+                                        <a href="{{url('/stdTable/edit/'.$student->id)}}" data-toggle="modal" data-target="#modal-update" class="btn btn-primary">Edit</a>&nbsp;
+                                        <button class="btn btn-danger"  data-catid="{{$student->id}}" data-toggle="modal" data-target="#delete">Delete</button>
                                         
                                     </td>
                                 </tr>
