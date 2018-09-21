@@ -61,25 +61,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="role_id" name ="role_id" class="col-md-4 col-form-label text-md-right">Role ID</label>
-
-                            <div class="col-md-6">
-                                <input id="role_id" class="form-control" name="role_id" required>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="gender" name ="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
-
-                            <select name="gender">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
