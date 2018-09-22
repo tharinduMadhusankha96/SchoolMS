@@ -37,7 +37,7 @@
                                 <a href="/expenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <form id="delete-form" action="{{action('InventoryExpenses@destroy' ,[$e->invoiceID] )}}"
+                                <form id="delete-form" action="{{action('Inventoryexpenses@destroy' ,[$e->invoiceID] )}}"
                                       method="post">
                                     <input type="hidden" name="_method" value="delete">
                                     {{ csrf_field() }}
