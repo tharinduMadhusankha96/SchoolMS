@@ -59,7 +59,6 @@ Route::resource('/stationary','Stationarycontroller');
 Route::resource('/labs','labscontroller');
 Route::resource('/inventorysports','Sportstocks');
 Route::resource('/resource','Resourcecontroller');
-Route::resource('/inventoryexpenses','Inventoryexpenses');
 Route::resource('/inventoryexpenses','InventoryExpenses');
 Route::get('/inventory','homeview@index');
 Route::get('/live_search', 'LiveSearch@index');
