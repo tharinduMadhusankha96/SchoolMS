@@ -23,7 +23,7 @@ class Sportstocks extends Controller
     {
         $stock = InventorySports::all();
         $orders = Orders::where('type','=','Sports Items')->count();
-        $stitems = DB::table('sports')->where('amount','=',InventorySports::min('amount'))->pluck('name');
+        $stitems = DB::table('inventory_sports')->where('amount','=',InventorySports::min('amount'))->pluck('name');
 
         return view('inventory.sports.sports')->with('stocks', $stock)->with('orders',$orders)->with('st',$stitems);
     }
@@ -60,16 +60,16 @@ class Sportstocks extends Controller
 
         $name= $request->input('name');
         $pid = $request->input('productID');
-        if(DB::table('sports')->where('name','=',$name)->exists()){
+        if(DB::table('inventory_sports')->where('name','=',$name)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
-        elseif (DB::table('sports')->where('productID','=',$pid)->exists()){
+        elseif (DB::table('inventory_sports')->where('productID','=',$pid)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
         elseif ($request->input('amount') > 0){
             if($request->input('productID') > 500 && $request->input('productID') < 600 ){
                 $sports->save();
-                return redirect('/sports')->with('success','Record was added to the database sucessfully');
+                return redirect('/inventorysports')->with('success','Record was added to the database sucessfully');
             }
         }
 
@@ -119,16 +119,17 @@ class Sportstocks extends Controller
 
         $name= $request->input('name');
         $pid = $request->input('productID');
-        if(DB::table('sports')->where('name','=',$name)->exists()){
+
+        if(DB::table('inventory_sports')->where('name','=',$name)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
-        elseif (DB::table('sports')->where('productID','=',$pid)->exists()){
+        elseif (DB::table('inventory_sports')->where('productID','=',$pid)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
         elseif ($request->input('amount') > 0){
             if($request->input('productID') > 500 && $request->input('productID') < 600 ){
                 $sports->save();
-                return redirect('/sports')->with('success','Record was added to the database sucessfully');
+                return redirect('/inventorysports')->with('success','Record was added to the database sucessfully');
             }
         }
         else{

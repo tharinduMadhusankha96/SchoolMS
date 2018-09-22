@@ -57,7 +57,7 @@
                             <td> {{$stock->amount}}</td>
                             <td> {{$stock->supplierID}}</td>
                             <td>
-                                <a href="/sports/{{$stock->productID}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/inventorysports/{{$stock->productID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
                                 <form id="delete-form" action="{{action('Sportstocks@destroy' ,[$stock->productID] )}}"
