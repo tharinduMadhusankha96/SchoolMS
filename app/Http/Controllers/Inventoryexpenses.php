@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Expenses;
+use App\InventoryExpenses;
 use App\Resources;
 use App\suppliers;
 use App\InventorySports;
@@ -67,7 +67,7 @@ class Inventoryexpenses extends Controller
      */
     public function store(Request $request)
     {
-        $expenses = new Expenses;
+        $expenses = new InventoryExpenses;
         $expenses->invoiceID = $request->input('invoiceID');
         $expenses->productID = $request->input('productID');
         $expenses->supplierID = $request->input('supplier');
@@ -164,7 +164,7 @@ class Inventoryexpenses extends Controller
     public function edit($id)
     {
 
-        $expenses = Expenses::find($id);
+        $expenses = InventoryExpenses::find($id);
         $suppliers = suppliers::all();
         $data = array(
             'st' => DB::table('stationaries')->pluck('productID'),
@@ -173,7 +173,7 @@ class Inventoryexpenses extends Controller
             'lab' => DB::table('labs')->pluck('productID')
         );
 
-        return view('expenses.editexpenses')->with('suppliers', $suppliers)
+        return view('inventory.expenses.editexpenses')->with('suppliers', $suppliers)
             ->with($data)->with('inventoryexpenses',$expenses);
 
 
@@ -189,7 +189,7 @@ class Inventoryexpenses extends Controller
      */
     public function update(Request $request, $id)
     {
-        $expenses = Expenses::find($id);
+        $expenses = InventoryExpenses::find($id);
         $expenses->invoiceID = $request->input('invoiceID');
         $expenses->productID = $request->input('productID');
         $expenses->supplierID = $request->input('supplier');
@@ -273,7 +273,7 @@ class Inventoryexpenses extends Controller
     public function destroy($id)
     {
         $user = Auth::user()->id;
-        $expenses = Expenses::find($id);
+        $expenses = InventoryExpenses::find($id);
         if ($user == '1') {
             $expenses->delete();
             return back()->with('success', 'Record was deleted successfully');
