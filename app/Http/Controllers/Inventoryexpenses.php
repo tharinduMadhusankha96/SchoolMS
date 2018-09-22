@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Expenses;
+use App\Inventory_expense;
 use App\Resources;
 use App\suppliers;
 use App\InventorySports;
@@ -28,7 +28,7 @@ class Inventoryexpenses extends Controller
     {
         $user = Auth::user()->role_id;
         if ($user == 1) {
-            $expenses = Expenses::all();
+            $expenses = Inventory_expense::all();
             return view('inventory.expenses.expenses')->with('expenses', $expenses);
         } else {
             return back()->with('error', 'you have to login as the administritor');
@@ -67,7 +67,7 @@ class Inventoryexpenses extends Controller
      */
     public function store(Request $request)
     {
-        $expenses = new Expenses;
+        $expenses = new Inventory_expense;
         $expenses->invoiceID = $request->input('invoiceID');
         $expenses->productID = $request->input('productID');
         $expenses->supplierID = $request->input('supplier');
@@ -79,7 +79,7 @@ class Inventoryexpenses extends Controller
 
         $name= $request->input('invoiceID');
 
-        if(DB::table('expenses')->where('invoiceID','=',$name)->exists()){
+        if(DB::table('inventoryexpenses')->where('invoiceID','=',$name)->exists()){
             return redirect()->back()->with('error','Record already exists in the database');
         }
 
@@ -164,7 +164,7 @@ class Inventoryexpenses extends Controller
     public function edit($id)
     {
 
-        $expenses = Expenses::find($id);
+        $expenses = Inventory_expense::find($id);
         $suppliers = suppliers::all();
         $data = array(
             'st' => DB::table('stationaries')->pluck('productID'),
@@ -173,7 +173,7 @@ class Inventoryexpenses extends Controller
             'lab' => DB::table('labs')->pluck('productID')
         );
 
-        return view('expenses.editexpenses')->with('suppliers', $suppliers)
+        return view('inventory.expenses.editexpenses')->with('suppliers', $suppliers)
             ->with($data)->with('inventoryexpenses',$expenses);
 
 
@@ -189,7 +189,7 @@ class Inventoryexpenses extends Controller
      */
     public function update(Request $request, $id)
     {
-        $expenses = Expenses::find($id);
+        $expenses = Inventory_expense::find($id);
         $expenses->invoiceID = $request->input('invoiceID');
         $expenses->productID = $request->input('productID');
         $expenses->supplierID = $request->input('supplier');
@@ -200,7 +200,7 @@ class Inventoryexpenses extends Controller
         $sid = $request->input('supplier');
         $name= $request->input('invoiceID');
 
-        if(DB::table('expenses')->where('invoiceID','=',$name)->exists()){
+        if(DB::table('inventoryexpenses')->where('invoiceID','=',$name)->exists()){
             return redirect()->back()->with('error','Record already exists in the database');
         }
         if ($request->input('quantity') > 0) {
@@ -273,7 +273,7 @@ class Inventoryexpenses extends Controller
     public function destroy($id)
     {
         $user = Auth::user()->id;
-        $expenses = Expenses::find($id);
+        $expenses = Inventory_expense::find($id);
         if ($user == '1') {
             $expenses->delete();
             return back()->with('success', 'Record was deleted successfully');

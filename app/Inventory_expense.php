@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryExpenses extends Model
+class Inventory_expense extends Model
 {
     protected $table = 'inventoryexpenses';
     public $primaryKey = 'invoiceID';

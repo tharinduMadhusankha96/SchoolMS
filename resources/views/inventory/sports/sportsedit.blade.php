@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="container" style="width: 50%">
-            {!! Form::open(['action' => ['Sportsocks@update',$sport->productID],'method' => 'POST', 'class'=> 'form-signin text-center']) !!}
+            {!! Form::open(['action' => ['Sportstocks@update',$sport->productID],'method' => 'POST', 'class'=> 'form-signin text-center']) !!}
             <input name="_method" type="hidden" value="PATCH">
             {{csrf_field()}}
             <div class="form-group">
