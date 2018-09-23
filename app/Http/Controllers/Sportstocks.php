@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Orders;
-use App\sports;
-use App\suppliers;
 use Illuminate\Http\Request;
+use App\Orders;
+use App\InventorySports;
+use App\suppliers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-class Sportscontroller extends Controller
+class Sportstocks extends Controller
 {
     public function __construct()
     {
@@ -21,9 +21,9 @@ class Sportscontroller extends Controller
      */
     public function index()
     {
-        $stock = sports::all();
+        $stock = InventorySports::all();
         $orders = Orders::where('type','=','Sports Items')->count();
-        $stitems = DB::table('sports')->where('amount','=',sports::min('amount'))->pluck('name');
+        $stitems = DB::table('inventory_sports')->where('amount','=',InventorySports::min('amount'))->pluck('name');
 
         return view('inventory.sports.sports')->with('stocks', $stock)->with('orders',$orders)->with('st',$stitems);
     }
@@ -52,7 +52,7 @@ class Sportscontroller extends Controller
      */
     public function store(Request $request)
     {
-        $sports = new sports;
+        $sports = new InventorySports;
         $sports->name = $request->input('name');
         $sports->productID = $request->input('productID');
         $sports->amount = $request->input('amount');
@@ -60,16 +60,16 @@ class Sportscontroller extends Controller
 
         $name= $request->input('name');
         $pid = $request->input('productID');
-        if(DB::table('sports')->where('name','=',$name)->exists()){
+        if(DB::table('inventory_sports')->where('name','=',$name)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
-        elseif (DB::table('sports')->where('productID','=',$pid)->exists()){
+        elseif (DB::table('inventory_sports')->where('productID','=',$pid)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
         elseif ($request->input('amount') > 0){
             if($request->input('productID') > 500 && $request->input('productID') < 600 ){
                 $sports->save();
-                return redirect('/sports')->with('success','Record was added to the database sucessfully');
+                return redirect('/inventorysports')->with('success','Record was added to the database sucessfully');
             }
         }
 
@@ -111,7 +111,7 @@ class Sportscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sports = sports::find($id);
+        $sports = InventorySports::find($id);
         $sports->name = $request->input('name');
         $sports->productID = $request->input('productID');
         $sports->amount = $request->input('amount');
@@ -119,16 +119,17 @@ class Sportscontroller extends Controller
 
         $name= $request->input('name');
         $pid = $request->input('productID');
-        if(DB::table('sports')->where('name','=',$name)->exists()){
+
+        if(DB::table('inventory_sports')->where('name','=',$name)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
-        elseif (DB::table('sports')->where('productID','=',$pid)->exists()){
+        elseif (DB::table('inventory_sports')->where('productID','=',$pid)->exists()){
             return redirect()->back()->with('error','Item already exists in the database');
         }
         elseif ($request->input('amount') > 0){
             if($request->input('productID') > 500 && $request->input('productID') < 600 ){
                 $sports->save();
-                return redirect('/sports')->with('success','Record was added to the database sucessfully');
+                return redirect('/inventorysports')->with('success','Record was added to the database sucessfully');
             }
         }
         else{
@@ -146,7 +147,7 @@ class Sportscontroller extends Controller
     public function destroy($id)
     {
         $user = Auth::user()->role_id;
-        $sport = sports::find($id);
+        $sport = InventorySports::find($id);
         if($user == 1){
             $sport->delete();
             return back()->with('success','Record was deleted successfully');

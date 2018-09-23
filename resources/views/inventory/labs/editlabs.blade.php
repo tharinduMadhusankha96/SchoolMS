@@ -1,7 +1,6 @@
-@extends('includes.layout')
+@extends('inventory.includes.layout')
 @section('content')
 <div class="container" style="width: auto;margin-top: 20px">
-    @include('messages.message')
     <div class="text-center">
         <h2 class="display-5 text-center" style="font-size:4vw;">
             <strong>Enter The Items Details</strong>
@@ -29,13 +28,27 @@
             </select>
         </div>
         <div class="form-group form-row">
-            {{Form::number('supplierID',$labs->supplierID,['class'=>'form-control text1','required'])}}
+            <div>
+                {!! Form::Label('item', $labs->supplierID,['class'=>'text1']) !!}
+                <select class="form-control text1" style="color: black" name="supplierID">
+                    @if(count($suppliers)>0)
+                        @foreach($suppliers as $supplier)
+                            <option>{{$supplier}}</option>
+                        @endforeach
+                    @else
+                        <option>
+                            Please enter the supplier details first
+                        </option>
+                    @endif
+
+                </select>
+            </div>
         </div>
         {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
         {!! Form::close() !!}
         <div class="text-center" style="margin-top: 30px ;">
-            <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-            <a href="/labs" class="btn btn-primary text1">Laboratory Equipments</a>
+            <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
+            <a href="/labs" class="btn btn-outline-info text1">Laboratory Equipments</a>
         </div>
     </div>
 

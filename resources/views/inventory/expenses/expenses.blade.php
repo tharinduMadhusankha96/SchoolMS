@@ -1,11 +1,13 @@
-@extends('includes.layout')
+@extends('inventory.includes.layout')
 @section('content')
     <div class="container" style="margin-top:20px">
-        @include('messages.message')
         <div class="text-center">
             <h2 class="display-5 text-center ">
                 <strong>Monthly Expenses details</strong>
             </h2>
+        </div>
+        <div class="container pull-right">
+            <a href="/expenses/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add Details</a>
         </div>
         <div class="container" style="margin-top: 30px">
             <table class="table table-striped table-hover">
@@ -32,25 +34,15 @@
                             <td> {{$e->created_at}}</td>
                             <td> {{$e->updated_at}}</td>
                             <td>
-                                <a href="/expenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/inventoryexpenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <button class="btn btn-danger" type="submit"
-                                        onclick="
-                                     var result = confirm('Are you sure you want to delete this record? ');
-                                            if(result){
-                                                event.preventDefault();
-                                                document.getElementById('delete-form').submit();
-                                            }
-                                     "
-                                > Delete
-                                    <form id="delete-form"
-                                          action="{{action('Expensescontroller@destroy' , [$e->invoiceID])}}"
-                                          method="post" style="display:none">
-                                        <input type="hidden" name="_method" value="delete">
-                                        {{csrf_field()}}
-                                    </form>
-                                </button>
+                                <form id="delete-form" action="{{action('Inventoryexpenses@destroy' ,[$e->invoiceID] )}}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class=" btn btn-default btn-danger text1">Delete</button>
+                                </form>
 
                             </td>
                         </strong>
@@ -59,8 +51,7 @@
                 </tbody>
             </table>
             <div style="margin-top: 50px">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/expenses/create" class="btn btn-primary text1">Update Details</a>
+                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
             </div>
         </div>
     </div>

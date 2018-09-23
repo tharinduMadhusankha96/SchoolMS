@@ -70,6 +70,7 @@
                             </div>
                         </div>
                     </li>
+
                     <li class="btn nav-item " style="color: white; padding-top: 12px;">
                         @if(Auth()->user())
                             @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2)
@@ -77,7 +78,7 @@
                             @endif
                         @endif
                     </li>
-
+ 
                 </ul>
 
                 <!-- Right Side Of Navbar -->

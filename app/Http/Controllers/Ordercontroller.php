@@ -39,7 +39,7 @@ class Ordercontroller extends Controller
      */
     public function create()
     {
-        $id = Auth::user()->id;
+        $id = Auth::user()->role_id;
 
         $data = array(
             'labs' => DB::table('labs')->where('amount', '>', 10)->pluck('name'),
@@ -59,6 +59,7 @@ class Ordercontroller extends Controller
      */
     public function store(Request $request)
     {
+
         $orders = new Orders;
         $orders->empid = $request->input('empID');
         $orders->items = $request->input('items');
@@ -75,13 +76,13 @@ class Ordercontroller extends Controller
         $lab = DB::table('labs')->pluck('name');
 
 
-        if($qty >0){
-            $orders->save();
-            return redirect()->back()->with('success','Order was placed successfully');
-        }
-        else{
-            return redirect()->back()->with('error','Order was not placed successfully');
-        }
+      if($qty >0){
+          $orders->save();
+          return redirect()->back()->with('success','Order was placed successfully');
+      }
+      else{
+          return redirect()->back()->with('error','Enter the correct quantity');
+      }
 
 
 
@@ -138,11 +139,12 @@ class Ordercontroller extends Controller
         $user = Auth::user()->id;
         $empid = Orders::find($id);
         if ($user == $empid->empid) {
-            $empid->delete();
-            return redirect('/orders')->with('error', 'Record was deleted successfully');
+            DB::table('orders')->where('id','=',$id)->delete();
+        return redirect('/orders')->with('error', 'Record was deleted successfully');
         } else {
             return redirect()->back()->with('error', 'The order was not placed by you');
         }
+
     }
 
     public function truncate()

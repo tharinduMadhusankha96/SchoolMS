@@ -2,30 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Expenses;
+use App\Inventory_expense;
 use App\Resources;
 use App\suppliers;
-use App\sports;
+use App\InventorySports;
 use App\stationary;
 use App\labs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class Expensescontroller extends Controller
+class Inventoryexpenses extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->except('logout');
     }
 
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-
         $user = Auth::user()->role_id;
         if ($user == 1) {
-            $expenses = Expenses::all();
+            $expenses = Inventory_expense::all();
             return view('inventory.expenses.expenses')->with('expenses', $expenses);
         } else {
             return back()->with('error', 'you have to login as the administritor');
@@ -40,12 +43,12 @@ class Expensescontroller extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->role_id;
+        $user = Auth::user()->id;
         if ($user == 1) {
             $suppliers = suppliers::all();
             $data = array(
                 'st' => DB::table('stationaries')->pluck('productID'),
-                'sp' => DB::table('sports')->pluck('productID'),
+                'sp' => DB::table('inventory_sports')->pluck('productID'),
                 'res' => DB::table('resources')->pluck('productID'),
                 'lab' => DB::table('labs')->pluck('productID')
             );
@@ -64,7 +67,7 @@ class Expensescontroller extends Controller
      */
     public function store(Request $request)
     {
-        $expenses = new Expenses;
+        $expenses = new Inventory_expense;
         $expenses->invoiceID = $request->input('invoiceID');
         $expenses->productID = $request->input('productID');
         $expenses->supplierID = $request->input('supplier');
@@ -76,7 +79,7 @@ class Expensescontroller extends Controller
 
         $name= $request->input('invoiceID');
 
-        if(DB::table('expenses')->where('invoiceID','=',$name)->exists()){
+        if(DB::table('inventoryexpenses')->where('invoiceID','=',$name)->exists()){
             return redirect()->back()->with('error','Record already exists in the database');
         }
 
@@ -89,7 +92,7 @@ class Expensescontroller extends Controller
                 foreach ($st as $s) {
                     if ($s == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct stationary items supplierID');
                     }
@@ -101,7 +104,7 @@ class Expensescontroller extends Controller
                 foreach ($labs as $l) {
                     if ($l == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct laboratary item supplierID');
                     }
@@ -109,11 +112,11 @@ class Expensescontroller extends Controller
 
             } elseif ($request->input('productID') > 500 && $request->input('productID') < 600) {
 
-                $sp = DB::table('sports')->pluck('supplierID');
+                $sp = DB::table('inventory_sports')->pluck('supplierID');
                 foreach ($sp as $s) {
                     if ($s == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct sports items supplierID');
                     }
@@ -126,7 +129,7 @@ class Expensescontroller extends Controller
                 foreach ($res as $r) {
                     if ($r == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct resources supplierID');
                     }
@@ -161,17 +164,17 @@ class Expensescontroller extends Controller
     public function edit($id)
     {
 
-        $expenses = Expenses::find($id);
+        $expenses = Inventory_expense::find($id);
         $suppliers = suppliers::all();
         $data = array(
             'st' => DB::table('stationaries')->pluck('productID'),
-            'sp' => DB::table('sports')->pluck('productID'),
+            'sp' => DB::table('inventory_sports')->pluck('productID'),
             'res' => DB::table('resources')->pluck('productID'),
             'lab' => DB::table('labs')->pluck('productID')
         );
 
         return view('inventory.expenses.editexpenses')->with('suppliers', $suppliers)
-            ->with($data)->with('expenses',$expenses);
+            ->with($data)->with('inventoryexpenses',$expenses);
 
 
 
@@ -186,7 +189,7 @@ class Expensescontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $expenses = Expenses::find($id);
+        $expenses = Inventory_expense::find($id);
         $expenses->invoiceID = $request->input('invoiceID');
         $expenses->productID = $request->input('productID');
         $expenses->supplierID = $request->input('supplier');
@@ -197,7 +200,7 @@ class Expensescontroller extends Controller
         $sid = $request->input('supplier');
         $name= $request->input('invoiceID');
 
-        if(DB::table('expenses')->where('invoiceID','=',$name)->exists()){
+        if(DB::table('inventoryexpenses')->where('invoiceID','=',$name)->exists()){
             return redirect()->back()->with('error','Record already exists in the database');
         }
         if ($request->input('quantity') > 0) {
@@ -209,7 +212,7 @@ class Expensescontroller extends Controller
                 foreach ($st as $s) {
                     if ($s == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct stationary items supplierID');
                     }
@@ -221,7 +224,7 @@ class Expensescontroller extends Controller
                 foreach ($labs as $l) {
                     if ($l == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct laboratary item supplierID');
                     }
@@ -229,11 +232,11 @@ class Expensescontroller extends Controller
 
             } elseif ($request->input('productID') > 500 && $request->input('productID') < 600) {
 
-                $sp = DB::table('sports')->pluck('supplierID');
+                $sp = DB::table('inventory_sports')->pluck('supplierID');
                 foreach ($sp as $s) {
                     if ($s == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct sports items supplierID');
                     }
@@ -246,7 +249,7 @@ class Expensescontroller extends Controller
                 foreach ($res as $r) {
                     if ($r == $sid) {
                         $expenses->save();
-                        return redirect('/expenses')->with('success', 'Invoice details were added successfully');
+                        return redirect('/inventoryexpenses')->with('success', 'Invoice details were added successfully');
                     } else {
                         return redirect()->back()->with('error', 'Enter the correct resources supplierID');
                     }
@@ -269,8 +272,8 @@ class Expensescontroller extends Controller
      */
     public function destroy($id)
     {
-        $user = Auth::user()->role_id;
-        $expenses = Expenses::find($id);
+        $user = Auth::user()->id;
+        $expenses = Inventory_expense::find($id);
         if ($user == '1') {
             $expenses->delete();
             return back()->with('success', 'Record was deleted successfully');

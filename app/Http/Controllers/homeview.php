@@ -25,9 +25,8 @@ class homeview extends Controller
         $sports = sports::all()->count();
         $resources = Resources::all()->count();
 
-
         return view('inventory.home.inventory')->with('data', ['pending' => $pending, 'items' => $items, 'labs' => $labs,
-            'sports' => $sports, 'resources' => $resources]);
+                                                'sports' => $sports, 'resources' => $resources]);
 
     }
 

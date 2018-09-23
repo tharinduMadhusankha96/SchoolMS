@@ -1,7 +1,6 @@
-@extends('includes.layout')
+@extends('inventory.includes.layout')
 @section('content')
     <div class="container" style="width: auto;margin-top: 20px">
-        @include('messages.message')
         <div class="text-center">
             <h2 class="display-5 text-center" style="font-size:4vw;">
                 <strong>Enter The Stationery Items Details</strong>
@@ -38,8 +37,8 @@
             {!! Form::close() !!}
 
             <div style="margin-top: 30px" class="text-center">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/stationary" class="btn btn-primary text1">Stationary Items</a>
+                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/stationary" class="btn btn-outline-info text1">Stationary Items</a>
 
             </div>
         </div>

@@ -1,14 +1,13 @@
-@extends('includes.layout')
+@extends('inventory.includes.layout')
 @section('content')
     <div class="container" style="width: auto;margin-top: 20px">
-        @include('messages.message')
         <div class="text-center">
             <h2 class="display-5 text-center" style="font-size:4vw;">
                 <strong>Enter The Sports Items Details</strong>
             </h2>
         </div>
         <div class="container" style="width: 50%">
-            {!! Form::open(['action' => 'Sportscontroller@store','method' => 'POST', 'class'=> 'form-signin']) !!}
+            {!! Form::open(['action' => 'Sportstocks@store','method' => 'POST', 'class'=> 'form-signin']) !!}
             {{csrf_field()}}
 
             <div class="form-group form-row">
@@ -39,8 +38,8 @@
             </div>
             {!! Form::close() !!}
             <div style="margin-top: 30px" class="text-center">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/sports" class="btn btn-primary text1">Sports Items</a>
+                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/sports" class="btn btn-outline-info text1">Sports Items</a>
             </div>
         </div>
 

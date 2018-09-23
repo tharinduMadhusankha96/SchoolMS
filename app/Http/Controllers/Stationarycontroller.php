@@ -44,7 +44,7 @@ class Stationarycontroller extends Controller
             $supplier = suppliers::where('type', '=', 'S')->get();
             return view('inventory.stationary.addstationary')->with('suppliers', $supplier);
         } else {
-            return redirect()->back()->with('error', 'You can not perform the action');
+            return redirect()->back()->with('error', 'You do not have rights to perform this action');
         }
 
     }
@@ -157,7 +157,7 @@ class Stationarycontroller extends Controller
         $user = Auth::user()->role_id;
         $labs = stationary::find($id);
         if($user == 1){
-            $labs->delete();
+            DB::table('stationaries')->where('productID','=',$id)->delete();
             return back()->with('success','Record was deleted successfully');
         }
         else{

@@ -1,14 +1,13 @@
-@extends('includes.layout')
+@extends('inventory.includes.layout')
 @section('content')
     <div class="container" style="width: auto;margin-top: 20px">
-        @include('messages.message')
         <div class="text-center">
             <h2 class="display-5 text-center" style="font-size:4vw;">
                 <strong>Enter The Expenses </strong>
             </h2>
         </div>
         <div class="container" style="width: 50%">
-            {!! Form::open(['action' => 'Expensescontroller@store','method' => 'POST', 'class'=> 'form-signin text-center']) !!}
+            {!! Form::open(['action' => 'Inventoryexpenses@store','method' => 'POST', 'class'=> 'form-signin text-center']) !!}
 
             <div class="form-group form-row">
                 {!! Form::Label('item', 'InvoiceID :-',['class'=>'text1']) !!}
@@ -57,8 +56,8 @@
             {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
             <div class="text-center" style="margin-top: 30px">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
-                <a href="/expenses" class="btn btn-primary text1">Expenses</a>
+                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/expenses" class="btn btn-outline-info text1">Expenses</a>
             </div>
         </div>
 
