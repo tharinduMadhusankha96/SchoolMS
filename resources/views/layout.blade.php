@@ -40,7 +40,8 @@
 
     <style>
         body {
-            background-image: url("{{asset('images/bg1.jpg')}}");
+{{--            background-image: url("{{asset('images/bg1.jpg')}}");--}}
+                 background-color: #e8ffe6;
 
         }
 
@@ -74,7 +75,7 @@
     <div>
         @include('include.navbar')
     </div>
-    <div class="container alert">
+    <div class="container" style="padding: 1%">
         @include('include.error')
         @include('include.success')
     </div>

@@ -104,7 +104,11 @@
 </head>
 <body style="width: auto;height: auto;">
 <div>
+
+ {{--@include('include.navbar') --}}
+
    @include('inventory.navbar.navbar')
+
 </div>
 <div class="row" style="margin-top: 20px">
    <div class="col-md-4 text-center">
@@ -229,9 +233,15 @@
 
 
 
+{--
+   <footer style="margin-top: 30px">
+      @include('include.footer')
+   </footer> --}}
+
 <footer style="margin-top: 30px">
    @include('inventory.footer.footer')
 </footer>
+
 
 
 </body>

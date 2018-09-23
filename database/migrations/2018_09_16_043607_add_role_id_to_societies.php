@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGenderToSports extends Migration
+class AddRoleIdToSocieties extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddGenderToSports extends Migration
      */
     public function up()
     {
-        Schema::table('sports', function($table) {
-            $table->string('gender');
+        Schema::table('societies', function($table) {
+            $table->String('role_id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddGenderToSports extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
-            $table->dropColumn('gender');
+        Schema::table('societies', function($table) {
+            $table->dropColumn('role_id');
         });
     }
 }

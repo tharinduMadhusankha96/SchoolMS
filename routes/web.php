@@ -12,13 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
+Route::post("/adminDashboard" , 'CustomLoginController@login');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'] , function () {
+
+    Route::get("/adminDashboard", function () {
+        return view('adminDashboard');
+    });
+});
+
+
+
+Route::get('/home', 'HomeController@index');
 
 
 Route::get('Event/search','EventController@search');
@@ -51,6 +61,8 @@ Route::get('Society/mysocieties','SocietyController@mysocieties');
 Route::post('Society/addStudent' , 'SocietyController@addStudent');
 Route::delete('Society/removeStudent' , 'SocietyController@removeStudent');
 Route::resource('Society' , 'SocietyController');
+
+Route::get('charts' , 'ChartsController@index')->name('charts.index');
 
 //inventory
 Route::resource('/orders','Ordercontroller');
