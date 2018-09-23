@@ -104,7 +104,7 @@
 </head>
 <body style="width: auto;height: auto;">
 <div>
-   @include('navbar.navbar')
+   @include('include.navbar')
 </div>
    <div class="row" style="margin-top: 20px">
       <div class="col-md-4 text-center">
@@ -230,7 +230,7 @@
 
 
    <footer style="margin-top: 30px">
-      @include('footer.footer')
+      @include('include.footer')
    </footer>
 
 

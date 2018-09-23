@@ -24,40 +24,44 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-12 collapse navbar-collapse " id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active " style="color: white;font-family: Times New Roman; width:5%"
-                           href="#"> Home</a>
+                <ul class="btn navbar-nav mr-auto">
+                    <li class="nav-item"  style="color: white; padding-top: 7px;" >
+                        <a class="nav-link active text-light "
+                           href="/home"> Home</a>
                     </li>
-                    <li class="nav-item  col-md-2">
-                        <a class="nav-link" style="color: white;font-family: Times New Roman; width: 100px" href="#">
+                    <li class="btn nav-item">
+                        <a class="nav-link " style="color: white;font-family: Times New Roman;padding-top: 7px" href="#">
                             About WCC</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " style="color: white;font-family: Times New Roman; width: inherit;"
+                    <li class="btn nav-item" style="color: white;">
+                        <a class="nav-link text-light"  style="color: white;font-family: Times New Roman;padding-top: 7px;"
                            href="#">Student & Parents</a>
                     </li>
 
-                    <li class="nav-item dropdown col-md-2">
-                        <div class="dropdown"
-                             style="color: white; width: 100px; padding-top: 7px;">  {{-- 7px padding down to get the div to the same level of other nav links --}}
-                            <a class="dropbtn">Staff</a>
-                            <div class="dropdown-content">
-                                <a href="/Event">Academic Staff</a>
-                                <a href="#">Non-Academic</a>
-                            </div>
-                        </div>
+                    @if(Auth()->user())
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2)
+                            <li class="btn nav-item dropdown pull-left">
+                                <div class="dropdown"
+                                     style="color: white; width: 100px; padding-top: 7px;">  {{-- 7px padding down to get the div to the same level of other nav links --}}
+                                    <a class="dropbtn">Staff</a>
+                                    <div class="dropdown-content">
+                                        <a href="/Event">Academic Staff</a>
+                                        <a href="#">Non-Academic</a>
+                                    </div>
+                                </div>
+                            </li>
+                        @endif
+                    @endif
+
+                    <li class="btn nav-item ">
+                        <a class="nav-link " style="color: white;font-family: Times New Roman; href="#">Library</a>
                     </li>
 
-                    <li class="nav-item  col-md-2">
-                        <a class="nav-link " style="color: white;font-family: Times New Roman; width: inherit" href="#">Library</a>
-                    </li>
-
-                    <li class="nav-item dropdown col-md-2">
+                    <li class="btn nav-item dropdown  ">
                         <div class="dropdown"
-                             style="color: white; width: 150px; padding-top: 7px;">  {{-- 7px padding down to get the div to the same level of other nav links --}}
+                             style="color: white; padding-top: 7px;">  {{-- 7px padding down to get the div to the same level of other nav links --}}
                             <a class="dropbtn">Event</a>
                             <div class="dropdown-content">
                                 <a href="/Event">Events</a>
@@ -66,32 +70,34 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item  col-md-2">
-                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2)
-                            <a href="/index">Inventory</a>
+                    <li class="btn nav-item " style="color: white; padding-top: 12px;">
+                        @if(Auth()->user())
+                            @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2)
+                                <a href="/index" style="color: white;" >Inventory</a>
+                            @endif
                         @endif
                     </li>
 
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="col-2 navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                    <li class="nav-item">
+                    <li class="btn nav-item ">
                         <a class="nav-link" style="color: white" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn nav-item ">
                         <a class="nav-link" style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @else
-                        <li class="nav-item dropdown">
+                        <li class="btn nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: white" href="#"
                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+                            <div class="btn dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
                                  style="background-color: #343a40 !important;">
                                 <a class="dropdown-item " style="color: white; background-color: #343a40 !important; "
                                    href="{{ route('logout') }}"

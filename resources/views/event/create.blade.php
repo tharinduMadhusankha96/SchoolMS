@@ -19,7 +19,7 @@
                                id="exampleInputPassword1" placeholder="Enter Title" required>
                     </div>
                     <div class="form-group">
-                        <label for="teacherInCharge">Teacher ID </label>
+                        <label for="teacherInCharge">Society ID </label>
                         <input type="disabled" name="teacherInCharge" class="form-control" id="exampleInputPassword1"
                                placeholder="Enter Title" value="{{auth()->user()->id}}" disabled>
                     </div>
