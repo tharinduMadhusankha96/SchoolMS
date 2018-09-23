@@ -43,7 +43,7 @@
             </div>
             {!! Form::close() !!}
             <div style="margin-top: 3px">
-                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
+                <a href="/inventory" class="btn btn-primary text1">Admin Dashboard</a>
                 <a href="/supplier" class="btn btn-primary text1">Suppliers</a>
             </div>
         </div>
