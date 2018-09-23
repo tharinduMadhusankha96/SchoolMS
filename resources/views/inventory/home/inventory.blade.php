@@ -1,3 +1,4 @@
+
 @extends('inventory.includes.layout')
 @section('content')
 <div class="row" style="margin-top: 20px">

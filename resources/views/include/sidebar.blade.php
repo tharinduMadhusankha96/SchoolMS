@@ -1,8 +1,10 @@
-<div class="btn-block" style="padding-top: 15px">
-    <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
-                href="/Event/createDemo" style="color: red">Demo to Add Event</a></button>
+@if(Auth()->user())
+    <div class="btn-block" style="padding-top: 15px">
+        <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
+                    href="/Event/createDemo" style="color: red">Demo to Add Event</a></button>
 
-</div>
+    </div>
+@endif
 
 <div>
     <form action="/Event/search" method="get">
@@ -19,7 +21,7 @@
 </div>
 
 @if(auth()->user())
-    @if(auth()->user()->role_id == 2)
+    @if(auth()->user()->role_id == 4)
         <hr>
         <div class="btn-block" style="padding-top: 15px">
             <button class="btn btn-default " style="width: 100%; min-height: 60px ; background-color: #8affa3; "><a

@@ -34,7 +34,7 @@
                             <td> {{$e->created_at}}</td>
                             <td> {{$e->updated_at}}</td>
                             <td>
-                                <a href="/expenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/inventoryexpenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
                                 <form id="delete-form" action="{{action('Inventoryexpenses@destroy' ,[$e->invoiceID] )}}"

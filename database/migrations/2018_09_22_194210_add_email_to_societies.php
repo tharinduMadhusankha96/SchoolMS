@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPracticesOnToSports extends Migration
+class AddEmailToSocieties extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPracticesOnToSports extends Migration
      */
     public function up()
     {
-        Schema::table('sports', function($table) {
-            $table->string('practice_on');
+        Schema::table('societies', function($table) {
+            $table->string('email');
         });
     }
 
@@ -25,8 +25,8 @@ class AddPracticesOnToSports extends Migration
      */
     public function down()
     {
-        Schema::table('sports', function($table) {
-            $table->dropColumn('practice_on');
+        Schema::table('societies', function($table) {
+            $table->string('email');
         });
     }
 }
