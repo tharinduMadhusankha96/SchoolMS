@@ -95,7 +95,7 @@ class Sportstocks extends Controller
     public function edit($id)
     {
         $user = Auth::user()->role_id;
-        $sport = sports::find($id);
+        $sport = InventorySports::find($id);
         $supplier = suppliers::where('type', '=', 'SP')->get();
         if($user == 1){
             return view('inventory.sports.sportsedit')->with('sport',$sport)->with('suppliers',$supplier);
