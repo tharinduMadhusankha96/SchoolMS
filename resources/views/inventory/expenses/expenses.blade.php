@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="container pull-right">
-            <a href="/expenses/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add Details</a>
+            <a href="/inventoryexpenses/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add Details</a>
         </div>
         <div class="container" style="margin-top: 30px">
             <table class="table table-striped table-hover">

@@ -55,7 +55,7 @@
             {!! Form::close() !!}
             <div class="text-center" style="margin-top: 30px">
                 <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
-                <a href="/expenses" class="btn btn-outline-info text1">Expenses</a>
+                <a href="/inventoryexpenses" class="btn btn-outline-info text1">Expenses</a>
             </div>
         </div>
 
