@@ -1,115 +1,6 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <title>Laravel</title>
-
-   <!-- Fonts -->
-   <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-   <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-
-   <!-- Styles -->
-   <style>
-      html, body {
-         background-color: white;
-         color: #636b6f;
-         font-family: 'Raleway', sans-serif;
-         font-weight: 100;
-         margin: 0;
-      }
-
-      .full-height {
-         height: 100vh;
-      }
-
-      .flex-center {
-         align-items: center;
-         display: flex;
-         justify-content: center;
-      }
-
-      .position-ref {
-         position: relative;
-      }
-
-      .top-right {
-         position: absolute;
-         right: 10px;
-         top: 18px;
-      }
-
-      .content {
-         text-align: center;
-      }
-
-      .title {
-         font-size: 84px;
-      }
-
-      .links > a {
-         color: #636b6f;
-         padding: 0 25px;
-         font-size: 12px;
-         font-weight: 600;
-         letter-spacing: .1rem;
-         text-decoration: none;
-         text-transform: uppercase;
-      }
-
-      .m-b-md {
-         margin-bottom: 30px;
-      }
-
-      .card1 {
-         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-         transition: 0.3s;
-         background-color: darkgreen;
-         width: auto;
-         height: 335px;
-         margin-left: auto;
-         margin-right: auto;
-      }
-
-      .card1:hover {
-         /*box-shadow: 0 32px 16px 0 rgba(0,0,0,0.2);*/
-         box-shadow: 10px 10px black;
-      }
-      .image{
-         height: 200px;
-         display: block;
-         margin-left: auto;
-         margin-right: auto;
-
-         width: 50%;
-         border-radius: 4px;
-         padding: 5px;
-      }
-
-      .imageholder{
-         padding-top: 25px;
-      }
-
-      .cardheader{
-         padding-top: 15px;
-         text-shadow: whitesmoke;
-         font-size: x-large;
-      }
-
-
-   </style>
-</head>
-<body style="width: auto;height: auto;">
-<div>
-
- {{--@include('include.navbar') --}}
-
-   @include('inventory.navbar.navbar')
-
-</div>
+@extends('inventory.includes.layout')
+@section('content')
 <div class="row" style="margin-top: 20px">
    <div class="col-md-4 text-center">
       <h2 class="display-5 text-center" style="font-size:3vw;">
@@ -231,18 +122,6 @@
    </div>
 </div>
 
+   @endsection
 
 
-{--
-   <footer style="margin-top: 30px">
-      @include('include.footer')
-   </footer> --}}
-
-<footer style="margin-top: 30px">
-   @include('inventory.footer.footer')
-</footer>
-
-
-
-</body>
-</html>
