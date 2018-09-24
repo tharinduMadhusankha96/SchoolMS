@@ -150,9 +150,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+//        ConsoleTVs\Charts\ChartsServiceProvider::class, //Charts
 
-//        ConsoleTVs\Charts\ChartsServiceProvider::class,
-        //Charts
 
         /*
          * Package Service Providers...
