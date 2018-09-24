@@ -21,7 +21,7 @@ class SportController extends Controller
         $sports = Sport::all();
 
 
-        return view('inventory.sports.index')->with('sports', $sports);
+        return view('sports.index')->with('sports', $sports);
     }
 
     /**
@@ -139,15 +139,15 @@ class SportController extends Controller
     {
 
         $this->validate(request(), [
-            'title' => 'required',
+//            'title' => 'required',
 //            'description' => 'required',
-            'detailed_Description' => 'required',
-            'venue' => 'required',
+//            'detailed_Description' => 'required',
+//            'venue' => 'required',
             'from_grade' => 'required|integer|min:0|max:13',
             'to_grade' => 'required|integer|min:0|max:13',
-            'image' => 'required',
-            'practicesOn' => 'required',
-            'gender' => 'required'
+//            'image' => 'required',
+//            'practicesOn' => 'required',
+//            'gender' => 'required'
         ]);
 
         $weekdays = $request->practicesOn;
@@ -185,7 +185,7 @@ class SportController extends Controller
 
 
 
-        return view('sports.show')->with('sport',$sport)->with('success', "Sport '" . "{$sport->title}" . "' has been updated ");
+        return redirect('/Sport')->with('sport',$sport)->with('success', "Sport '" . "{$sport->title}" . "' has been updated ");
 
 
     }

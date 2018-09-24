@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Expenses extends Model
+class Inventory_expense extends Model
 {
-    protected $table = 'expenses';
+    protected $table = 'inventoryexpenses';
     public $primaryKey = 'invoiceID';
     public $timestamps = true;
 }

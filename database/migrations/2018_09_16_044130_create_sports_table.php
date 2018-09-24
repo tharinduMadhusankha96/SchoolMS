@@ -19,8 +19,10 @@ class CreateSportsTable extends Migration
             $table->longText('description');
             $table->string('from_grade');
             $table->string('to_grade');
+            $table->string('gender');
             $table->integer('user_id')->unsigned(); //Teacher in Charge
             $table->string('image')->default('default.png');
+            $table->string('practice_on');
             $table->timestamps();
         });
     }

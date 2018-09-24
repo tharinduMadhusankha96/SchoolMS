@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="container pull-right">
-            <a href="/expenses/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add Details</a>
+            <a href="/inventoryexpenses/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add Details</a>
         </div>
         <div class="container" style="margin-top: 30px">
             <table class="table table-striped table-hover">
@@ -34,10 +34,10 @@
                             <td> {{$e->created_at}}</td>
                             <td> {{$e->updated_at}}</td>
                             <td>
-                                <a href="/expenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/inventoryexpenses/{{$e->invoiceID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <form id="delete-form" action="{{action('InventoryExpenses@destroy' ,[$e->invoiceID] )}}"
+                                <form id="delete-form" action="{{action('Inventoryexpenses@destroy' ,[$e->invoiceID] )}}"
                                       method="post">
                                     <input type="hidden" name="_method" value="delete">
                                     {{ csrf_field() }}

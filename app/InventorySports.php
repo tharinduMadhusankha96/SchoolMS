@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sports extends Model
+class InventorySports extends Model
 {
-    protected $table = 'sports';
+    protected $table = 'inventory_sports';
 
     public $primaryKey = 'productID';
     public $timestamps =true;

@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="container pull-right">
-            <a href="/sports/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add items</a>
+            <a href="/inventorysports/create" class="btn btn-outline-info text1" style="background-color: limegreen">+Add items</a>
         </div>
         <div class="container" style="margin-top: 30px">
             <table class="table table-striped table-hover">
@@ -57,7 +57,7 @@
                             <td> {{$stock->amount}}</td>
                             <td> {{$stock->supplierID}}</td>
                             <td>
-                                <a href="/sports/{{$stock->productID}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/inventorysports/{{$stock->productID}}/edit" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
                                 <form id="delete-form" action="{{action('Sportstocks@destroy' ,[$stock->productID] )}}"

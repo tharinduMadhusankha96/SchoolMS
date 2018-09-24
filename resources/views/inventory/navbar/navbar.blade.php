@@ -62,7 +62,7 @@
                     </li>
                     <li>
                         <a class="nav-link " style="color: white;font-family: Times New Roman; width: inherit"
-                           href="/index">Inventory</a>
+                           href="/inventory">Inventory</a>
                     </li>
                     <li class="nav-item dropdown col-md-2">
                         <a class="nav-link dropdown-toggle" style="color: white; width: 150px" href="/Events"

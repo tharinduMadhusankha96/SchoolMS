@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Orders;
 use App\labs;
 use App\Resources;
-use App\sports;
+use App\InventorySports;
 use App\stationary;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +44,7 @@ class Ordercontroller extends Controller
         $data = array(
             'labs' => DB::table('labs')->where('amount', '>', 10)->pluck('name'),
             'st' => DB::table('stationaries')->where('amount', '>', 10)->pluck('name'),
-            'sports' => DB::table('sports')->where('amount', '>', 10)->pluck('name'),
+            'sports' => DB::table('inventory_sports')->where('amount', '>', 10)->pluck('name'),
             'res' => DB::table('resources')->where('amount', '>', 10)->pluck('name')
         );
         return view('inventory.orders.addorder')->with('id', $id)
@@ -72,7 +72,7 @@ class Ordercontroller extends Controller
 
         $st = DB::table('stationaries')->pluck('name');
         $res = DB::table('resources')->pluck('name');
-        $sp = DB::table('sports')->pluck('name');
+        $sp = DB::table('inventory_sports')->pluck('name');
         $lab = DB::table('labs')->pluck('name');
 
 
