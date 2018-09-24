@@ -212,7 +212,7 @@ h1 {
 }
 
 .example-2 .wrapper {
-    background: url() center/cover no-repeat;
+    /*background: url() center/cover no-repeat;*/
 }
 .example-2 .wrapper:hover .menu-content span {
     -webkit-transform: translate(-50%, -10px);
