@@ -150,7 +150,9 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        ConsoleTVs\Charts\ChartsServiceProvider::class, //Charts
+
+//        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        //Charts
 
         /*
          * Package Service Providers...
@@ -214,11 +216,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Charts' => ConsoleTVs\Charts\charts::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+
+//        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ),
 
