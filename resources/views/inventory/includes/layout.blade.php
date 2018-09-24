@@ -183,6 +183,8 @@
     <div class="col-3"></div>
     <div class="col-6">
         <div class="container-box text-center" style="margin-top: 15px;width: 100%;">
+            {{--@include('include.error')--}}
+            {{--@include('include.success')--}}
             @include('inventory.messages.message')
         </div>
     </div>
