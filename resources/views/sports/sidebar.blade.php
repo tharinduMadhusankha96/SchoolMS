@@ -1,8 +1,10 @@
-<div class="btn-block" style="padding-top: 15px">
-    <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
-                href="/Sport/createDemo" style="color: red">Demo to Add a Sport</a></button>
+@if(Auth()->user())
+    <div class="btn-block" style="padding-top: 15px">
+        <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
+                    href="/Sport/createDemo" style="color: red">Demo to Add a Sport</a></button>
 
-</div>
+    </div>
+@endif
 
 <div class="row" style="margin: 1%; margin-bottom: 3%">
     <form action="/Sport/search" method="get">
