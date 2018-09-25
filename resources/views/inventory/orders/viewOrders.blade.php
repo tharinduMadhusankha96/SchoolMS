@@ -1,4 +1,4 @@
-@extends('inventory.includes.layout')
+@extends('layout')
 @section('content')
     <div class="container" style="margin-top:20px">
         <div class="text-center">
@@ -10,40 +10,46 @@
             <a href="/orders/create" class="btn btn-outline-info text1" style="background-color: limegreen">Orders</a>
         </div>
         <div class="container" style="margin-top: 30px">
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">Order ID</th>
-                    <th scope="col">Employee ID</th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Item Type</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Added Date</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($orders as $order)
-                    <tr class="text1"><strong>
-                            <td> {{$order->id}} </td>
-                            <td> {{$order->empid}} </td>
-                            <td> {{$order->items}}</td>
-                            <td> {{$order->type}}</td>
-                            <td> {{$order->quantity}}</td>
-                            <td> {{$order->created_at}}</td>
-                            <td>
-                                <form id="delete-form" action="{{action('Ordercontroller@destroy' ,[$order->id] )}}"
-                                      method="post">
-                                    <input type="hidden" name="_method" value="delete">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class=" btn btn-default btn-danger text1">Delete</button>
-                                </form>
-                            </td>
-                        </strong>
+            @if(count($orders)>0)
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Added Date</th>
+                        <th scope="col"></th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($orders as $order)
+                        <tr class="text1"><strong>
+                                <td> {{$order->id}} </td>
+                                <td> {{$order->empid}} </td>
+                                <td> {{$order->items}}</td>
+                                <td> {{$order->type}}</td>
+                                <td> {{$order->quantity}}</td>
+                                <td> {{$order->created_at}}</td>
+                                <td>
+                                    <form id="delete-form" action="{{action('Ordercontroller@destroy' ,[$order->id] )}}"
+                                          method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class=" btn btn-default btn-danger text1">Delete</button>
+                                    </form>
+                                </td>
+                            </strong>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                @else
+                    <div class="text-center text1 text-justify text-uppercase">
+                        No orders
+                    </div>
+            @endif
             <div>
                 <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
                 {{--@if(\Illuminate\Support\Facades\Auth::user()->id == 1)--}}
