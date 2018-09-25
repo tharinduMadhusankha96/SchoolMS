@@ -132,13 +132,13 @@
 
 
             <?php
-            $count = 0;
+            $count = 1;
             //            $sql = mysqli_query($db_conx, "SELECT * FROM chart_data ORDER BY budget_date");
 
             $sql1 = \App\Event::orderBy('from_date')->get();
 
             foreach($sql1 as $row ){
-            $count = $count + 1;
+            $count = $count;
             $id = $row['id'];
             $expense = $row['act_expense'];
             $revenue = $row['act_income'];
