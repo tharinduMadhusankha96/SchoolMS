@@ -66,7 +66,7 @@
 
                             <div class="col-12">
                                 @if(Auth()->user())
-                                    @if(Auth()->user()->role_id == 1 )
+                                    @if(Auth()->user()->role_id == 3 )
                                         @if($userExist)
                                             <div class="col-md-12" style="margin:2%">
                                                 <form id="add-user"
