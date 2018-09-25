@@ -48,6 +48,9 @@ Route::get('Sport/search','SportController@search');
 Route::get('Sport/createDemo','SportController@createDemo');
 Route::get('Sport/enrolledStudents' , 'SportController@enrolledStudents');
 Route::get('Sport/mysports','SportController@mysports');
+
+
+
 Route::post('Sport/addStudent' , 'SportController@addStudent');
 Route::delete('Sport/removeStudent' , 'SportController@removeStudent');
 Route::resource('Sport' ,'SportController');
@@ -86,5 +89,15 @@ Route::resource('academics','AcademicController');
 Route::resource('nonacademics','NonAcademicController');
 Route::resource('leaverequests','LeaveRequestController');
 Route::resource('leaverequestsnon','LeaveRequestNonController');
+
+
+
+
+//student
+Route::post('/update', 'studentController@store');
+Route::get('/std', 'studentController@show');
+Route::get('/delete', 'studentController@destroy');
+Route::get('/fee', 'studentController@store');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
