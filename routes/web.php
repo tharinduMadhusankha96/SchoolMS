@@ -88,3 +88,9 @@ Route::resource('leaverequests','LeaveRequestController');
 Route::resource('leaverequestsnon','LeaveRequestNonController');
 
 
+//student
+Route::post('/update', 'studentController@store');
+Route::get('/std', 'studentController@show');
+Route::get('/delete', 'studentController@destroy');
+Route::get('/fee', 'studentController@store');
+Route::get('/home', 'HomeController@index')->name('home');
