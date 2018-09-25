@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="container" style="width: 50%">
-            {!! Form::open(['action' => 'Inventoryexpenses@store','method' => 'POST', 'class'=> 'form-signin text-center']) !!}
+            {!! Form::open(['action' => 'InventoryExpenses@store','method' => 'POST', 'class'=> 'form-signin text-center']) !!}
 
             <div class="form-group form-row">
                 {!! Form::Label('item', 'InvoiceID :-',['class'=>'text1']) !!}
@@ -57,7 +57,7 @@
             {!! Form::close() !!}
             <div class="text-center" style="margin-top: 30px">
                 <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
-                <a href="/inventoryexpenses" class="btn btn-outline-info text1">Expenses</a>
+                <a href="/expenses" class="btn btn-outline-info text1">Expenses</a>
             </div>
         </div>
 

@@ -138,12 +138,7 @@ input::-webkit-input-placeholder {
     border-style: dotted;
     background-color: #bcffbd;
     /*background-image: image();*/
-}
 
-.navbar_dist{
-    margin-right: 1%;
-    font-family: Times New Roman;
-    font-size: large;
 }
 
 

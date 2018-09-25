@@ -42,15 +42,5 @@ class User extends Authenticatable
         return $this->belongsToMany(Society::class);
     }
 
-    public function isAdmin()
-    {
-        if($this->admin)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
 
 }

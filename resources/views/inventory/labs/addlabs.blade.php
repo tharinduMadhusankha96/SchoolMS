@@ -36,7 +36,7 @@
                             @endforeach
                         @else
                             <option>
-                                Please enter the supplier details to the database first
+                                Please enter the supplier details first
                             </option>
                         @endif
 

@@ -38,7 +38,7 @@
 
                                 <img src="/storage/img/{{$event->image}}" style="width: 250px; height: 200px">
 
-                                @if(optional(auth()->user())->id == $event->user_id )
+                                @if(optional(auth()->user())->id == $event->user_id)
                                     <div class="btn-group-lg " style="margin: 10px">
                                         <label class="info-back">Update Image</label>
                                         <form enctype="multipart/form-data" method="post"
@@ -139,17 +139,8 @@
 
                         </div>
 
-
-                        <?php
-//                        $soc = \App\User::where('email', $socid->email)->get();
-//
-//                        $socid = \App\Society::where('id', $event->society_id)->first();
-//                        $user = \App\User::where('email', $socid->email)->first();
-                        ?>
-
                         @if(auth()->user())
-
-                            @if(auth()->user()->id == $event->user_id || auth()->user()->id == $user->id)
+                            @if(auth()->user()->id == $event->user_id)
                                 <div class="btn-group-lg" style="margin: 1%;">
                                     <button class="btn bg-info " style="width: 45%; border-radius: 50%;" type="submit"><a
                                                 class="text-white"

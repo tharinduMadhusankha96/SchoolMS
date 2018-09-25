@@ -1,13 +1,11 @@
 <div class="col-md-12 sports_sidebar">
-    @if(Auth()->user())
-        <div>
-            <div class="btn-block" style="padding-top: 15px">
-                <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
-                            href="/Society/createDemo" style="color: red">Demo to Add a Society</a></button>
+    <div>
+        <div class="btn-block" style="padding-top: 15px">
+            <button class="btn btn-warning " style="width:100%; min-height:60px;"><a
+                        href="/Society/createDemo" style="color: red">Demo to Add a Society</a></button>
 
-            </div>
         </div>
-    @endif
+    </div>
 
     <div class="row" style="margin-left: 1%;">
         <form action="/Society/search" method="get">
@@ -21,7 +19,7 @@
         @if(auth()->user())
             @if(Auth()->user()->role_id == 1 )
 
-                <div class=" col-md-12 rounded" style="background-color: #a7cbac;padding:3%;margin:3%">
+                <div class=" col-md-12 rounded" style="background-color: #a8a8a8;padding:3%;margin:1%">
                     <div class="card-header text-center">
                         <b> Admin Panel</b>
                     </div>
@@ -59,7 +57,7 @@
             ?>
             @foreach($socs as $soc)
                 <div>
-                    <div class="row" style="margin:2%; border-style: ridge;border-radius: 10%">
+                    <div class="row" style="margin:2%; border-style: ridge;">
                         <div class="row" style="height:60px;">
                             <div class=" col-3">
                                 <img src="/storage/img/{{$soc->image}}" class="img img-responsive"

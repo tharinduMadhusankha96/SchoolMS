@@ -57,10 +57,5 @@ class Event extends Model
             ->get();
     }
 
-    public function society()
-    {
-        return $this->belongsTo(Society::class);
-    }
-
 
 }

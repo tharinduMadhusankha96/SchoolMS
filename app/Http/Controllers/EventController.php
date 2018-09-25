@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Society;
-use App\User;
 use Faker\Provider\DateTime;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Request;
@@ -91,6 +89,10 @@ class EventController extends Controller
                 ->where('from_date','<=',$tod)
                 ->where('to_date', '>=' , $tod)
                 ->first();
+//
+//            if($eventCheck1 || $eventCheck2 || $eventCheck3 || $eventCheck4)
+//            {
+//            }
 
             if($eventCheck1)
             {
@@ -127,12 +129,6 @@ class EventController extends Controller
 
         $event = new Event;
 
-        $u = auth()->user();
-        $soc = Society::where('email' , $u->email)->get();
-
-//        dd($soc[0]->user_id);
-//        $user = User::find($u);
-
         $event->title = request('title');
         $event->description = request('description');
         $event->detailed_Description = request('detailed_Description');
@@ -141,15 +137,13 @@ class EventController extends Controller
         $event->to_date = request('to_date');
         $event->from_grade = request('from_grade');
         $event->to_grade = request('to_grade');
-        $event->society_id = $soc[0]->id;
+        $event->society_id = 1;
         $event->image = $filenameToStore;
-        $event->user_id = $soc[0]->user_id;
+        $event->user_id = auth()->user()->id;
         $event->act_income = request('act_income');
         $event->act_expense = request('act_expense');
 
         $id = $event->id;
-
-//        dd($user);
 
 
         $event->save();
@@ -424,13 +418,7 @@ class EventController extends Controller
             $id = $user->id;
             $name = $user->name;
 
-            if($user -> role_id == 4){
-
-                $soc = Society::where('email' , $user->email)->get();
-                $id = $soc[0]->id;
-            }
-
-            $events = Event::orderBy('created_at', 'desc')->where('user_id', $id)->orWhere('society_id', $id )->paginate(3);
+            $events = Event::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(3);
 
             return view('event.myevents')->with('events', $events)->with('success', "Showing events of '" . "{$name}" . "' .");
         }
