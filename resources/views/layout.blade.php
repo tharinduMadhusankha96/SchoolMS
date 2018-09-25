@@ -43,7 +43,7 @@
     <style>
         body {
 {{--            background-image: url("{{asset('images/bg1.jpg')}}");--}}
-                 background-color: #e8ffe6;
+                 background-color: white;
 
         }
 
