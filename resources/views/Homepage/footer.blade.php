@@ -7,9 +7,6 @@
 
             <!-- Grid row -->
             <div class="row">
-                <div>
-                    <img src="{{asset('images/library.jpg')}}" class="img">
-                </div>
 
                 <!-- Grid column -->
                 <div class="col-md-12 mt-md-0 mt-3">
@@ -26,7 +23,7 @@
 
         </div>
 
-        <div class="footer-copyright text-center py-3">ï¿½ 2018 Copyright
+        <div class="footer-copyright text-center py-3">© 2018 Copyright
         </div>
 
     </footer>

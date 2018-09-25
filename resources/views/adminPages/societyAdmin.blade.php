@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
     <div class="container-fluid">
 
         <div class="col-12 row">
@@ -11,7 +10,7 @@
                 <h3>List of Events</h3>
                 <br>
                 <?php
-                $events = \App\Event::all();
+                $events = \App\Society::all();
                 ?>
 
                 <table class="col-12">
@@ -32,33 +31,47 @@
 
                 </table>
             </div>
+
             <div class="container col-9">
-                <h1>Expenses and Incomes Event Wise</h1>
+
+                <h1>Societies Information</h1>
                 <br>
                 <canvas id="myChart"></canvas>
             </div>
 
             <?php
             $dates = array();
-            $expenses = array();
+            $title = array();
             $revenues = array();
-            $names = array();
+            $id = array();
+            $count = array();
 
-            $sql = \App\Event::all();
+            $sql = \Illuminate\Support\Facades\DB::table('society_user')->get();
 
-            foreach ($sql as $row) {
-                $names[] = $row['id'];
-                $expenses[] = $row['act_expense'];
-                $revenues[] = $row['act_income'];
+            $socs = \App\Society::all();
+
+
+            foreach ($socs as $row) {
+
+                $q = \Illuminate\Support\Facades\DB::table('society_user')->where('society_id' , $row->id )->get();
+
+//                dd($q);
+                $count[] = sizeof($q);
+                $id[] = $row['id'];
+                $title[] = $row['title'];
+                $revenues[] = $row['society_id'];
                 $dates[] = "" . date('M Y', strtotime($row['from_date']));
+
             }
-            //    $day = date('d', strtotime($article->created_at));
 
+
+            $counts = implode(",", $count);
             $dates = implode(",", $dates);
-            $expenses = implode(",", $expenses);
+            $titles = implode(",", $title);
             $revenues = implode(",", $revenues);
-            $ids = implode(",", $names);
+            $ids = implode(",", $id);
 
+//            dd($counts);
 
             ?>
 
@@ -67,24 +80,25 @@
                 myChart = document.getElementById('myChart').getContext('2d');
                 var datas = {
                     datasets: [{
-                        data: [<?php echo $revenues; ?>],
+                        data: [<?php echo $counts ?>],
                         backgroundColor: 'rgba(169, 92, 115, 0.2)',
                         borderColor: "#a39",
                         // Changes this dataset to become a line
                         //type: 'line',
                         borderWidth: 5,
-                        label: 'Income' // for legend
-                    }, {
-                        data: [<?php echo $expenses; ?>],
-                        backgroundColor: 'transparent',
-                        borderColor: "#39a",
-                        borderWidth: 5,
-                        label: 'Expense' // for legend
-                    }],
+                        label: 'Enrolled Students' // for legend
+                    },
+//                        {
+//                        data: [2 , 4, 5, 3, 5 ,2, 3],
+//                        backgroundColor: 'transparent',
+//                        borderColor: "#39a",
+//                        borderWidth: 5,
+//                        label: 'Expense' // for legend
+//                    }
+                    ],
                     labels: [
 //                    'a' , 'b' , 'c' , 'd' , 'e' , 'f'
-                        <?php
-                        //                    dd($names);
+                    <?php
                         echo $ids;
                         ?>
                     ]
@@ -132,43 +146,78 @@
 
 
             <?php
-            $count = 1;
+            $count = 0;
             //            $sql = mysqli_query($db_conx, "SELECT * FROM chart_data ORDER BY budget_date");
 
-            $sql1 = \App\Event::orderBy('from_date')->get();
+                $male = array();
+                $female = array();
+
+                $m=0;
+                $f=0;
+
+
+            $sql1 = \App\Society::all();
 
             foreach($sql1 as $row ){
-            $count = $count;
+
+            $count = 2;
+
+            $q = \Illuminate\Support\Facades\DB::table('society_user')->where('society_id', $row->id)->get();
+
+            foreach ($q as $q1) {
+
+
+                $userid = $q1->user_id;
+                $user = \App\User::find($userid);
+
+                if ($user->gender == 'Male')
+                    $m = $m + 1;
+                else
+                    $f = $f + 1;
+
+            }
+
+
+            $male[] = $m;
+            $female[] = $f;
+
+
+
             $id = $row['id'];
-            $expense = $row['act_expense'];
-            $revenue = $row['act_income'];
             $name = $row['title'];
             $date = date('M, Y', strtotime($row['from_date']));
 
             //            "".date('M Y', strtotime( $row['from_date']));
+
+
+            $malee = implode(",", $male);
+            $femalee = implode(",", $female);
+            //            $bothh = implode(",", $both);
+
+//                dd($female);
             ?>
 
-                <div style="height:360px; width:360px; margin-top:60px; float:left;">
-                    <h3 align="center"><?php echo $name; ?></h3>
+            <div style="height:360px; width:360px; margin-top:60px; float:left;">
+                <h3 align="center"><?php echo $name; ?></h3>
 
-                    <canvas id="Chart_<?php echo $id; ?>" ></canvas>
-                </div>
+                <canvas id="Chart_<?php echo $id; ?>" ></canvas>
+            </div>
 
             <script>
 
                 var ctx = document.getElementById("Chart_<?php echo $id; ?>");
                 //for bar, line
 
-                    <?php if($count % 2 == 0){ ?>
+                    <?php if($count % 2 == 1 ){ ?>
                 var data = {
                         datasets: [{
-                            data: [<?php echo $revenue; ?>],
+                            data: [<?php echo $malee; ?>],
                             backgroundColor: ["#455C73"],
-                            label: 'Revenue' // for legend
+                            label: 'Male' // for legend
                         }, {
-                            data: [<?php echo $expense; ?>],
+                            data: [<?php echo $femalee; ?>],
                             backgroundColor: ["#9B59B6"],
-                            label: 'Expense' // for legend
+                            label: 'Female' // for legend
                         }],
                         labels: ["<?php echo $name; ?>"]
                     };
@@ -176,20 +225,16 @@
                 //for pie, doughnut
                 var data = {
                     datasets: [{
-                        data: [<?php echo $revenue; ?>, <?php echo $expense; ?>],
+                        data: [<?php echo $malee; ?>, <?php echo $femalee; ?>],
                         backgroundColor: ["#455C73", "#9B59B6"]
                     }],
-                    labels: ["Revenue", "Expense"]
+                    labels: ["Male", "Female"]
                 };
                     <?php }?>
 
                 var myChart = new Chart(ctx, {
                         data: data,
-                        type: '<?php if ($count % 2 == 0) {
-                            echo 'bar';
-                        } else {
-                            echo 'pie';
-                        }?>',
+                        type:'bar',
 
                         options: {
                             legend: {
@@ -228,7 +273,5 @@
 
             <?php } ?>
         </div>
-
-    </div>
     </div>
 @endsection

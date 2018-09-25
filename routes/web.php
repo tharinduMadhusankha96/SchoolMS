@@ -26,11 +26,14 @@ Route::group(['middleware' => 'auth'] , function () {
     });
 });
 
-
-
 Route::get('/home', 'HomeController@index');
+Route::get('/createAdmin' , 'CustomLoginController@createAdmin');
+Route::post('/storeAdmin' , 'CustomLoginController@storeAdmin');
+Route::get('/allAdmins' , 'CustomLoginController@admins');
+Route::delete('/Admindestroy/{admin} ' , 'CustomLoginController@Admindestroy');
 
 
+//Event Routes
 Route::get('Event/search','EventController@search');
 Route::get('Event/createDemo','EventController@createDemo');
 Route::get('Event/monthlyEvent', 'EventController@monthlyEvent');
@@ -40,9 +43,6 @@ Route::post('/Event/showEvent/{event}', 'EventController@updateImage');
 Route::get('/Event/calendar', 'EventController@calendar');
 Route::resource('Event' , 'EventController');
 
-
-
-//Route::post('Event/{event}/comment/{comment}','CommentsController@destroy');
 Route::post('Event/{event}/comment','CommentsController@store');
 Route::get('Sport/search','SportController@search');
 Route::get('Sport/createDemo','SportController@createDemo');
@@ -52,8 +52,6 @@ Route::post('Sport/addStudent' , 'SportController@addStudent');
 Route::delete('Sport/removeStudent' , 'SportController@removeStudent');
 Route::resource('Sport' ,'SportController');
 
-
-
 Route::get('Society/search','SocietyController@search');
 Route::get('Society/createDemo','SocietyController@createDemo');
 Route::get('Society/enrolledStudents' , 'SocietyController@enrolledStudents');
@@ -62,7 +60,11 @@ Route::post('Society/addStudent' , 'SocietyController@addStudent');
 Route::delete('Society/removeStudent' , 'SocietyController@removeStudent');
 Route::resource('Society' , 'SocietyController');
 
-Route::get('charts' , 'ChartsController@index')->name('charts.index');
+Route::get('eventAdmin' , 'EventAdminController@eventAdmin');
+Route::get('societyAdmin' , 'EventAdminController@societyAdmin');
+Route::get('sportAdmin' , 'EventAdminController@sportAdmin');
+//End of Event Routes
+
 
 //inventory
 Route::resource('/orders','Ordercontroller');
@@ -86,3 +88,9 @@ Route::resource('leaverequests','LeaveRequestController');
 Route::resource('leaverequestsnon','LeaveRequestNonController');
 
 
+//student
+Route::post('/update', 'studentController@store');
+Route::get('/std', 'studentController@show');
+Route::get('/delete', 'studentController@destroy');
+Route::get('/fee', 'studentController@store');
+Route::get('/home', 'HomeController@index')->name('home');

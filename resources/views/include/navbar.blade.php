@@ -56,7 +56,7 @@
                     @endif
 
                     <li class="btn nav-item ">
-                        <a class="nav-link " style="color: white;font-family: Times New Roman; href="#">Library</a>
+                        <a class="nav-link " style="color: white;font-family: Times New Roman"; href="#">Library</a>
                     </li>
 
                     <li class="btn nav-item dropdown  ">
@@ -92,6 +92,13 @@
                         <a class="nav-link" style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @else
+                        <li class="btn nav-item " style="color: white; padding-top: 12px;">
+                            @if(Auth()->user())
+                                @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->admin == 1)
+                                    <a href="/adminDashboard" style="color: white;" >Admin Dashboard</a>
+                                @endif
+                            @endif
+                        </li>
                         <li class="btn nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: white" href="#"
                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

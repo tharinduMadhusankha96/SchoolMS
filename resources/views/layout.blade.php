@@ -37,11 +37,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 
+    {{--Charts--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 
     <style>
         body {
 {{--            background-image: url("{{asset('images/bg1.jpg')}}");--}}
-                 background-color: #e8ffe6;
+                 background-color: white;
 
         }
 
@@ -179,6 +181,7 @@
     <div style="margin: 15px">
         @yield('content')
     </div>
+
     <div>
         @include('include.footer')
     </div>
