@@ -49,7 +49,7 @@
                                                 </button>
 
                                                 @if(AUth()->user())
-                                                    @if(Auth()->user()->id == $society->user_id)
+                                                    @if(Auth()->user()->id == $society->user_id || Auth()->user()->role_id == 1 )
                                                         <button class="btn bg-info" type="Submit" style="margin: 2%"><a
                                                                     class="text-white"
                                                                     href="{{ action('SocietyController@edit',[$society->id]) }}">Edit
