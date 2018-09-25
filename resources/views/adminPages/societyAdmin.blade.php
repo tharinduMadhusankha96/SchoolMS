@@ -34,16 +34,16 @@
 
             <div class="container col-9">
 
-                <h1>SocietyInformation</h1>
+                <h1>Societies Information</h1>
                 <br>
                 <canvas id="myChart"></canvas>
             </div>
 
             <?php
             $dates = array();
-            $expenses = array();
+            $title = array();
             $revenues = array();
-            $names = array();
+            $id = array();
             $count = array();
 
             $sql = \Illuminate\Support\Facades\DB::table('society_user')->get();
@@ -57,8 +57,8 @@
 
 //                dd($q);
                 $count[] = sizeof($q);
-                $names[] = $row['id'];
-                $expenses[] = $row['title'];
+                $id[] = $row['id'];
+                $title[] = $row['title'];
                 $revenues[] = $row['society_id'];
                 $dates[] = "" . date('M Y', strtotime($row['from_date']));
 
@@ -67,9 +67,9 @@
 
             $counts = implode(",", $count);
             $dates = implode(",", $dates);
-            $expenses = implode(",", $expenses);
+            $titles = implode(",", $title);
             $revenues = implode(",", $revenues);
-            $ids = implode(",", $names);
+            $ids = implode(",", $id);
 
 //            dd($counts);
 

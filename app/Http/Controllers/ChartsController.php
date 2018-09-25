@@ -11,8 +11,5 @@ use Illuminate\Support\Facades\DB;
 
 class ChartsController extends Controller
 {
-    public function eventAdmin()
-    {
-        return view('adminPages.eventAdmin');
-    }
+
 }
