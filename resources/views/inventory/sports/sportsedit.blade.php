@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="container" style="width: 50%">
-            {!! Form::open(['action' => ['Sportstocks@update',$sport->productID],'method' => 'POST', 'class'=> 'form-signin text-center']) !!}
+            {!! Form::open(['action' => ['Sportsocks@update',$sport->productID],'method' => 'POST', 'class'=> 'form-signin text-center']) !!}
             <input name="_method" type="hidden" value="PATCH">
             {{csrf_field()}}
             <div class="form-group">
@@ -34,7 +34,7 @@
             {!! Form::close() !!}
             <div class="text-center" style="margin-top: 30px">
                 <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
-                <a href="/inventorysports" class="btn btn-outline-info text1">Sports Items</a>
+                <a href="/sports" class="btn btn-outline-info text1">Sports Items</a>
             </div>
         </div>
 

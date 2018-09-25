@@ -54,7 +54,7 @@
                 </tbody>
             </table>
             <div style="margin-top: 30px">
-                <a href="/inventory" class="btn btn-primary text1">Admin Dashboard</a>
+                <a href="/index" class="btn btn-primary text1">Admin Dashboard</a>
                 <a href="/supplier/create" class="btn btn-primary text1">+Add</a>
                 <a href="/live_search" class="btn btn-primary text1">Search</a>
             </div>

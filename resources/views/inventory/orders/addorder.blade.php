@@ -9,7 +9,7 @@
         <div class="container justify-content-center" style="width: 40%">
 
             {{--{!! Form::open(['action' => 'Ordercontroller@store','method' => 'POST', 'class'=> 'form-signin text-center']) !!}--}}
-            <form action="{{action('Ordercontroller@store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{action('Ordercontroller@store')}}" method="post"  enctype="multipart/form-data">
                 <h1 class="h3 mb-3 font-weight-normal"><strong>Please Enter the items</strong></h1>
                 {{csrf_field()}}
 
@@ -19,26 +19,19 @@
                 </div>
                 <div class="form-group form-row text1">
                     {{Form::Label('items','Items',['class'=>'text1'])}}
-                    <select name="items" class="form-control text1" style="color: black" required>
-                        @if(count($st)>0)
-                            @foreach($st as $s)
-                                <option>{{$s}}</option>
-                            @endforeach
-                        @elseif(count($labs)>0)
-                            @foreach($labs as $lab)
-                                <option>{{$lab}}</option>
-                            @endforeach
-                        @elseif(count($res)>0)
-                            @foreach($res as $r)
-                                <option>{{$r}}</option>
-                            @endforeach
-                        @elseif(count($sports)>0)
-                            @foreach($sports as $r)
-                                <option>{{$r}}</option>
-                            @endforeach
-                        @else
-                            <option>Currently no items are available</option>
-                        @endif
+                    <select name="items" class="form-control text1" style="color: black">
+                        @foreach($st as $s)
+                            <option>{{$s}}</option>
+                        @endforeach
+                        @foreach($labs as $lab)
+                            <option>{{$lab}}</option>
+                        @endforeach
+                        @foreach($res as $r)
+                            <option>{{$r}}</option>
+                        @endforeach
+                        @foreach($sports as $r)
+                            <option>{{$r}}</option>
+                        @endforeach
                     </select>
                     {{--{{Form::text('items','',['class'=>'form-control text1','placeholder'=>'Item Name','required'])}}--}}
                 </div>

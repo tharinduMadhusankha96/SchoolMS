@@ -20,30 +20,21 @@
                            id="exampleInputPassword1" placeholder="Enter Title" >
                 </div>
                 <div class="form-group">
-                    <label for="venue"><h6>Teacher In Charge</h6></label>
-                    <input class="form-control" name="teacherInCharge" type="Text" value="{{old('teacherInCharge')}}" list="teachers" placeholder="Select Teacher in Charge"  required/>
-                    <datalist id="teachers">
-                        {{--<option value="School Main Hall">School Main Hall</option>--}}
-                        {{--<option value="School Grounds">School Grounds</option>--}}
-                        {{--<option value="Auditorium">Auditorium</option>--}}
-                        @if($teachers)
-                            @foreach($teachers as $teach)
-                                <option value="{{$teach->id}}"> Teacher Name is {{$teach->name}}</option>
-                            @endforeach
-                        @endif
-                    </datalist>
+                    <label for="teacherInCharge"><h6>Teacher In Charge (ID)</h6> </label>
+                    <input type="Text" name="teacherInCharge" class="form-control" id="exampleInputPassword1"
+                           placeholder="Enter Title" value="{{$society->user_id}}" required>
                 </div>
                 <div class="form-group">
                     <label for="detailedDescription"><h6>Description</h6></label>
                     <textarea rows="10" type="Text" class="form-control" value="{{$society->description}}}"
                               name="description" aria-describedby="emailHelp"
-                              placeholder="A proper explanation about the Society" required>{{$society->description}}}</textarea>
+                              placeholder="A proper explanation about the Society" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="detailedDescription"><h6>Mission and Vision</h6></label>
                     <textarea rows="4" type="Text" class="form-control" value="{{$society->mission}}"
                               name="mission" aria-describedby="emailHelp"
-                              placeholder="Vision and Mission of the society" required>{{$society->mission}}</textarea>
+                              placeholder="Vision and Mission of the society" required></textarea>
                 </div>
 
                 <div class="form-group">

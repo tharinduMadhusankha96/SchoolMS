@@ -1,0 +1,12 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Expenses extends Model
+{
+    protected $table = 'expenses';
+    public $primaryKey = 'invoiceID';
+    public $timestamps = true;
+}

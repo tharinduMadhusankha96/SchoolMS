@@ -47,6 +47,11 @@
                             <option value="School Main Hall">School Main Hall</option>
                             <option value="School Grounds">School Grounds</option>
                             <option value="Auditorium">Auditorium</option>
+                            {{--@if($locations)--}}
+                            {{--@foreach($locations as $Location)--}}
+                            {{--<option value="{{$Location}}">{{$Location}}</option>--}}
+                            {{--@endforeach--}}
+                            {{--@endif--}}
                         </datalist>
                     </div>
 

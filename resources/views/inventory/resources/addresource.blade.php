@@ -24,8 +24,8 @@
             </div>
             <div class="form-group form-row">
                 <div>
-                    {!! Form::Label('item', 'Supplier:',['class'=>'text1' , 'required']) !!}
-                    <select class="form-control text1" style="color: black" name="supplier" required>
+                    {!! Form::Label('item', 'Supplier:',['class'=>'text1']) !!}
+                    <select class="form-control text1" style="color: black" name="supplier">
                         @foreach($suppliers as $supplier)
                             <option>{{$supplier->supplierID}}</option>
                         @endforeach

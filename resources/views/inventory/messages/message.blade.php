@@ -10,20 +10,20 @@
 <strong>
 @if(count($errors)>0)
     @foreach($error->all() as $error)
-        <div class="alert alert-dismissable alert-danger tex">
+        <div class="alert alert-danger tex">
             {{$error}}
         </div>
         @endforeach
         @endif
 
 @if(session('success'))
-    <div class="alert alert-dismissable alert-success tex">
+    <div class="alert alert-success tex">
         {{session('success')}}
     </div>
     @endif
 
         @if(session('error'))
-            <div class="alert alert-dismissable alert-danger tex">
+            <div class="alert alert-danger tex">
                 {{session('error')}}
             </div>
         @endif
