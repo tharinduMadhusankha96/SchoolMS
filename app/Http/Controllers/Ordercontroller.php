@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Orders;
 use App\labs;
 use App\Resources;
-use App\sports;
+use App\InventorySports;
 use App\stationary;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
