@@ -1,4 +1,4 @@
-@extends('inventory.includes.layout')
+@extends('layout')
 @section('content')
     <div class="container" style="margin-top:20px">
         @include('messages.message')

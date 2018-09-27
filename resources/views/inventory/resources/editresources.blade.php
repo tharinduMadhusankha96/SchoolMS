@@ -1,4 +1,4 @@
-@extends('inventory.includes.layout')
+@extends('layout')
 @section('content')
     <div class="container" style="width: auto;margin-top: 20px">
         <div class="text-center">

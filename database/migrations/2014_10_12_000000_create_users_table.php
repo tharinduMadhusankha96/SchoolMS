@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->boolean('admin')->default(0);
             $table->string('password');
             $table->integer('role_id');
+            $table->string('gender');
             $table->rememberToken();
             $table->timestamps();
         });
