@@ -27,7 +27,7 @@
             <div class="col-12 collapse navbar-collapse " id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="btn navbar-nav mr-auto">
-                    <li class="nav-item"  style="color: white; padding-top: 7px;" >
+                    <li class="nav-item"  style="color: white;font-family: Times New Roman; padding-top: 7px;" >
                         <a class="nav-link active text-light "
                            href="/home"> Home</a>
                     </li>
@@ -56,7 +56,7 @@
                     @endif
 
                     <li class="btn nav-item ">
-                        <a class="nav-link " style="color: white;font-family: Times New Roman"; href="#">Library</a>
+                        <a class="nav-link " style="color: white;font-family: Times New Roman;padding-top: 7px"; href="#">Library</a>
                     </li>
 
                     <li class="btn nav-item dropdown  ">
@@ -86,16 +86,16 @@
                     <!-- Authentication Links -->
                     @guest
                     <li class="btn nav-item ">
-                        <a class="nav-link" style="color: white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" style="color: white;padding-top: 7px" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     <li class="btn nav-item ">
                         <a class="nav-link" style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @else
-                        <li class="btn nav-item " style="color: white; padding-top: 12px;">
+                        <li class="btn nav-item " style="color: white; padding-top: 15px;">
                             @if(Auth()->user())
                                 @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->admin == 1)
-                                    <a href="/adminDashboard" style="color: white;" >Admin Dashboard</a>
+                                    <a href="/adminDashboard" style="color: white;padding-top: 7px" >Admin Dashboard</a>
                                 @endif
                             @endif
                         </li>

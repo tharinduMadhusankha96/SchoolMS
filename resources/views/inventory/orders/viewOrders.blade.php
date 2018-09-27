@@ -6,11 +6,12 @@
                 <strong>Orders </strong>
             </h2>
         </div>
-        <div class="container pull-right">
-            <a href="/orders/create" class="btn btn-outline-info text1" style="background-color: limegreen">Orders</a>
-        </div>
+
         <div class="container" style="margin-top: 30px">
             @if(count($orders)>0)
+                <div class="container pull-right">
+                    <a href="/orders/create" class="btn btn-outline-info text1" style="background-color: limegreen">Orders</a>
+                </div>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -45,13 +46,23 @@
                     @endforeach
                     </tbody>
                 </table>
-                @else
-                    <div class="text-center text1 text-justify text-uppercase">
-                        No orders
+            @else
+
+                <div class=" card1 text-center text1  text-uppercase" style="width: 300px;height: 150px">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text1 text-danger text-uppercase text-center">
+                            <div style="margin-top: 30px;padding-top: 20px">
+                                no orders
+                            </div>
+                        <div class="col-md-4"></div>
+                        </div>
+
                     </div>
+                </div>
             @endif
             <div>
-                <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
+                <a href="/inventory" class="btn btn-outline-primary text1">Admin Dashboard</a>
                 {{--@if(\Illuminate\Support\Facades\Auth::user()->id == 1)--}}
                 {{--<button class="btn btn-danger text1" type="submit" onclick="--}}
                 {{--var result = confirm('Are you sure you want to reset the table data? ');--}}

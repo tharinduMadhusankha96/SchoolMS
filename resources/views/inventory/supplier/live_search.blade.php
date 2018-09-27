@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Live search in laravel using AJAX</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<br/>
+@extends('layout')
+@section('content')
 <div class="container">
     <div class="container box">
         <h3 align="center"></h3><br/>
@@ -39,8 +31,6 @@
         </div>
     </div>
 </div>
-</body>
-</html>
 
 <script>
     $(document).ready(function () {
@@ -66,3 +56,4 @@
         });
     });
 </script>
+@endsection

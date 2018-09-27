@@ -1,4 +1,4 @@
-@extends('inventory.includes.layout')
+@extends('layout')
 @section('content')
     <div class="container" style="width: auto;margin-top: 20px">
         <div class="text-center">
@@ -39,7 +39,7 @@
             {!! Form::close() !!}
             <div style="margin-top: 30px" class="text-center">
                 <a href="/inventory" class="btn btn-outline-info text1">Admin Dashboard</a>
-                <a href="/sports" class="btn btn-outline-info text1">Sports Items</a>
+                <a href="/inventorysports" class="btn btn-outline-info text1">Sports Items</a>
             </div>
         </div>
 
