@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <div class="container" style="margin-top:20px">
+    <div class="container" style="margin-top:10px">
         <div class="text-center">
             <h2 class="display-5 text-center" style="font-size:4vw;">
                 <strong>Orders </strong>
