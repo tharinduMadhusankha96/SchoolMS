@@ -68,7 +68,7 @@ class Ordercontroller extends Controller
         $orders->items = $request->input('items');
         $orders->quantity = $request->input('qty');
         $orders->type = $request->input('type');
-
+        $emp = $request->input('empID');
         $type = $request->input('type');
         $name = $request->input('items');
         $qty = $request->input('qty');
@@ -79,12 +79,18 @@ class Ordercontroller extends Controller
         $lab = DB::table('labs')->pluck('name');
 
 
-        if ($qty > 0) {
-            $orders->save();
-            return redirect()->back()->with('success', 'Order was placed successfully');
-        } else {
-            return redirect()->back()->with('error', 'Enter the correct quantity');
+        if (DB::table('orders')->where('empid','=',$emp)->where('items','=',$name)->exists()){
+            return back()->with('error','There is an order placed by you for this item please chec the order list');
         }
+        else{
+            if ($qty > 0) {
+                $orders->save();
+                return redirect()->back()->with('success', 'Order was placed successfully');
+            } else {
+                return redirect()->back()->with('error', 'Enter the correct quantity');
+            }
+        }
+
 
 
     }

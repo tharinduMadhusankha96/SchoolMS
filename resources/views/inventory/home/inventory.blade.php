@@ -57,7 +57,7 @@
                   </div>
                   <div class="card-body text-center">
                      <h4 style="color: white"><strong>Check the current stock details</strong></h4><br>
-                     <a class="btn btn-primary btn-lg" aria-pressed="true" href="/sports">Enter</a>
+                     <a class="btn btn-primary btn-lg" aria-pressed="true" href="/inventorysports">Enter</a>
                      <h4 style="color: white;font-family: sans-serif">Items in stock :- <button type="button" class="btn btn-secondary btn-lg" disabled>{{$data['sports']}}</button></h4>
                   </div>
 
@@ -66,7 +66,7 @@
 
 
             <div class="col-md-4" >
-               <div class="card1">
+               <div class="card1 text1">
                   <div class="card-header" style="background-color: black;height: 90px">
                      <h3 class=" card-title text-justify text-uppercase text-center cardheader" style="color: white;margin-top: auto;margin-bottom: auto"><strong>School Resources</strong></h3>
                   </div>
@@ -89,7 +89,7 @@
                      <h4 style="color: white"><strong>Check the supplier details</strong></h4><br>
                      <a class="btn btn-primary btn-lg" aria-pressed="true" href="/supplier">Enter</a>
                      <h4 style="color: white;font-family: sans-serif">Monthly Expenses</h4>
-                     <a class="btn btn-primary btn-lg" aria-pressed="true" href="/expenses">Enter</a>
+                     <a class="btn btn-primary btn-lg" aria-pressed="true" href="/inventoryexpenses">Enter</a>
                   </div>
 
                </div>

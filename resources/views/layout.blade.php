@@ -179,21 +179,32 @@
     </style>
 
 </head>
-<body >
+<body style="width: auto;height: auto">
 
 <div>
+
     <div>
         @include('include.navbar')
     </div>
-    <div class="container" style="padding: 1%">
-        @include('include.error')
-        @include('include.success')
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="container-box text-center" style="margin-top: 15px;width: 100%;">
+                    @include('include.error')
+                    @include('include.success')
+                    @include('inventory.messages.message')
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
     </div>
     <div style="margin: 15px">
         @yield('content')
     </div>
 
-    <div>
+    <div style="margin-top: 50px">
         @include('include.footer')
     </div>
 
