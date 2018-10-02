@@ -9,7 +9,7 @@
 <body>
 <br />
 <div class="container box">
-    <h3 align="center">Search Canteen Products</h3><br />
+    <h3 align="center">Search Bookshop Products</h3><br />
     <div class="panel panel-default">
         <div class="panel-heading">Search Bookshop Items</div>
         <div class="panel-body">

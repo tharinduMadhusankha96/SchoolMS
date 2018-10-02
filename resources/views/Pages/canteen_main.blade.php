@@ -86,6 +86,7 @@
 
                     <a href="CanteenItem/" class="button button2">View</a>
                     <a href="live_search/" class="button button2">Search Products</a>
+                    <a href="dynamic_pdfc/" class="button button2">Download Details</a>
                     <a href="canteen_home" class="button button2">Back</a>
                 </div>
                 <p></p>

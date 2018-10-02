@@ -15,14 +15,14 @@
 <body>
 <br />
 <div class="container">
-    <h3 align="center">Bookshop Product Details</h3><br />
+    <h3 align="center">Canteen Product Details</h3><br />
 
     <div class="row">
         <div class="col-md-7" align="right">
             <h4></h4>
         </div>
         <div class="col-md-5" align="right">
-            <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger">Download Details</a>
+            <a href="{{ url('dynamic_pdfc/pdf') }}" class="btn btn-danger">Download Details</a>
         </div>
     </div>
     <br />
@@ -51,7 +51,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="{{asset('bookshop_main')}}" class="button button2">Back</a>
+        <a href="{{asset('canteen_main')}}" class="button button2">Back</a>
     </div>
 </div>
 </body>

@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use DB;
 use PDF;
-class DynamicPDFController extends Controller
+use Illuminate\Http\Request;
+
+class DynamicPDFCController extends Controller
 {
     function index()
     {
         $customer_data = $this->get_customer_data();
-        return view('dynamic_pdf')->with('customer_data', $customer_data);
+        return view('dynamic_pdfc')->with('customer_data', $customer_data);
     }
 
     function get_customer_data()
     {
-        $customer_data = DB::table('bok_products')
+        $customer_data = DB::table('can_products')
             ->limit(10)
             ->get();
         return $customer_data;
@@ -40,6 +40,7 @@ class DynamicPDFController extends Controller
     <th style="border: 1px solid; padding:12px;" width="15%">Price</th>
     <th style="border: 1px solid; padding:12px;" width="15%">Discount Code</th>
     <th style="border: 1px solid; padding:12px;" width="20%">Amount</th>
+    <th style="border: 1px solid; padding:12px;" width="20%">Date</th>
    </tr>
      ';
         foreach($customer_data as $customer)
@@ -51,6 +52,7 @@ class DynamicPDFController extends Controller
        <td style="border: 1px solid; padding:12px;">'.$customer->price.'</td>
        <td style="border: 1px solid; padding:12px;">'.$customer->dis.'</td>
        <td style="border: 1px solid; padding:12px;">'.$customer->amount.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$customer->created_at.'</td>
       </tr>
       ';
         }
